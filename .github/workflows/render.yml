@@ -1,0 +1,80 @@
+name: render-video
+
+# n8n triggers this with the GitHub API:
+#   POST /repos/OWNER/REPO/actions/workflows/render.yml/dispatches
+#   {"ref":"main","inputs":{"job_json":"<job as a JSON string>"}}      (or "job_url": "https://.../job.json")
+# When finished, the repo POSTs the result to job.callback_url (your n8n webhook).
+on:
+  workflow_dispatch:
+    inputs:
+      job_json:
+        description: "Job spec as a JSON string"
+        required: false
+        default: ""
+      job_url:
+        description: "URL of a job JSON file (use this for jobs bigger than ~60 KB)"
+        required: false
+        default: ""
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: System deps (ffmpeg + fonts)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg fonts-dejavu fonts-liberation fonts-noto-color-emoji
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - run: pip install -r requirements.txt
+
+      - name: Install HyperFrames (Apache-2.0, no per-render fees)
+        run: |
+          npm install --no-audit --no-fund
+          npx hyperframes browser ensure || true
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+      - run: python -m playwright install --with-deps chromium
+
+      - name: Write job file
+        env:
+          JOB_JSON: ${{ inputs.job_json }}
+          JOB_URL: ${{ inputs.job_url }}
+        run: |
+          if [ -n "$JOB_JSON" ]; then printf '%s' "$JOB_JSON" > job.json
+          elif [ -n "$JOB_URL" ]; then curl -fsSL "$JOB_URL" -o job.json
+          else echo "need job_json or job_url" && exit 1; fi
+
+      - name: Render
+        env:
+          MODAL_TTS_URL: ${{ secrets.MODAL_TTS_URL }}        # optional: defaults to your Chatterbox endpoint
+          QWEN_IMAGE_URL: ${{ secrets.QWEN_IMAGE_URL }}      # optional: defaults to your Qwen Image 2.1 endpoint
+          FREESOUND_API_KEY: ${{ secrets.FREESOUND_API_KEY }}
+          SFX_BASE_URL: ${{ secrets.SFX_BASE_URL }}
+          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_BUCKET: ${{ secrets.R2_BUCKET }}
+          R2_PUBLIC_BASE: ${{ secrets.R2_PUBLIC_BASE }}
+        run: python -m editor.cli --job job.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: render-output
+          path: out/**
+          retention-days: 7
