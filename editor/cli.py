@@ -2,6 +2,8 @@
 python -m editor.cli --job job.json [--out out] [--dry-run]
   --job       path or URL of the job JSON         --job-json  inline JSON string
   --dry-run   compile + mix audio, skip frame render and upload (fast validation)
+  n8n dispatch extras: --callback-url (the Wait node's resume URL)  --render-id  --channel  --skip-upload true|false
+  The job may carry presigned_put_url + public_video_url: the video is PUT there and public_video_url is returned.
 """
 from __future__ import annotations
 import argparse, json, shutil, sys, traceback
@@ -12,7 +14,7 @@ import requests
 from .audio import mix_audio
 from .config import load_profile
 from .prepare import prepare
-from .publish import callback, upload_video
+from .publish import callback, put_presigned, upload_video
 from .schema import Job
 from .timeline import compile_job
 from .util import Ctx
@@ -36,11 +38,25 @@ def main(argv=None) -> int:
     ap.add_argument("--workdir", default="workdir")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--engine", choices=["hyperframes", "stage"], help="override the profile's render engine")
+    ap.add_argument("--callback-url", default="")
+    ap.add_argument("--render-id", default="")
+    ap.add_argument("--channel", default="")
+    ap.add_argument("--skip-upload", default="")
     args = ap.parse_args(argv)
     if not (args.job or args.job_json):
         ap.error("need --job or --job-json")
 
     raw = _load_job(args)
+    # values handed over by the n8n dispatch win over what is inside the job file
+    if args.render_id:
+        raw["job_id"] = args.render_id
+    if args.callback_url:
+        raw["callback_url"] = args.callback_url
+    if args.channel and not raw.get("channel"):
+        raw["channel"] = args.channel
+    if raw.get("orientation") and not raw.get("aspect"):
+        raw["aspect"] = {"portrait": "9:16", "landscape": "16:9", "square": "1:1"}.get(str(raw["orientation"]).lower())
+    skip_upload = str(args.skip_upload).lower() in ("true", "1", "yes")
     ctx = Ctx(str(raw.get("job_id", "job")))
     result = {"job_id": ctx.job_id, "status": "error", "video_url": None, "video_path": None}
     try:
@@ -89,7 +105,13 @@ def main(argv=None) -> int:
             final = out_dir / fname
             mux(silent, audio, final, timeline["duration"])
             result.update(status="ok", video_path=str(final), duration=timeline["duration"])
-            if job.output.get("upload", True):
+            if raw.get("presigned_put_url") and not skip_upload:
+                print("[4/4] uploading to R2 (presigned URL)", flush=True)
+                if put_presigned(final, raw["presigned_put_url"], ctx):
+                    result["video_url"] = raw.get("public_video_url")
+                else:
+                    result.update(status="error", error="video rendered but the upload to R2 failed (presigned URL expired or wrong)")
+            elif job.output.get("upload", True) and not skip_upload:
                 print("[4/4] publishing", flush=True)
                 result["video_url"] = upload_video(final, f"videos/{job.channel}/{fname}", ctx)
         (out_dir / "credits.json").write_text(json.dumps(ctx.credits, indent=2), encoding="utf-8")

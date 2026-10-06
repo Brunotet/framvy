@@ -34,6 +34,24 @@ def upload_video(path: Path, key: str, ctx: Ctx) -> Optional[str]:
         return None
 
 
+def put_presigned(path: Path, url: str, ctx: Ctx, tries: int = 3) -> bool:
+    """Upload the finished video to a presigned PUT URL (the R2 pattern your other pipelines already use)."""
+    import time
+    last = None
+    for i in range(tries):
+        try:
+            with open(path, "rb") as f:
+                r = requests.put(url, data=f, headers={"Content-Type": "video/mp4"}, timeout=900)
+            if r.status_code in (200, 201, 204):
+                return True
+            last = f"HTTP {r.status_code}: {r.text[:200]}"
+        except Exception as ex:  # noqa
+            last = str(ex)
+        time.sleep(4 * (i + 1))
+    ctx.warn(f"presigned upload failed: {last}")
+    return False
+
+
 def callback(url: Optional[str], payload: dict, ctx: Ctx):
     if not url:
         return

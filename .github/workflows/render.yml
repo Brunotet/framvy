@@ -1,18 +1,38 @@
 name: render-video
 
-# n8n triggers this with the GitHub API:
-#   POST /repos/OWNER/REPO/actions/workflows/render.yml/dispatches
-#   {"ref":"main","inputs":{"job_json":"<job as a JSON string>"}}      (or "job_url": "https://.../job.json")
-# When finished, the repo POSTs the result to job.callback_url (your n8n webhook).
+# n8n triggers this with the GitHub API (same contract as your other pipelines):
+#   POST /repos/Brunotet/framvy/actions/workflows/render.yml/dispatches
+#   {"ref":"main","inputs":{"channel":"...","payload_b64":"<base64 job>","render_id":"...","callback_url":"<Wait resume URL>","skip_upload":"false"}}
+# The finished video is PUT to the presigned R2 URL inside the job; the result is POSTed to callback_url.
 on:
   workflow_dispatch:
     inputs:
+      channel:
+        description: "Channel profile name"
+        required: false
+        default: ""
+      payload_b64:
+        description: "Base64 of the job JSON (from n8n)"
+        required: false
+        default: ""
+      render_id:
+        description: "Render id (becomes the job id)"
+        required: false
+        default: ""
+      callback_url:
+        description: "n8n Wait-node resume URL, called when the render ends"
+        required: false
+        default: ""
+      skip_upload:
+        description: "true = do not upload to R2"
+        required: false
+        default: "false"
       job_json:
-        description: "Job spec as a JSON string"
+        description: "Manual test: the job as a JSON string"
         required: false
         default: ""
       job_url:
-        description: "URL of a job JSON file (use this for jobs bigger than ~60 KB)"
+        description: "Manual test: URL of a job JSON file"
         required: false
         default: ""
 
@@ -52,25 +72,38 @@ jobs:
 
       - name: Write job file
         env:
+          PAYLOAD_B64: ${{ inputs.payload_b64 }}
           JOB_JSON: ${{ inputs.job_json }}
           JOB_URL: ${{ inputs.job_url }}
         run: |
-          if [ -n "$JOB_JSON" ]; then printf '%s' "$JOB_JSON" > job.json
+          if [ -n "$PAYLOAD_B64" ]; then printf '%s' "$PAYLOAD_B64" | base64 -d > job.json
+          elif [ -n "$JOB_JSON" ]; then printf '%s' "$JOB_JSON" > job.json
           elif [ -n "$JOB_URL" ]; then curl -fsSL "$JOB_URL" -o job.json
-          else echo "need job_json or job_url" && exit 1; fi
+          else echo "need payload_b64, job_json or job_url" && exit 1; fi
 
       - name: Render
         env:
+          CALLBACK_URL: ${{ inputs.callback_url }}
+          RENDER_ID: ${{ inputs.render_id }}
+          CHANNEL: ${{ inputs.channel }}
+          SKIP_UPLOAD: ${{ inputs.skip_upload }}
           MODAL_TTS_URL: ${{ secrets.MODAL_TTS_URL }}        # optional: defaults to your Chatterbox endpoint
           QWEN_IMAGE_URL: ${{ secrets.QWEN_IMAGE_URL }}      # optional: defaults to your Qwen Image 2.1 endpoint
+          QWEN_BATCH_URL: ${{ secrets.QWEN_BATCH_URL }}      # optional: defaults to the batch URL in channels/default.yaml
           FREESOUND_API_KEY: ${{ secrets.FREESOUND_API_KEY }}
-          SFX_BASE_URL: ${{ secrets.SFX_BASE_URL }}
-          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
-          R2_PUBLIC_BASE: ${{ secrets.R2_PUBLIC_BASE }}
-        run: python -m editor.cli --job job.json
+        run: |
+          python -m editor.cli --job job.json --callback-url "$CALLBACK_URL" --render-id "$RENDER_ID" \
+            --channel "$CHANNEL" --skip-upload "$SKIP_UPLOAD"
+
+      - name: Tell n8n if the workflow itself crashed
+        if: failure() && inputs.callback_url != ''
+        env:
+          CALLBACK_URL: ${{ inputs.callback_url }}
+          RENDER_ID: ${{ inputs.render_id }}
+        run: |
+          curl -s -X POST -H 'Content-Type: application/json' \
+            -d "{\"status\":\"error\",\"job_id\":\"$RENDER_ID\",\"error\":\"GitHub workflow failed before the render finished. Open the Actions run for details.\"}" \
+            "$CALLBACK_URL" || true
 
       - uses: actions/upload-artifact@v4
         if: always()
