@@ -22,8 +22,10 @@ def analyze(path: Path) -> dict:
     top = float(env.max())
     if top < 1e-4:
         return {"onset": 0.0, "peak": 0.0, "active_end": dur, "duration": dur}
-    thr = max(top * 0.08, 10 ** (-50 / 20))
-    idx = np.where(env > thr)[0]
+    thr = top * 0.08                      # relative to this sound's own loudness (works for very quiet files too)
+    idx = np.where(env >= thr)[0]
+    if idx.size == 0:
+        return {"onset": 0.0, "peak": round(float(env.argmax() * 0.01), 3), "active_end": dur, "duration": dur}
     onset = max(0.0, idx[0] * 0.01 - 0.01)
     return {"onset": round(float(onset), 3), "peak": round(float(env.argmax() * 0.01), 3),
             "active_end": round(float((idx[-1] + 1) * 0.01), 3), "duration": round(dur, 3)}
