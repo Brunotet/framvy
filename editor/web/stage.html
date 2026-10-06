@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  html,body{margin:0;padding:0;background:#000;overflow:hidden}
+  #root{position:relative;overflow:hidden;background:#000}
+  #scenes,#popups{position:absolute;inset:0}
+  .scene{position:absolute;inset:0;overflow:hidden;will-change:transform,opacity}
+  .bg{position:absolute;inset:-5%}
+  .vis{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .vis img{width:100%;height:100%;object-fit:cover}
+  .ktext{width:84%;text-align:center;font-weight:900;line-height:1.08;color:var(--text);
+         text-shadow:0 6px 24px rgba(0,0,0,.55);letter-spacing:-.5px}
+  .char{position:absolute;bottom:0}
+  .char img{height:100%;display:block}
+  .popup{position:absolute;left:50%;top:50%;font-weight:900;color:#111;white-space:nowrap;
+         padding:.18em .5em;border-radius:.3em;box-shadow:0 10px 30px rgba(0,0,0,.45);opacity:0}
+  #caps{position:absolute;left:0;right:0;text-align:center;padding:0 6%;box-sizing:border-box}
+  .cw{display:inline-block;margin:0 .14em;color:var(--text);font-weight:900;
+      -webkit-text-stroke:var(--stroke) #000;paint-order:stroke fill;text-shadow:0 5px 18px rgba(0,0,0,.6)}
+  #vig,#grain,#bars{position:absolute;inset:0;pointer-events:none}
+</style></head>
+<body>
+<div id="root">
+  <div id="scenes"></div>
+  <div id="popups"></div>
+  <div id="caps"></div>
+  <div id="vig"></div><div id="grain"></div><div id="bars"></div>
+</div>
+<script src="stage.js"></script>
+</body></html>

@@ -1,0 +1,8 @@
+{
+  "name": "robo",
+  "poses": {"idle": "idle.png", "happy": "happy.png", "shocked": "shocked.png"},
+  "default_pose": "idle",
+  "side": "left",
+  "scale": 0.42,
+  "action": "bounce"
+}

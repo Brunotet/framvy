@@ -1,0 +1,1 @@
+# One direct .zip URL per line (copy the links from gdc.sonniss.com). Lines starting with # are ignored.

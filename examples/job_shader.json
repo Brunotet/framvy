@@ -1,0 +1,12 @@
+{
+  "job_id": "demo-shader",
+  "channel": "example_text_only",
+  "format": {"width": 540, "height": 960, "fps": 24},
+  "scenes": [
+    {"start": 0.0, "end": 2.0, "text": "Nobody tells you this"},
+    {"start": 2.0, "end": 4.0, "text": "Your brain edits your memories", "transition": "glitch",
+     "popups": [{"text": "WAIT WHAT?", "at": 2.6, "duration": 1.0, "style": "stamp"}]},
+    {"start": 4.0, "end": 6.0, "text": "So which ones are real?", "transition": "light-leak"}
+  ],
+  "output": {"upload": false}
+}

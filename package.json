@@ -1,0 +1,11 @@
+{
+  "name": "video-editor",
+  "private": true,
+  "description": "Render engine dependencies (HyperFrames, Apache-2.0, no per-render fees)",
+  "dependencies": {
+    "hyperframes": "0.8.127",
+    "@hyperframes/core": "0.8.127",
+    "@hyperframes/shader-transitions": "0.8.127",
+    "gsap": "3.15.0"
+  }
+}

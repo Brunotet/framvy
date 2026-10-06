@@ -1,0 +1,11 @@
+# Text-only channel: no images ever, bold kinetic type, cinematic bars.
+features: {images: false}
+palette:
+  - ["#000000", "#1a1a2e"]
+  - ["#0b132b", "#1c2541"]
+  - ["#1b1b1b", "#3a0ca3"]
+accent: "#00E5FF"
+motion_default: none
+transition_default: zoom
+look: {grade: cool, vignette: 0.5, grain: 0.08, letterbox: 0.06}
+captions: {style: none}   # the scene text IS the visual

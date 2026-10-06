@@ -1,0 +1,21 @@
+{
+  "job_id": "demo-script",
+  "channel": "default",
+  "aspect": "9:16",
+  "resolution": "540p",
+  "meta": {"topic": "demo"},
+  "voiceover": {"script": "Watch this. Boom, the whole city shakes. Then everything goes quiet again."},
+  "scenes": [
+    {"text": "Watch this.",
+     "visual": {"type": "image", "prompt": "a calm city skyline at dawn, wide shot"}},
+    {"text": "Boom, the whole city shakes.",
+     "visual": {"type": "image", "prompt": "a city skyline at dawn, wide shot", "motion": "shake"},
+     "popups": [{"text": "BOOM", "word": "Boom"}],
+     "sfx": [{"query": "punch impact", "word": "Boom", "align": "peak", "gain": 1.0},
+             {"query": "long air whoosh swell", "word": "city", "dur": 0.6}]},
+    {"text": "Then everything goes quiet again.",
+     "visual": {"type": "image", "prompt": "a calm city skyline at dawn, wide shot"},
+     "transition": "fade"}
+  ],
+  "output": {"upload": false}
+}

@@ -1,0 +1,12 @@
+{
+  "job_id": "demo-text",
+  "channel": "example_text_only",
+  "format": {"width": 540, "height": 960, "fps": 24},
+  "scenes": [
+    {"start": 0.0, "end": 2.2, "text": "Nobody tells you this"},
+    {"start": 2.2, "end": 4.4, "text": "Your brain edits memories every time you recall them",
+     "popups": [{"text": "WAIT WHAT?", "at": 3.0, "duration": 1.1, "style": "stamp"}]},
+    {"start": 4.4, "end": 6.5, "text": "So which ones are real?", "transition": "flash"}
+  ],
+  "output": {"upload": false}
+}

@@ -1,0 +1,19 @@
+{
+  "job_id": "demo-images",
+  "channel": "default",
+  "format": {"width": 540, "height": 960, "fps": 24},
+  "voiceover": {"words": [
+    {"w": "I", "start": 0.1, "end": 0.3}, {"w": "love", "start": 0.3, "end": 0.7}, {"w": "food", "start": 0.7, "end": 1.4},
+    {"w": "but", "start": 2.3, "end": 2.6}, {"w": "cities", "start": 2.6, "end": 3.2}, {"w": "never", "start": 3.2, "end": 3.7}, {"w": "sleep.", "start": 3.7, "end": 4.6}
+  ]},
+  "scenes": [
+    {"start": 0.0, "end": 2.2, "text": "I love food",
+     "visual": {"type": "image", "path": "examples/assets/food.jpg", "motion": "shake"},
+     "popups": [{"text": "YUM", "at": 0.8, "duration": 1.0}],
+     "sfx": [{"query": "heavy impact", "at": 0.05}]},
+    {"start": 2.2, "end": 4.8, "text": "but cities never sleep.",
+     "visual": {"type": "image", "path": "examples/assets/city.jpg"},
+     "transition": "whip"}
+  ],
+  "output": {"upload": false}
+}

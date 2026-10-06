@@ -1,0 +1,6 @@
+# Image channel with a recurring character (add art to characters/robo/ first).
+features: {images: true}
+character: robo
+accent: "#FF4D6D"
+look: {grade: warm, vignette: 0.3, grain: 0.05}
+captions: {style: pop, position: lower}

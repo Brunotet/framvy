@@ -1,0 +1,74 @@
+# Base look for every channel. A channel file (channels/<name>.yaml) only needs the keys it changes.
+format:                  # the job can override any of these: "aspect": "16:9", "resolution": "720p"
+  aspect: "9:16"         # 9:16 shorts | 16:9 long-form | 1:1 | 4:5 | 21:9 ...
+  resolution: 1080p      # length of the SHORT side (720p = quick drafts, 4k = 2160)
+  fps: 30
+
+engine: hyperframes       # hyperframes | stage (built-in Playwright renderer)
+engine_fallback: true     # if HyperFrames fails, fall back to the built-in renderer so the video still ships
+
+features:
+  images: true      # false -> every scene becomes kinetic text, even if the job sends image URLs
+  popups: true
+
+character: null     # folder name inside characters/ (e.g. "robo"); scenes opt in with "character": true
+
+palette:            # gradient pairs, rotated per scene (used behind text scenes and under images)
+  - ["#0f0c29", "#302b63"]
+  - ["#141e30", "#243b55"]
+  - ["#2b1055", "#7597de"]
+  - ["#1f1c2c", "#928dab"]
+
+text_color: "#FFFFFF"
+accent: "#FFD400"
+font_family: "Inter, 'Segoe UI', 'DejaVu Sans', Arial, sans-serif"
+font_google: null   # e.g. "Anton" or "Montserrat:wght@900" (Google Fonts, loaded at render time)
+font_file: null     # e.g. "assets/fonts/Anton-Regular.ttf" (relative to repo root)
+uppercase: true
+
+motion_default: auto     # auto | zoom_in | zoom_out | pan_left | pan_right | float | push | shake | none
+transition_default: whip # cut | fade | whip | zoom | flash
+transition_duration: 0.28
+
+captions:
+  style: karaoke         # karaoke | pop | plain | none
+  position: lower        # lower | center
+  max_words: 3
+  max_chars: 22
+captions_landscape:      # applied automatically on wide (16:9) videos
+  max_words: 6
+  max_chars: 40
+
+tail_seconds: 0.6        # breathing room after the narration ends
+
+image:                   # your Qwen Image 2.1 Modal app (qwen_image_2_1_app.py)
+  steps: 40
+  prompt_prefix: ""      # put your channel's quality/style words here if n8n doesn't add them
+  prompt_suffix: ""
+  negative_prompt: ""    # e.g. "blurry, low quality, text, watermark"
+  # --- ONE-call batching (needs the updated Modal file deployed) -----------------------------------
+  batch_url: "https://creatyoasis--qwen-image-2-1-generate-images.modal.run"   # one call renders several images on one GPU container
+  batch_size: 4          # images per request; keeps each request near Modal's 150 s web limit
+  batch_key: prompts
+  # --- sizing: ask for the video's aspect ratio instead of a square -----------------------------------
+  send_size: true        # sends width/height (nearest Qwen-native size to the video's aspect). Old endpoint ignores it.
+  size_mode: native      # native | exact (exact = video size rounded to 16)
+  size_keys: [width, height]
+  max_parallel: 1        # 1 = sequential on ONE warm container (cheapest)
+  extra_body: {}
+  timeout: 900
+  retries: 2
+look:
+  grade: punchy          # warm | cool | punchy | none
+  vignette: 0.35
+  grain: 0.06
+  letterbox: 0           # fraction of height for cinematic bars, e.g. 0.08
+
+sfx:
+  enabled: true
+  auto: true             # whoosh on scene changes, pop on popups
+  gain: 0.7
+  transition_query: whoosh
+
+music:
+  gain: 0.14             # url/path usually comes from the job
