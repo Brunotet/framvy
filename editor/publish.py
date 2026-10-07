@@ -53,9 +53,22 @@ def put_presigned(path: Path, url: str, ctx: Ctx, tries: int = 3) -> bool:
 
 
 def callback(url: Optional[str], payload: dict, ctx: Ctx):
+    """Tell n8n (the Wait node's resume URL) the render is done. Retries, and prints exactly what n8n answered."""
+    import time
+    from urllib.parse import urlparse
     if not url:
+        print("[callback] no callback_url was given, so n8n is not notified", flush=True)
         return
-    try:
-        requests.post(url, json=payload, timeout=30).raise_for_status()
-    except Exception as ex:
-        ctx.warn(f"callback failed: {ex}")
+    last = None
+    for i in range(3):
+        try:
+            r = requests.post(url, json=payload, timeout=30)
+            print(f"[callback] n8n ({urlparse(url).netloc}) answered HTTP {r.status_code}", flush=True)
+            if r.status_code < 300:
+                return
+            last = f"HTTP {r.status_code}: {r.text[:200]}"
+        except Exception as ex:  # noqa
+            last = str(ex)
+            print(f"[callback] attempt {i + 1} failed: {last[:160]}", flush=True)
+        time.sleep(5)
+    ctx.warn(f"callback failed: {last}")

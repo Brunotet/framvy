@@ -95,15 +95,22 @@ jobs:
           python -m editor.cli --job job.json --callback-url "$CALLBACK_URL" --render-id "$RENDER_ID" \
             --channel "$CHANNEL" --skip-upload "$SKIP_UPLOAD"
 
-      - name: Tell n8n if the workflow itself crashed
-        if: failure() && inputs.callback_url != ''
+      - name: Notify n8n (always, shows exactly what n8n answered)
+        if: always() && inputs.callback_url != ''
         env:
           CALLBACK_URL: ${{ inputs.callback_url }}
           RENDER_ID: ${{ inputs.render_id }}
         run: |
-          curl -s -X POST -H 'Content-Type: application/json' \
-            -d "{\"status\":\"error\",\"job_id\":\"$RENDER_ID\",\"error\":\"GitHub workflow failed before the render finished. Open the Actions run for details.\"}" \
-            "$CALLBACK_URL" || true
+          f=$(ls out/*/result.json 2>/dev/null | head -1 || true)
+          if [ -z "$f" ]; then
+            printf '{"status":"error","job_id":"%s","error":"GitHub workflow failed before the render finished. Open the Actions run for details."}' "$RENDER_ID" > /tmp/result.json
+            f=/tmp/result.json
+          fi
+          code=$(curl -s -o /tmp/n8n_reply.txt -w '%{http_code}' -X POST -H 'Content-Type: application/json' --data-binary @"$f" "$CALLBACK_URL" || echo 000)
+          echo "n8n answered HTTP $code"
+          cat /tmp/n8n_reply.txt || true
+          echo
+          echo "(200 = n8n resumed the Wait node. 404 = n8n was not waiting any more. 000 = could not reach n8n.)"
 
       - uses: actions/upload-artifact@v4
         if: always()
