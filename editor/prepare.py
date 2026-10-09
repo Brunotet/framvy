@@ -64,10 +64,11 @@ def prepare(job: Job, profile: dict, workdir: Path, ctx: Ctx) -> None:
                 and not (s.visual.url or s.visual.path)]
         if todo:
             fmt = resolve_format(profile.get("format"), job.format, job.aspect, job.resolution)
-            got = generate_images([s.visual.prompt for s in todo], profile.get("image") or {}, workdir, ctx,
+            key = lambda s: (s.visual.prompt, tuple(s.visual.characters or ()))
+            got = generate_images([key(s) for s in todo], profile.get("image") or {}, workdir, ctx,
                                   (fmt["width"], fmt["height"]))
             for s in todo:
-                p = got.get(s.visual.prompt)
+                p = got.get(key(s))
                 if p:
                     s.visual.path = str(p)
     elif any(s.visual.type == "image" and s.visual.prompt for s in scenes):

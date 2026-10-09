@@ -1,0 +1,21 @@
+# Whiteboard animation: a pure white page, registered characters, no subtitles, no word pop-ups.
+features: {images: true, popups: false}
+
+palette:
+  - ["#FFFFFF", "#FFFFFF"]
+text_color: "#111111"
+accent: "#111111"
+uppercase: false
+
+motion_default: float        # gentle drift only, so characters near the edge are never cropped
+transition_default: fade
+transition_duration: 0.25
+
+captions: {style: none}      # a job can still switch them on: "captions": {"style": "karaoke", "size_pct": 0.04}
+
+look: {grade: none, vignette: 0, grain: 0, letterbox: 0, shade: false}   # shade:false = no dark gradient over the white page
+
+image:                       # merged over channels/default.yaml (batch_url etc. stay)
+  negative_prompt: "colored background, background scenery, gradient background, floor, shadow, text, letters, watermark, logo, border, frame"
+
+sfx: {enabled: true, auto: true, gain: 0.7, transition_query: whoosh}

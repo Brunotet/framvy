@@ -140,7 +140,7 @@ def build(timeline: dict, project: Path) -> Path:
         if vis["type"] == "image":
             rel = _copy_asset(vis["src"], assets, seen)
             content.append(f'<div class="vis"><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:{vis.get("fit", "cover")}"></div>'
-                           '<div class="shade"></div>')
+                           + ('<div class="shade"></div>' if look.get("shade", True) else ''))
             _motion_js(f"#{sid}-img", vis.get("motion") or "zoom_in", st, dur, H, L)
         elif vis["type"] == "text":
             words = (vis.get("text") or "").split()
@@ -230,7 +230,7 @@ def build(timeline: dict, project: Path) -> Path:
         ov_html += f'<div class="bar" style="top:0;height:{h}px"></div><div class="bar" style="bottom:0;height:{h}px"></div>'
 
     cap_pos = "top:44%;" if caps.get("position") == "center" else "bottom:24%;"
-    cap_size = caps.get("size") or round(H * 0.058)
+    cap_size = caps.get("size") or round(H * float(caps.get("size_pct", 0.045)))
     shader_js = ""
     if shader_run:
         scene_ids = [f"s{i + 1}" for i in sorted(anchors)]

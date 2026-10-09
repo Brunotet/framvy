@@ -100,7 +100,12 @@ def _save(b: bytes, path: Path) -> bool:
         return False
 
 
-def generate_images(prompts: list[str], cfg: dict, workdir: Path, ctx: Ctx, size: Optional[tuple] = None) -> dict[str, Path]:
+def generate_images(items, cfg: dict, workdir: Path, ctx: Ctx, size: Optional[tuple] = None) -> dict:
+    """
+    items: list of "prompt" strings OR (prompt, (character names...)) tuples.
+    Returns {item: Path}. The key is exactly the item you passed in (a tuple for tuples).
+    Scenes with the same characters are sent together (character_names applies to a whole batch).
+    """
     url = os.environ.get("QWEN_IMAGE_URL") or cfg.get("url") or DEFAULT_URL
     steps = int(cfg.get("steps", 40))
     pre, suf = cfg.get("prompt_prefix") or "", cfg.get("prompt_suffix") or ""
@@ -113,56 +118,72 @@ def generate_images(prompts: list[str], cfg: dict, workdir: Path, ctx: Ctx, size
         req_size = native_size(*size) if cfg.get("size_mode", "native") == "native" else (size[0] - size[0] % 16, size[1] - size[1] % 16)
         kw, kh = (cfg.get("size_keys") or ["width", "height"])[:2]
         base[kw], base[kh] = req_size
-    result: dict[str, Path] = {}
-    todo = []
-    for p in dict.fromkeys(prompts):
-        final = f"{pre}{p}{suf}".strip()
-        key = hashlib.sha1(f"{final}|{steps}|{req_size}|{cfg.get('negative_prompt', '')}".encode()).hexdigest()[:16]
-        path = out_dir / f"{key}.jpg"
+
+    norm = []                                   # (original key, prompt, characters)
+    for it in items:
+        prompt, chars = (it, ()) if isinstance(it, str) else (it[0], tuple(it[1] or ()))
+        norm.append((it, prompt, chars))
+
+    result: dict = {}
+    todo = []                                   # (key, final prompt, path, characters)
+    seen_keys = set()
+    for key, prompt, chars in norm:
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        final = f"{pre}{prompt}{suf}".strip()
+        h = hashlib.sha1(f"{final}|{steps}|{req_size}|{cfg.get('negative_prompt', '')}|{','.join(chars)}".encode()).hexdigest()[:16]
+        path = out_dir / f"{h}.jpg"
         if path.exists():
-            result[p] = path
+            result[key] = path
         else:
-            todo.append((p, final, path))
+            todo.append((key, final, path, chars))
     if not todo:
         return result
     print(f"[image] generating {len(todo)} image(s)", flush=True)
 
+    def with_chars(body: dict, chars: tuple) -> dict:
+        return {**body, "character_names": list(chars)} if chars else body
+
     batch_url = os.environ.get("QWEN_BATCH_URL") or cfg.get("batch_url")
     batch_key = cfg.get("batch_key") or "prompts"
-    if batch_url and len(todo) > 1:
+    if batch_url:
         n = max(1, int(cfg.get("batch_size", 4)))
-        for i in range(0, len(todo), n):
-            chunk = todo[i:i + n]
-            try:
-                imgs = _post(batch_url, {**base, batch_key: [t[1] for t in chunk]}, cfg)
-                if len(imgs) < len(chunk):
-                    ctx.warn(f"batch returned {len(imgs)} of {len(chunk)} images; generating the rest one by one")
-                for (p, _, path), b in zip(chunk, imgs):
-                    if _save(b, path):
-                        result[p] = path
-            except Exception as ex:  # noqa
-                ctx.warn(f"batch image call failed ({str(ex)[:200]}); falling back to single calls for this chunk")
+        groups: dict = {}
+        for t in todo:
+            groups.setdefault(t[3], []).append(t)
+        for chars, grp in groups.items():
+            for i in range(0, len(grp), n):
+                chunk = grp[i:i + n]
+                try:
+                    imgs = _post(batch_url, with_chars({**base, batch_key: [t[1] for t in chunk]}, chars), cfg)
+                    if len(imgs) < len(chunk):
+                        ctx.warn(f"batch returned {len(imgs)} of {len(chunk)} images; generating the rest one by one")
+                    for (key, _, path, _c), b in zip(chunk, imgs):
+                        if _save(b, path):
+                            result[key] = path
+                except Exception as ex:  # noqa
+                    ctx.warn(f"batch image call failed ({str(ex)[:300]}); falling back to single calls for this chunk")
     rest = [t for t in todo if t[0] not in result]
 
     def one(t):
-        p, final, path = t
+        key, final, path, chars = t
         try:
-            b = _post(url, {**base, "prompt": final}, cfg)[0]
+            b = _post(url, with_chars({**base, "prompt": final}, chars), cfg)[0]
             if _save(b, path):
-                return p, path
+                return key, path
             ctx.warn("image endpoint returned data PIL could not read")
         except Exception as ex:  # noqa
-            ctx.warn(f"image generation failed for a scene ({str(ex)[:200]}); it will use a text visual")
-        return p, None
+            ctx.warn(f"image generation failed for a scene ({str(ex)[:300]}); it will use a text visual")
+        return key, None
 
     if rest:
-        first = one(rest[0])  # warm the container with one call, then (optionally) go parallel
-        outs = [first]
+        outs = [one(rest[0])]  # warm the container with one call, then (optionally) go parallel
         mp = max(1, int(cfg.get("max_parallel", 1)))
         if len(rest) > 1:
             with ThreadPoolExecutor(max_workers=mp) as ex:
                 outs += list(ex.map(one, rest[1:]))
-        for p, path in outs:
+        for key, path in outs:
             if path:
-                result[p] = path
+                result[key] = path
     return result

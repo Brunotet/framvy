@@ -1,9 +1,9 @@
 """
-Sound-effect resolver. Order, so a render NEVER breaks on a missing sound:
+Sound-effect resolver. Order (a render never breaks on a missing sound, and nothing is ever generated):
   1. exact id in the library index
-  2. tag/name match in the library (local sfx_library/ or remote SFX_BASE_URL, e.g. your R2 bucket)
-  3. live Freesound search (CC0 only) if FREESOUND_API_KEY is set
-  4. synthesized fallback (ffmpeg) - always works offline
+  2. tag/name match in the library (sfx_library/ in the repo)
+  3. live Freesound search (CC0 only) if the FREESOUND_API_KEY secret is set
+  4. otherwise the cue is skipped: silence, never a generated beep
 """
 from __future__ import annotations
 import hashlib, json, os, random, re
@@ -14,7 +14,7 @@ import requests
 from .config import ROOT
 from .freesound import download_preview, key_from_env, search_cc0
 from .sfxmeta import cached as _meta_cached
-from .util import Ctx, run
+from .util import Ctx
 
 SYNONYMS = {
     "whoosh": ["whoosh", "swoosh", "swish", "swipe", "transition", "sweep", "air"],
@@ -25,20 +25,6 @@ SYNONYMS = {
     "drop": ["drop", "downer", "downlifter", "fall", "bass"],
     "glitch": ["glitch", "digital", "error", "static", "stutter"],
 }
-_SYNTH = {  # kind -> (ffmpeg input args, filter)
-    "whoosh": (["-f", "lavfi", "-i", "anoisesrc=d=0.7:c=pink:r=44100:a=0.6"],
-               "highpass=f=400,lowpass=f=7000,afade=t=in:d=0.3,afade=t=out:st=0.3:d=0.4"),
-    "pop": (["-f", "lavfi", "-i", "sine=f=760:d=0.16:r=44100"],
-            "afade=t=out:st=0.02:d=0.14,volume=0.8"),
-    "hit": (["-f", "lavfi", "-i", "sine=f=55:d=0.6:r=44100", "-f", "lavfi", "-i", "anoisesrc=d=0.6:c=brown:r=44100:a=0.5"],
-            None),
-    "riser": (["-f", "lavfi", "-i", "anoisesrc=d=1.4:c=white:r=44100:a=0.5"],
-              "highpass=f=900,afade=t=in:d=1.4,afade=t=out:st=1.3:d=0.1"),
-    "ding": (["-f", "lavfi", "-i", "sine=f=1320:d=0.7:r=44100"],
-             "afade=t=out:st=0.05:d=0.65,volume=0.7"),
-}
-
-
 def _tokens(s: str) -> set[str]:
     return set(re.findall(r"[a-z0-9]+", (s or "").lower()))
 
@@ -49,14 +35,6 @@ def _expand(tokens: set[str]) -> set[str]:
         if tokens & set(group):
             out |= set(group)
     return out
-
-
-def _kind(query: str) -> str:
-    toks = _tokens(query)
-    for kind, group in SYNONYMS.items():
-        if toks & set(group):
-            return kind
-    return "pop"
 
 
 class SfxLibrary:
@@ -163,27 +141,6 @@ class SfxLibrary:
             self.ctx.warn(f"freesound fallback failed for '{query}': {ex}")
         return None
 
-    def _synth(self, query: str) -> Optional[dict]:
-        kind = _kind(query)
-        out = self.cache / "synth" / f"{kind}.wav"
-        if not out.exists():
-            out.parent.mkdir(parents=True, exist_ok=True)
-            inputs, flt = _SYNTH[kind]
-            try:
-                if kind == "hit":
-                    cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs, "-filter_complex",
-                           "[0][1]amix=inputs=2:normalize=0,afade=t=out:st=0.05:d=0.55,volume=1.4",
-                           "-ar", "44100", "-ac", "2", str(out)]
-                else:
-                    cmd = ["ffmpeg", "-y", "-loglevel", "error", *inputs, "-af", flt,
-                           "-ar", "44100", "-ac", "2", str(out)]
-                run(cmd)
-            except Exception as ex:
-                self.ctx.warn(f"synth sfx failed ({kind}): {ex}")
-                return None
-        return {"path": out, "id": f"synth:{kind}", "source": "synth", "license": "generated",
-                "meta": _meta_cached(out, self.cache / "meta"), "name": kind}
-
     def resolve(self, query: Optional[str] = None, sfx_id: Optional[str] = None,
                 want_len: Optional[float] = None) -> Optional[dict]:
         memo_key = f"{sfx_id}|{query}"
@@ -200,4 +157,7 @@ class SfxLibrary:
                         return res
             self.ctx.warn(f"sfx id '{sfx_id}' not found; falling back to query")
         q = query or "pop"
-        return self._from_library(q, want_len) or self._from_freesound(q) or self._synth(q)
+        found = self._from_library(q, want_len) or self._from_freesound(q)
+        if not found:
+            self.ctx.warn(f"no sound found for '{q}' (library + Freesound): skipped, nothing is generated")
+        return found
