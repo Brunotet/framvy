@@ -1,0 +1,10 @@
+{
+  "note": "Reference images for the Qwen-Image-2.1 Modal app. If the app's character list is ever empty, re-register these (see register_character.py).",
+  "characters": {
+    "Leo": "1001089775.png",
+    "Mia": "1001089776.png",
+    "Cloud": "1001089777.png",
+    "Lightbulb": "1001089778.png",
+    "StickFigure": "1001089779.png"
+  }
+}
