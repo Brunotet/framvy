@@ -2,13 +2,13 @@
 features: {images: true, popups: true}
 accent: "#FFD400"
 palette:
-  - ["#0b132b", "#1c2541"]
-  - ["#14213d", "#274060"]
-  - ["#1b1b3a", "#3d348b"]
+  - ["#ffffff", "#f4f4f4"]
 motion_default: auto
 transition_default: whip
-transition_duration: 0.25
-captions: {style: karaoke, position: lower, max_words: 3, max_chars: 22}
-look: {grade: punchy, vignette: 0.3, grain: 0.04, letterbox: 0}
+transition_duration: 0.2
+# one word at a time, bouncy pop-in / pop-out
+captions: {style: word, position: lower, max_words: 1, max_chars: 22, size_pct: 0.1}
+captions_landscape: {style: word, max_words: 1, size_pct: 0.1}
+look: {grade: punchy, vignette: 0, grain: 0, letterbox: 0}
 sfx: {enabled: true, auto: true, gain: 0.7, transition_query: whoosh}
 tail_seconds: 0.8

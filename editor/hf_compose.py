@@ -209,6 +209,13 @@ def build(timeline: dict, project: Path) -> Path:
         cid = f"c{k}"
         spans = "".join(f'<span class="cw" id="{cid}w{m}">{html.escape(w["w"])}</span>' for m, w in enumerate(c["words"]))
         cap_html.append(f'<div class="cap" id="{cid}">{spans}</div>')
+        if style == "word":
+            # one word at a time: bouncy pop-in, quick pop-out
+            c0, c1 = float(c["start"]), max(float(c["end"]), float(c["start"]) + 0.18)
+            L.append(f'tl.set("#{cid}",{{autoAlpha:1}},{_f(c0)});')
+            L.append(f'tl.fromTo("#{cid}",{{scale:.35,y:40,rotation:-4}},{{scale:1,y:0,rotation:0,duration:.28,ease:"back.out(3.4)",transformOrigin:"50% 60%"}},{_f(c0)});')
+            L.append(f'tl.to("#{cid}",{{scale:.7,y:-14,autoAlpha:0,duration:.1,ease:"power2.in"}},{_f(c1 - .1)});')
+            continue
         L.append(f'tl.set("#{cid}",{{autoAlpha:1}},{_f(c["start"])});')
         L.append(f'tl.from("#{cid}",{{scale:.85,duration:.14,ease:"back.out(2)"}},{_f(c["start"])});')
         L.append(f'tl.set("#{cid}",{{autoAlpha:0}},{_f(c["end"])});')
@@ -229,7 +236,7 @@ def build(timeline: dict, project: Path) -> Path:
         h = round(H * float(look["letterbox"]))
         ov_html += f'<div class="bar" style="top:0;height:{h}px"></div><div class="bar" style="bottom:0;height:{h}px"></div>'
 
-    cap_pos = "top:44%;" if caps.get("position") == "center" else "bottom:24%;"
+    cap_pos = "top:44%;" if caps.get("position") == "center" else ("bottom:9%;" if caps.get("style") == "word" else "bottom:24%;")
     cap_size = caps.get("size") or round(H * float(caps.get("size_pct", 0.045)))
     shader_js = ""
     if shader_run:
