@@ -193,6 +193,7 @@ def compile_job(job: Job, profile: dict, workdir: Path, ctx: Ctx):
     timeline = {
         "width": W, "height": H, "fps": FPS, "duration": total,
         "theme": theme, "look": profile.get("look") or {},
+        "layout": profile.get("layout") or {}, "header": profile.get("header") or {},
         "scenes": tl_scenes,
         "captions": {**cap_cfg, "chunks": chunks},
     }

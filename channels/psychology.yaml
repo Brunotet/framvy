@@ -1,14 +1,18 @@
-# Science + psychology explainers. Images come from the n8n flow (URLs), never generated here.
+# Everyday science & psychology explainers: 9:16 Shorts page = title on top, 16:9 doodle picture in the middle,
+# one bouncing word at a time below. Images come from the n8n flow (URLs), never generated here.
 features: {images: true, popups: true}
+text_color: "#111111"
 accent: "#FFD400"
+uppercase: true
 palette:
   - ["#ffffff", "#ffffff"]
 motion_default: auto
 transition_default: whip
 transition_duration: 0.2
-# one word at a time, bouncy pop-in / pop-out
-captions: {style: word, position: lower, max_words: 1, max_chars: 22, size_pct: 0.1}
-captions_landscape: {style: word, max_words: 1, size_pct: 0.1}
+layout: {frame: true, frame_w: 96, frame_top: 33, header_top: 9, cap_top: 66}
+header: {size_pct: 0.036}
+captions: {style: word, position: lower, max_words: 1, max_chars: 22, size_pct: 0.075}
+captions_landscape: {style: word, max_words: 1, size_pct: 0.075}
 look: {grade: none, vignette: 0, grain: 0, letterbox: 0, shade: false}
 sfx: {enabled: true, auto: true, gain: 0.7, transition_query: whoosh}
 tail_seconds: 0.8

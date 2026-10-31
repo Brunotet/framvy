@@ -77,6 +77,8 @@ def build(timeline: dict, project: Path) -> Path:
     W, H, total = timeline["width"], timeline["height"], timeline["duration"]
     theme, look = timeline.get("theme") or {}, timeline.get("look") or {}
     scenes, caps = timeline["scenes"], timeline.get("captions") or {}
+    layout, header = timeline.get("layout") or {}, timeline.get("header") or {}
+    framed = bool(layout.get("frame"))
     if project.exists():
         shutil.rmtree(project)
     assets = project / "assets"
@@ -139,8 +141,11 @@ def build(timeline: dict, project: Path) -> Path:
         content = []
         if vis["type"] == "image":
             rel = _copy_asset(vis["src"], assets, seen)
-            content.append(f'<div class="vis"><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:{vis.get("fit", "cover")}"></div>'
-                           + ('<div class="shade"></div>' if look.get("shade", True) else ''))
+            if framed:
+                content.append(f'<div class="frame"><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:cover"></div>')
+            else:
+                content.append(f'<div class="vis"><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:{vis.get("fit", "cover")}"></div>'
+                               + ('<div class="shade"></div>' if look.get("shade", True) else ''))
             _motion_js(f"#{sid}-img", vis.get("motion") or "zoom_in", st, dur, H, L)
         elif vis["type"] == "text":
             words = (vis.get("text") or "").split()
@@ -208,7 +213,7 @@ def build(timeline: dict, project: Path) -> Path:
     for k, c in enumerate(caps.get("chunks", []) if style != "none" else []):
         cid = f"c{k}"
         spans = "".join(f'<span class="cw" id="{cid}w{m}">{html.escape(w["w"])}</span>' for m, w in enumerate(c["words"]))
-        cap_html.append(f'<div class="cap" id="{cid}">{spans}</div>')
+        cap_html.append(f'<div class="cap{" word" if style == "word" else ""}" id="{cid}">{spans}</div>')
         if style == "word":
             # one word at a time: bouncy pop-in, quick pop-out
             c0, c1 = float(c["start"]), max(float(c["end"]), float(c["start"]) + 0.18)
@@ -225,6 +230,12 @@ def build(timeline: dict, project: Path) -> Path:
                 L.append(f'tl.set("#{cid}w{m}",{{{col}scale:1.14}},{_f(w["start"])});')
                 L.append(f'tl.set("#{cid}w{m}",{{color:"{text_c}",scale:1}},{_f(w["end"])});')
 
+    # persistent title above the picture (Shorts page layout)
+    hdr_html = ""
+    if header.get("text"):
+        hdr_html = f'<div class="hdr" id="hdr">{html.escape(str(header["text"]))}</div>'
+        L.append(f'tl.from("#hdr",{{y:-40,autoAlpha:0,scale:.9,duration:.55,ease:"back.out(1.8)"}},0.05);')
+
     # look overlays
     ov_html = ""
     if look.get("vignette"):
@@ -236,7 +247,7 @@ def build(timeline: dict, project: Path) -> Path:
         h = round(H * float(look["letterbox"]))
         ov_html += f'<div class="bar" style="top:0;height:{h}px"></div><div class="bar" style="bottom:0;height:{h}px"></div>'
 
-    cap_pos = "top:44%;" if caps.get("position") == "center" else ("bottom:9%;" if caps.get("style") == "word" else "bottom:24%;")
+    cap_pos = ("top:%s%%;" % layout.get("cap_top", 66)) if (framed and caps.get("style") == "word") else ("top:44%;" if caps.get("position") == "center" else ("bottom:9%;" if caps.get("style") == "word" else "bottom:24%;"))
     cap_size = caps.get("size") or round(H * float(caps.get("size_pct", 0.045)))
     shader_js = ""
     if shader_run:
@@ -279,6 +290,10 @@ html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#000;font-family:
 .cap{{position:absolute;left:6%;right:6%;{cap_pos}display:flex;justify-content:center;flex-wrap:wrap;z-index:45;visibility:hidden;font-size:{cap_size}px}}
 .cw{{display:inline-block;margin:0 .14em;font-weight:900;color:{text_c};text-transform:{uc};
  -webkit-text-stroke:{round(cap_size * 0.11)}px #000;paint-order:stroke fill;text-shadow:0 5px 18px rgba(0,0,0,.6)}}
+.frame{{position:absolute;left:{(100 - float(layout.get("frame_w", 96))) / 2}%;width:{layout.get("frame_w", 96)}%;top:{layout.get("frame_top", 33)}%;aspect-ratio:16/9;overflow:hidden;border-radius:28px;border:4px solid #111;box-shadow:0 10px 0 #111;background:#fff}}
+.frame .vimg{{width:100%;height:100%;display:block}}
+.hdr{{position:absolute;left:6%;right:6%;top:{layout.get("header_top", 9)}%;text-align:center;font-weight:900;line-height:1.14;font-size:{round(H * float(header.get("size_pct", 0.034)))}px;color:#111;z-index:44}}
+.cap.word .cw{{background:{accent};color:#111;-webkit-text-stroke:0;paint-order:normal;padding:.02em .26em .06em;border-radius:.22em;text-shadow:none;box-shadow:0 .07em 0 #111;border:3px solid #111}}
 .vig,.grain,.bar{{position:absolute;pointer-events:none;z-index:50}}
 .vig{{inset:0}}
 .grain{{inset:0;mix-blend-mode:overlay;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1.2px),radial-gradient(rgba(0,0,0,.18) 1px,transparent 1.2px);background-size:3px 3px,5px 5px}}
@@ -287,6 +302,7 @@ html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#000;font-family:
 <body>
 <div id="main" data-composition-id="main" data-width="{W}" data-height="{H}" data-start="0" data-duration="{_f(total)}">
 {"".join(scene_html)}
+{hdr_html}
 {"".join(popup_html)}
 {"".join(cap_html)}
 {ov_html}
