@@ -1,4 +1,5 @@
-"""Freesound API helpers (CC0 only, so no attribution is ever required)."""
+"""Freesound API helpers (CC0 only, so no attribution is ever required).
+Two keys are supported: FREESOUND_API_KEY (main) and FREESOUND_API_KEY_2 (used when the main one is rate-limited or rejected)."""
 from __future__ import annotations
 import os
 from pathlib import Path
@@ -8,6 +9,15 @@ import requests
 API = "https://freesound.org/apiv2"
 
 
+def _all_keys(first: Optional[str] = None) -> list[str]:
+    keys = [first, os.environ.get("FREESOUND_API_KEY"), os.environ.get("FREESOUND_API_KEY_2")]
+    out: list[str] = []
+    for k in keys:
+        if k and k not in out:
+            out.append(k)
+    return out
+
+
 def search_cc0(query: str, key: str, max_dur: float = 6.0, page_size: int = 30) -> list[dict]:
     params = {
         "query": query,
@@ -15,11 +25,21 @@ def search_cc0(query: str, key: str, max_dur: float = 6.0, page_size: int = 30) 
         "fields": "id,name,tags,duration,previews,license",
         "sort": "downloads_desc",
         "page_size": page_size,
-        "token": key,
     }
-    r = requests.get(f"{API}/search/text/", params=params, timeout=30)
-    r.raise_for_status()
-    return r.json().get("results", [])
+    last: Optional[Exception] = None
+    for k in _all_keys(key):
+        try:
+            r = requests.get(f"{API}/search/text/", params={**params, "token": k}, timeout=30)
+            if r.status_code in (401, 403, 429):     # bad key or rate limit -> try the fallback key
+                last = RuntimeError(f"Freesound HTTP {r.status_code}")
+                continue
+            r.raise_for_status()
+            return r.json().get("results", [])
+        except requests.RequestException as ex:
+            last = ex
+    if last:
+        raise last
+    return []
 
 
 def download_preview(item: dict, dest: Path) -> Optional[Path]:
@@ -37,4 +57,5 @@ def download_preview(item: dict, dest: Path) -> Optional[Path]:
 
 
 def key_from_env() -> Optional[str]:
-    return os.environ.get("FREESOUND_API_KEY") or None
+    keys = _all_keys()
+    return keys[0] if keys else None
