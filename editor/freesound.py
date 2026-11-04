@@ -1,5 +1,6 @@
 """Freesound API helpers (CC0 only, so no attribution is ever required).
-Two keys are supported: FREESOUND_API_KEY (main) and FREESOUND_API_KEY_2 (used when the main one is rate-limited or rejected)."""
+FREESOUND_API_KEY may hold one key or several separated by commas: the first is the main key,
+the others are fallbacks used when the main one is rate-limited (429) or rejected (401/403)."""
 from __future__ import annotations
 import os
 from pathlib import Path
@@ -10,11 +11,13 @@ API = "https://freesound.org/apiv2"
 
 
 def _all_keys(first: Optional[str] = None) -> list[str]:
-    keys = [first, os.environ.get("FREESOUND_API_KEY"), os.environ.get("FREESOUND_API_KEY_2")]
+    raw = [first or "", os.environ.get("FREESOUND_API_KEY") or "", os.environ.get("FREESOUND_API_KEY_2") or ""]
     out: list[str] = []
-    for k in keys:
-        if k and k not in out:
-            out.append(k)
+    for chunk in raw:
+        for k in chunk.replace(";", ",").replace("\n", ",").split(","):
+            k = k.strip()
+            if k and k not in out:
+                out.append(k)
     return out
 
 
