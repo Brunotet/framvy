@@ -17,6 +17,12 @@ def words_from_scenes(scenes: list[dict]) -> list[dict]:
     return out
 
 
+def _clean(w: str) -> str:
+    """Caption text without punctuation: keep letters, digits, $ % and apostrophes inside a word."""
+    t = re.sub(r"[^\w$%'\u2019]", "", w or "")
+    return t.strip("'\u2019")
+
+
 def build_chunks(words: list[dict], max_words: int = 3, max_chars: int = 22, gap: float = 0.45) -> list[dict]:
     chunks, cur = [], []
 
@@ -27,11 +33,14 @@ def build_chunks(words: list[dict], max_words: int = 3, max_chars: int = 22, gap
             cur = []
 
     for w in words:
+        shown = _clean(w["w"])
+        if not shown:
+            continue
         if cur:
-            too_long = len(" ".join(x["w"] for x in cur + [w])) > max_chars
+            too_long = len(" ".join(x["w"] for x in cur + [{"w": shown}])) > max_chars
             if len(cur) >= max_words or too_long or (w["start"] - cur[-1]["end"]) > gap:
                 flush()
-        cur.append({"w": w["w"], "start": float(w["start"]), "end": float(w["end"])})
+        cur.append({"w": shown, "start": float(w["start"]), "end": float(w["end"])})
         if re.search(r"[.!?,;:]$", w["w"]):
             flush()
     flush()
