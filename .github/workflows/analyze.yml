@@ -1,0 +1,109 @@
+name: analyze-video
+
+# Study a reference video (style analysis only): download -> cuts -> screenshots -> transcript -> sfx/audio report.
+# Triggered by n8n:  POST /repos/Brunotet/framvy/actions/workflows/analyze.yml/dispatches
+#   {"ref":"main","inputs":{"urls":"https://youtu.be/AAA https://youtu.be/BBB"}}
+# Results are committed to analysis/<video_id>/ on main (screenshots, contact sheets, transcript, sfx clips, summary.md).
+#
+# Optional secret YT_COOKIES = a Netscape-format cookies.txt exported from a logged-in browser.
+# YouTube often blocks downloads from GitHub's datacenter IPs ("Sign in to confirm you're not a bot");
+# cookies fix that. status.json in each analysis folder says exactly what failed.
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "YouTube URLs, separated by space, comma or newline"
+        required: true
+      cut_threshold:
+        description: "Scene-cut sensitivity (lower = more cuts). 0.25 suits cartoon / whiteboard"
+        required: false
+        default: "0.25"
+      max_shots:
+        description: "Max per-shot screenshots to save"
+        required: false
+        default: "80"
+      from_sec:
+        description: "Start taking per-shot screenshots from this second"
+        required: false
+        default: "0"
+      whisper_model:
+        description: "tiny | base | small | medium"
+        required: false
+        default: "small"
+
+permissions:
+  contents: write
+
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import os, re, json
+          urls = [u for u in re.split(r"[\s,]+", os.environ["URLS"]) if u.startswith("http")]
+          print("matrix=" + json.dumps({"url": urls}))
+          PY
+
+  analyze:
+    needs: prep
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prep.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # yt-dlp needs a JavaScript runtime to solve YouTube's signature challenges
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: System deps
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+
+      - name: Python deps
+        run: pip install -U "yt-dlp[default]" faster-whisper numpy youtube-transcript-api
+
+      - name: Cookies (optional)
+        env:
+          YT_COOKIES: ${{ secrets.YT_COOKIES }}
+        run: |
+          if [ -n "$YT_COOKIES" ]; then printf '%s' "$YT_COOKIES" > cookies.txt; echo "cookies provided"; else echo "no cookies"; fi
+
+      - name: Analyze
+        env:
+          URL: ${{ matrix.url }}
+          CUT: ${{ inputs.cut_threshold }}
+          SHOTS: ${{ inputs.max_shots }}
+          FROM: ${{ inputs.from_sec }}
+          WMODEL: ${{ inputs.whisper_model }}
+        run: |
+          python analyzer/analyze.py --url "$URL" --cut-threshold "$CUT" --max-shots "$SHOTS" \
+            --from-sec "$FROM" --whisper-model "$WMODEL"
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "framvy-analyzer"
+          git config user.email "actions@users.noreply.github.com"
+          git add analysis
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "analysis: ${{ matrix.url }}"
+          for i in 1 2 3 4 5 6; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((RANDOM % 9 + 3))
+          done
+          echo "push failed after retries" && exit 1
