@@ -1,0 +1,172 @@
+name: study-video
+
+# Download a reference video (with YouTube bot-check workarounds), then run analyzer/analyze.py on it.
+# Attempt 1: yt-dlp + PO-token provider.  Attempt 2: the same through a Cloudflare WARP SOCKS proxy.
+# Public thumbnails are always saved to analysis/thumbs/<id>/ (YouTube does not bot-check those).
+# For personal style study only. Do not re-upload the source video.
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "YouTube URLs, separated by space, comma or newline"
+        required: true
+      cut_threshold:
+        description: "Scene-cut sensitivity (lower = more cuts)"
+        required: false
+        default: "0.25"
+      max_shots:
+        description: "Max per-shot screenshots to save"
+        required: false
+        default: "80"
+      whisper_model:
+        description: "tiny | base | small | medium"
+        required: false
+        default: "small"
+
+permissions:
+  contents: write
+
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.m.outputs.matrix }}
+    steps:
+      - id: m
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import os, re, json
+          urls = [u for u in re.split(r"[\s,]+", os.environ["URLS"]) if u.startswith("http")]
+          print("matrix=" + json.dumps({"url": urls}))
+          PY
+
+  study:
+    needs: prep
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prep.outputs.matrix) }}
+    env:
+      URL: ${{ matrix.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg jq
+          pip install -U "yt-dlp[default]" bgutil-ytdlp-pot-provider faster-whisper numpy youtube-transcript-api
+
+      - name: Video id
+        id: vid
+        run: |
+          echo "id=$(python3 -c "import re,os; print(re.search(r'(?:youtu\.be/|v=|shorts/)([A-Za-z0-9_-]{11})', os.environ['URL']).group(1))")" >> "$GITHUB_OUTPUT"
+
+      - name: Public thumbnails (not bot-checked)
+        env:
+          ID: ${{ steps.vid.outputs.id }}
+        run: |
+          mkdir -p "analysis/thumbs/$ID"
+          for n in maxresdefault hqdefault hq1 hq2 hq3 sd1 sd2 sd3; do
+            curl -fsSL "https://i.ytimg.com/vi/$ID/$n.jpg" -o "analysis/thumbs/$ID/$n.jpg" || rm -f "analysis/thumbs/$ID/$n.jpg"
+          done
+          ls -la "analysis/thumbs/$ID"
+
+      - name: Start PO-token provider
+        continue-on-error: true
+        run: |
+          docker run -d --name pot --init -p 4416:4416 brainicism/bgutil-ytdlp-pot-provider
+          sleep 8
+
+      - name: Cookies (optional)
+        env:
+          YT_COOKIES: ${{ secrets.YT_COOKIES }}
+        run: |
+          if [ -n "$YT_COOKIES" ]; then printf '%s' "$YT_COOKIES" > cookies.txt; echo "cookies provided"; else echo "no cookies"; fi
+
+      - name: Download attempt 1 (PO token)
+        id: a1
+        continue-on-error: true
+        env:
+          ID: ${{ steps.vid.outputs.id }}
+        run: |
+          mkdir -p "workdir/$ID"
+          COOK=""; [ -f cookies.txt ] && COOK="--cookies cookies.txt"
+          for C in default tv mweb web_safari; do
+            yt-dlp --no-playlist --no-warnings $COOK --extractor-args "youtube:player_client=$C" \
+              -f "bv*[height<=720]+ba/b[height<=720]/b" --merge-output-format mp4 --write-info-json \
+              -o "workdir/$ID/video.%(ext)s" "$URL" && break
+          done
+          test -s "workdir/$ID/video.mp4"
+
+      - name: Connect Cloudflare WARP (only if attempt 1 failed)
+        if: steps.a1.outcome != 'success'
+        continue-on-error: true
+        run: |
+          curl -fsSL https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor -o /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
+          sudo apt-get update -y
+          sudo apt-get install -y cloudflare-warp
+          sudo systemctl start warp-svc || (sudo warp-svc > /dev/null 2>&1 &)
+          sleep 6
+          warp-cli --accept-tos registration new
+          warp-cli --accept-tos mode proxy
+          warp-cli --accept-tos connect
+          sleep 8
+          curl -s --socks5-hostname 127.0.0.1:40000 https://www.cloudflare.com/cdn-cgi/trace | grep -E "warp|ip="
+
+      - name: Download attempt 2 (WARP + PO token)
+        id: a2
+        if: steps.a1.outcome != 'success'
+        continue-on-error: true
+        env:
+          ID: ${{ steps.vid.outputs.id }}
+        run: |
+          mkdir -p "workdir/$ID"
+          rm -f "workdir/$ID"/video.*
+          COOK=""; [ -f cookies.txt ] && COOK="--cookies cookies.txt"
+          for C in default tv mweb web_safari; do
+            yt-dlp --no-playlist --no-warnings $COOK --proxy socks5://127.0.0.1:40000 --extractor-args "youtube:player_client=$C" \
+              -f "bv*[height<=720]+ba/b[height<=720]/b" --merge-output-format mp4 --write-info-json \
+              -o "workdir/$ID/video.%(ext)s" "$URL" && break
+          done
+          test -s "workdir/$ID/video.mp4"
+
+      - name: Analyze
+        env:
+          ID: ${{ steps.vid.outputs.id }}
+          CUT: ${{ inputs.cut_threshold }}
+          SHOTS: ${{ inputs.max_shots }}
+          WMODEL: ${{ inputs.whisper_model }}
+        run: |
+          if [ -s "workdir/$ID/video.mp4" ]; then
+            python analyzer/analyze.py --url "$URL" --video "workdir/$ID/video.mp4" --cut-threshold "$CUT" --max-shots "$SHOTS" --whisper-model "$WMODEL"
+          else
+            echo "download failed; recording status"
+            python analyzer/analyze.py --url "$URL" --cut-threshold "$CUT" --max-shots "$SHOTS" --whisper-model "$WMODEL"
+          fi
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "framvy-analyzer"
+          git config user.email "actions@users.noreply.github.com"
+          git add analysis
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "study: $URL"
+          for i in 1 2 3 4 5 6; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((RANDOM % 9 + 3))
+          done
+          echo "push failed after retries" && exit 1
