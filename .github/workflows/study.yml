@@ -11,7 +11,7 @@ on:
         description: "YouTube URLs, separated by space, comma or newline"
         required: true
       cut_threshold:
-        description: "Scene-cut sensitivity (lower = more cuts). Use ~0.02 for dark / minimal styles"
+        description: "Scene-cut sensitivity (lower = more cuts). Use ~0.005 for dark / minimal styles"
         required: false
         default: "0.25"
       max_shots:
@@ -66,7 +66,8 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install -y ffmpeg jq
-          pip install -U "yt-dlp[default]" bgutil-ytdlp-pot-provider av faster-whisper numpy youtube-transcript-api
+          pip install -U "yt-dlp[default]" bgutil-ytdlp-pot-provider faster-whisper numpy youtube-transcript-api
+          pip install "av>=14,<16"
           pip list 2>/dev/null | grep -iE "^(av|faster-whisper|yt-dlp) "
 
       - name: Video id
