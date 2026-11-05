@@ -1,0 +1,69 @@
+[
+ {
+  "i": 1,
+  "start": 0.0,
+  "dur": 220.05,
+  "frame": "s001_0000.25.jpg"
+ },
+ {
+  "i": 2,
+  "start": 220.05,
+  "dur": 1.35,
+  "frame": "s002_0220.30.jpg",
+  "audio_hit": {
+   "offset_s": -0.11,
+   "strength": 1.12,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 3,
+  "start": 221.4,
+  "dur": 0.45,
+  "frame": "s003_0221.62.jpg"
+ },
+ {
+  "i": 4,
+  "start": 221.85,
+  "dur": 1.367,
+  "frame": "s004_0222.10.jpg",
+  "audio_hit": {
+   "offset_s": 0.13,
+   "strength": 1.98,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 5,
+  "start": 223.217,
+  "dur": 0.433,
+  "frame": "s005_0223.43.jpg",
+  "audio_hit": {
+   "offset_s": 0.13,
+   "strength": 1.41,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 6,
+  "start": 223.65,
+  "dur": 1.35,
+  "frame": "s006_0223.90.jpg",
+  "audio_hit": {
+   "offset_s": 0.1,
+   "strength": 1.21,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 7,
+  "start": 225.0,
+  "dur": 256.621,
+  "frame": "s007_0225.25.jpg",
+  "audio_hit": {
+   "offset_s": 0.15,
+   "strength": 1.64,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ }
+]
