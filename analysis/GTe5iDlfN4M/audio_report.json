@@ -7,11 +7,11 @@
   "bed_below_voice_db": null
  },
  "pace": {},
- "onset_threshold": 3107.83,
+ "onset_threshold": 3107.84,
  "onsets_total": 432,
- "cuts_with_audio_hit": 0,
- "cuts_total": 0,
- "hit_offsets_median_s": null,
+ "cuts_with_audio_hit": 22,
+ "cuts_total": 36,
+ "hit_offsets_median_s": 0.03,
  "sfx_candidates": [
   {
    "t": 0.48,
