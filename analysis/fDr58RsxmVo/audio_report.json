@@ -9,9 +9,9 @@
  "pace": {},
  "onset_threshold": 3644.94,
  "onsets_total": 718,
- "cuts_with_audio_hit": 1,
- "cuts_total": 2,
- "hit_offsets_median_s": -0.13,
+ "cuts_with_audio_hit": 20,
+ "cuts_total": 29,
+ "hit_offsets_median_s": 0.01,
  "sfx_candidates": [
   {
    "t": 17.01,
