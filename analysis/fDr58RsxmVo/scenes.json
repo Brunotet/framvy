@@ -1,0 +1,25 @@
+[
+ {
+  "i": 1,
+  "start": 0.0,
+  "dur": 258.067,
+  "frame": "s001_0000.25.jpg"
+ },
+ {
+  "i": 2,
+  "start": 258.067,
+  "dur": 2.116,
+  "frame": "s002_0258.32.jpg"
+ },
+ {
+  "i": 3,
+  "start": 260.183,
+  "dur": 222.358,
+  "frame": "s003_0260.43.jpg",
+  "audio_hit": {
+   "offset_s": -0.13,
+   "strength": 1.02,
+   "guess": "other transient"
+  }
+ }
+]
