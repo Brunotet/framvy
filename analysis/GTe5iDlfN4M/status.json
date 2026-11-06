@@ -1,35 +1,18 @@
 {
   "video_id": "GTe5iDlfN4M",
-  "download": {
-    "ok": false,
-    "attempts": [
-      {
-        "client": "default",
-        "error": "ERROR: [youtube] GTe5iDlfN4M: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
-      },
-      {
-        "client": "tv",
-        "error": "ERROR: [youtube] GTe5iDlfN4M: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
-      },
-      {
-        "client": "mweb",
-        "error": "ERROR: [youtube] GTe5iDlfN4M: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
-      },
-      {
-        "client": "web_safari",
-        "error": "ERROR: [youtube] GTe5iDlfN4M: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
-      },
-      {
-        "client": "android_vr",
-        "error": "ERROR: [youtube] GTe5iDlfN4M: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
-      },
-      {
-        "client": "ios",
-        "error": "ERROR: [youtube] GTe5iDlfN4M: Sign in to confirm you\u2019re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
-      }
-    ]
+  "cuts": {
+    "ok": true,
+    "count": 264
   },
-  "fallback_transcript": false,
-  "fallback_transcript_error": "\nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=GTe5iDlfN4M! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You ",
-  "result": "download_failed"
+  "transcript": {
+    "ok": true,
+    "language": "en",
+    "words": 817
+  },
+  "audio": {
+    "ok": true,
+    "onsets": 432,
+    "sfx_clips": 40
+  },
+  "result": "ok"
 }

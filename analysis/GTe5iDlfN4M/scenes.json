@@ -1,0 +1,1746 @@
+[
+ {
+  "i": 1,
+  "start": 0.0,
+  "dur": 5.267,
+  "frame": "s001_0000.25.jpg",
+  "text": "In 1988, a man who weighed 60 kilos lifted 190 kilos over"
+ },
+ {
+  "i": 2,
+  "start": 5.267,
+  "dur": 0.166,
+  "frame": "s002_0005.35.jpg",
+  "text": ""
+ },
+ {
+  "i": 3,
+  "start": 5.433,
+  "dur": 4.25,
+  "frame": "s003_0005.68.jpg",
+  "text": "his head, more than three times his own body weight. They called him Pocket"
+ },
+ {
+  "i": 4,
+  "start": 9.683,
+  "dur": 0.134,
+  "frame": "s004_0009.75.jpg",
+  "text": ""
+ },
+ {
+  "i": 5,
+  "start": 9.817,
+  "dur": 5.7,
+  "frame": "s005_0010.07.jpg",
+  "text": "Hercules. It's the anime trope made real. The little guy who shouldn't be strong, and then he"
+ },
+ {
+  "i": 6,
+  "start": 15.517,
+  "dur": 0.233,
+  "frame": "s006_0015.63.jpg",
+  "text": "lifts"
+ },
+ {
+  "i": 7,
+  "start": 15.75,
+  "dur": 0.133,
+  "frame": "s007_0015.82.jpg",
+  "text": "something"
+ },
+ {
+  "i": 8,
+  "start": 15.883,
+  "dur": 0.134,
+  "frame": "s008_0015.95.jpg",
+  "text": ""
+ },
+ {
+  "i": 9,
+  "start": 16.017,
+  "dur": 1.45,
+  "frame": "s009_0016.27.jpg",
+  "text": "ridiculous. So"
+ },
+ {
+  "i": 10,
+  "start": 17.467,
+  "dur": 0.216,
+  "frame": "s010_0017.57.jpg",
+  "text": "being"
+ },
+ {
+  "i": 11,
+  "start": 17.683,
+  "dur": 1.217,
+  "frame": "s011_0017.93.jpg",
+  "text": "light or skinny doesn't"
+ },
+ {
+  "i": 12,
+  "start": 18.9,
+  "dur": 0.133,
+  "frame": "s012_0018.97.jpg",
+  "text": ""
+ },
+ {
+  "i": 13,
+  "start": 19.033,
+  "dur": 1.4,
+  "frame": "s013_0019.28.jpg",
+  "text": "mean being weak."
+ },
+ {
+  "i": 14,
+  "start": 20.433,
+  "dur": 0.134,
+  "frame": "s014_0020.50.jpg",
+  "text": ""
+ },
+ {
+  "i": 15,
+  "start": 20.567,
+  "dur": 0.133,
+  "frame": "s015_0020.63.jpg",
+  "text": ""
+ },
+ {
+  "i": 16,
+  "start": 20.7,
+  "dur": 2.933,
+  "frame": "s016_0020.95.jpg",
+  "text": "There are three hidden reasons some skinny guys are freakishly"
+ },
+ {
+  "i": 17,
+  "start": 23.633,
+  "dur": 0.25,
+  "frame": "s017_0023.76.jpg",
+  "text": ""
+ },
+ {
+  "i": 18,
+  "start": 23.883,
+  "dur": 0.25,
+  "frame": "s018_0024.01.jpg",
+  "text": "strong."
+ },
+ {
+  "i": 19,
+  "start": 24.133,
+  "dur": 0.25,
+  "frame": "s019_0024.26.jpg",
+  "text": ""
+ },
+ {
+  "i": 20,
+  "start": 24.383,
+  "dur": 0.25,
+  "frame": "s020_0024.51.jpg",
+  "text": ""
+ },
+ {
+  "i": 21,
+  "start": 24.633,
+  "dur": 0.384,
+  "frame": "s021_0024.82.jpg",
+  "text": ""
+ },
+ {
+  "i": 22,
+  "start": 25.017,
+  "dur": 0.2,
+  "frame": "s022_0025.12.jpg",
+  "text": "Two"
+ },
+ {
+  "i": 23,
+  "start": 25.217,
+  "dur": 4.45,
+  "frame": "s023_0025.47.jpg",
+  "text": "of them you can't see in the mirror, and the third is the one almost nobody trains."
+ },
+ {
+  "i": 24,
+  "start": 29.667,
+  "dur": 5.733,
+  "frame": "s024_0029.92.jpg",
+  "text": "And at the end, there's a 12 -week plan that needs nothing but a towel, a wall, and a bar."
+ },
+ {
+  "i": 25,
+  "start": 35.4,
+  "dur": 0.183,
+  "frame": "s025_0035.49.jpg",
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.14,
+   "strength": 1.14,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 26,
+  "start": 35.583,
+  "dur": 1.917,
+  "frame": "s026_0035.83.jpg",
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.04,
+   "strength": 1.14,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 27,
+  "start": 37.5,
+  "dur": 12.5,
+  "frame": "s027_0037.75.jpg",
+  "text": "First, physics. How strong a muscle can be depends mostly on how thick it is, its cross -section. But your weight depends on your whole volume. Make a body twice as tall, and its muscles get",
+  "audio_hit": {
+   "offset_s": -0.12,
+   "strength": 1.09,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 28,
+  "start": 50.0,
+  "dur": 0.25,
+  "frame": "s028_0050.12.jpg",
+  "text": "about four"
+ },
+ {
+  "i": 29,
+  "start": 50.25,
+  "dur": 0.25,
+  "frame": "s029_0050.38.jpg",
+  "text": ""
+ },
+ {
+  "i": 30,
+  "start": 50.5,
+  "dur": 0.133,
+  "frame": "s030_0050.57.jpg",
+  "text": "times"
+ },
+ {
+  "i": 31,
+  "start": 50.633,
+  "dur": 0.25,
+  "frame": "s031_0050.76.jpg",
+  "text": ""
+ },
+ {
+  "i": 32,
+  "start": 50.883,
+  "dur": 0.25,
+  "frame": "s032_0051.01.jpg",
+  "text": "stronger,"
+ },
+ {
+  "i": 33,
+  "start": 51.133,
+  "dur": 0.25,
+  "frame": "s033_0051.26.jpg",
+  "text": ""
+ },
+ {
+  "i": 34,
+  "start": 51.383,
+  "dur": 0.25,
+  "frame": "s034_0051.51.jpg",
+  "text": ""
+ },
+ {
+  "i": 35,
+  "start": 51.633,
+  "dur": 0.25,
+  "frame": "s035_0051.76.jpg",
+  "text": ""
+ },
+ {
+  "i": 36,
+  "start": 51.883,
+  "dur": 0.25,
+  "frame": "s036_0052.01.jpg",
+  "text": "but it"
+ },
+ {
+  "i": 37,
+  "start": 52.133,
+  "dur": 0.25,
+  "frame": "s037_0052.26.jpg",
+  "text": "gets"
+ },
+ {
+  "i": 38,
+  "start": 52.383,
+  "dur": 0.25,
+  "frame": "s038_0052.51.jpg",
+  "text": "eight"
+ },
+ {
+  "i": 39,
+  "start": 52.633,
+  "dur": 0.25,
+  "frame": "s039_0052.76.jpg",
+  "text": "times"
+ },
+ {
+  "i": 40,
+  "start": 52.883,
+  "dur": 0.25,
+  "frame": "s040_0053.01.jpg",
+  "text": ""
+ },
+ {
+  "i": 41,
+  "start": 53.133,
+  "dur": 0.25,
+  "frame": "s041_0053.26.jpg",
+  "text": "heavier."
+ },
+ {
+  "i": 42,
+  "start": 53.383,
+  "dur": 0.25,
+  "frame": "s042_0053.51.jpg",
+  "text": ""
+ },
+ {
+  "i": 43,
+  "start": 53.633,
+  "dur": 0.25,
+  "frame": "s043_0053.76.jpg",
+  "text": ""
+ },
+ {
+  "i": 44,
+  "start": 53.883,
+  "dur": 0.134,
+  "frame": "s044_0053.95.jpg",
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.12,
+   "strength": 1.19,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 45,
+  "start": 54.017,
+  "dur": 3.816,
+  "frame": "s045_0054.27.jpg",
+  "text": "That's why an ant can carry many times its own weight, and an elephant",
+  "audio_hit": {
+   "offset_s": -0.02,
+   "strength": 1.19,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 46,
+  "start": 57.833,
+  "dur": 1.284,
+  "frame": "s046_0058.08.jpg",
+  "text": "can't even jump."
+ },
+ {
+  "i": 47,
+  "start": 59.117,
+  "dur": 4.016,
+  "frame": "s047_0059.37.jpg",
+  "text": "And it's why, in weightlifting, the lightest lifters lift the most",
+  "audio_hit": {
+   "offset_s": -0.05,
+   "strength": 1.0,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 48,
+  "start": 63.133,
+  "dur": 0.134,
+  "frame": "s048_0063.20.jpg",
+  "text": ""
+ },
+ {
+  "i": 49,
+  "start": 63.267,
+  "dur": 0.133,
+  "frame": "s049_0063.33.jpg",
+  "text": ""
+ },
+ {
+  "i": 50,
+  "start": 63.4,
+  "dur": 0.233,
+  "frame": "s050_0063.52.jpg",
+  "text": "for their"
+ },
+ {
+  "i": 51,
+  "start": 63.633,
+  "dur": 0.25,
+  "frame": "s051_0063.76.jpg",
+  "text": "size."
+ },
+ {
+  "i": 52,
+  "start": 63.883,
+  "dur": 0.25,
+  "frame": "s052_0064.01.jpg",
+  "text": ""
+ },
+ {
+  "i": 53,
+  "start": 64.133,
+  "dur": 0.25,
+  "frame": "s053_0064.26.jpg",
+  "text": ""
+ },
+ {
+  "i": 54,
+  "start": 64.383,
+  "dur": 0.25,
+  "frame": "s054_0064.51.jpg",
+  "text": ""
+ },
+ {
+  "i": 55,
+  "start": 64.633,
+  "dur": 0.25,
+  "frame": "s055_0064.76.jpg",
+  "text": "Pound"
+ },
+ {
+  "i": 56,
+  "start": 64.883,
+  "dur": 1.2,
+  "frame": "s056_0065.13.jpg",
+  "text": "for pound, smaller"
+ },
+ {
+  "i": 57,
+  "start": 66.083,
+  "dur": 0.134,
+  "frame": "s057_0066.15.jpg",
+  "text": ""
+ },
+ {
+  "i": 58,
+  "start": 66.217,
+  "dur": 1.8,
+  "frame": "s058_0066.47.jpg",
+  "text": "bodies are stronger. Big"
+ },
+ {
+  "i": 59,
+  "start": 68.017,
+  "dur": 0.216,
+  "frame": "s059_0068.12.jpg",
+  "text": "guys"
+ },
+ {
+  "i": 60,
+  "start": 68.233,
+  "dur": 2.6,
+  "frame": "s060_0068.48.jpg",
+  "text": "still lift more in total, but for pull -ups,"
+ },
+ {
+  "i": 61,
+  "start": 70.833,
+  "dur": 0.517,
+  "text": ""
+ },
+ {
+  "i": 62,
+  "start": 71.35,
+  "dur": 5.4,
+  "text": "climbing, or anything where you move your own body, what counts is strength for your weight."
+ },
+ {
+  "i": 63,
+  "start": 76.75,
+  "dur": 0.283,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.12,
+   "strength": 1.88,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 64,
+  "start": 77.033,
+  "dur": 0.467,
+  "text": "And there,"
+ },
+ {
+  "i": 65,
+  "start": 77.5,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 66,
+  "start": 77.633,
+  "dur": 0.25,
+  "text": "skinny"
+ },
+ {
+  "i": 67,
+  "start": 77.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 68,
+  "start": 78.133,
+  "dur": 0.25,
+  "text": "is a"
+ },
+ {
+  "i": 69,
+  "start": 78.383,
+  "dur": 0.15,
+  "text": "head"
+ },
+ {
+  "i": 70,
+  "start": 78.533,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 71,
+  "start": 78.667,
+  "dur": 13.583,
+  "text": "start. Second, your wiring. Strength isn't only muscle. It's how much of that muscle your brain can switch on at once. In one classic study, most of the strength people gained in their first"
+ },
+ {
+  "i": 72,
+  "start": 92.25,
+  "dur": 0.133,
+  "text": "four"
+ },
+ {
+  "i": 73,
+  "start": 92.383,
+  "dur": 0.25,
+  "text": "weeks"
+ },
+ {
+  "i": 74,
+  "start": 92.633,
+  "dur": 0.25,
+  "text": "of"
+ },
+ {
+  "i": 75,
+  "start": 92.883,
+  "dur": 0.25,
+  "text": "training"
+ },
+ {
+  "i": 76,
+  "start": 93.133,
+  "dur": 0.25,
+  "text": "came"
+ },
+ {
+  "i": 77,
+  "start": 93.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 78,
+  "start": 93.633,
+  "dur": 0.25,
+  "text": "from"
+ },
+ {
+  "i": 79,
+  "start": 93.883,
+  "dur": 0.25,
+  "text": "their nervous"
+ },
+ {
+  "i": 80,
+  "start": 94.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 81,
+  "start": 94.383,
+  "dur": 0.25,
+  "text": "system,"
+ },
+ {
+  "i": 82,
+  "start": 94.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 83,
+  "start": 94.883,
+  "dur": 0.25,
+  "text": "not"
+ },
+ {
+  "i": 84,
+  "start": 95.133,
+  "dur": 0.25,
+  "text": "from"
+ },
+ {
+  "i": 85,
+  "start": 95.383,
+  "dur": 0.25,
+  "text": "bigger"
+ },
+ {
+  "i": 86,
+  "start": 95.633,
+  "dur": 0.25,
+  "text": "muscles."
+ },
+ {
+  "i": 87,
+  "start": 95.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 88,
+  "start": 96.133,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.06,
+   "strength": 1.33,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 89,
+  "start": 96.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 90,
+  "start": 96.633,
+  "dur": 10.5,
+  "text": "Their brains learned to fire more of what was already there, so two arms the same size can have very different strength. One brain holds some of it back. The other has learned to fire"
+ },
+ {
+  "i": 91,
+  "start": 107.133,
+  "dur": 6.817,
+  "text": "much more of it at once. And third, the one almost nobody trains. Your"
+ },
+ {
+  "i": 92,
+  "start": 113.95,
+  "dur": 0.133,
+  "text": "tendons."
+ },
+ {
+  "i": 93,
+  "start": 114.083,
+  "dur": 5.784,
+  "text": "Every bit of force your muscles make has to travel through them to reach your bones."
+ },
+ {
+  "i": 94,
+  "start": 119.867,
+  "dur": 14.283,
+  "text": "Now picture lifting a weight with a rubber band, then with a steel cable. The rubber band stretches first, and the weight moves late. The cable moves it instantly. Stiffer tendons work like that cable, and studies link stiffer tendons to faster,"
+ },
+ {
+  "i": 95,
+  "start": 134.15,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 96,
+  "start": 134.283,
+  "dur": 2.167,
+  "text": "more explosive force. And"
+ },
+ {
+  "i": 97,
+  "start": 136.45,
+  "dur": 0.183,
+  "text": "stiff"
+ },
+ {
+  "i": 98,
+  "start": 136.633,
+  "dur": 7.95,
+  "text": "doesn't mean tight or inflexible. It just means the tendon stretches less when it's pulled hard, so your force gets to the bone sooner."
+ },
+ {
+  "i": 99,
+  "start": 144.583,
+  "dur": 3.2,
+  "text": "That's the snappy kind of strength you can't see in the mirror."
+ },
+ {
+  "i": 100,
+  "start": 147.783,
+  "dur": 0.317,
+  "text": "But tendons"
+ },
+ {
+  "i": 101,
+  "start": 148.1,
+  "dur": 1.267,
+  "text": "are slow."
+ },
+ {
+  "i": 102,
+  "start": 149.367,
+  "dur": 0.166,
+  "text": "The"
+ },
+ {
+  "i": 103,
+  "start": 149.533,
+  "dur": 3.25,
+  "text": "core of your Achilles tendon is built while you're still growing,"
+ },
+ {
+  "i": 104,
+  "start": 152.783,
+  "dur": 4.284,
+  "text": "and scientists dating it with carbon from Cold War nuclear tests found"
+ },
+ {
+  "i": 105,
+  "start": 157.067,
+  "dur": 0.316,
+  "text": "it's barely"
+ },
+ {
+  "i": 106,
+  "start": 157.383,
+  "dur": 1.25,
+  "text": "replaced after about"
+ },
+ {
+  "i": 107,
+  "start": 158.633,
+  "dur": 0.15,
+  "text": "age"
+ },
+ {
+  "i": 108,
+  "start": 158.783,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 109,
+  "start": 158.917,
+  "dur": 5.7,
+  "text": "17. So how do you train something that slow?"
+ },
+ {
+  "i": 110,
+  "start": 164.617,
+  "dur": 0.133,
+  "text": "Heavy."
+ },
+ {
+  "i": 111,
+  "start": 164.75,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 112,
+  "start": 164.883,
+  "dur": 2.9,
+  "text": "A big review of tendon studies found that"
+ },
+ {
+  "i": 113,
+  "start": 167.783,
+  "dur": 4.85,
+  "text": "loads above about 70 % of your max change tendons a lot, while light training"
+ },
+ {
+  "i": 114,
+  "start": 172.633,
+  "dur": 1.617,
+  "text": "barely changed them at all."
+ },
+ {
+  "i": 115,
+  "start": 174.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 116,
+  "start": 174.383,
+  "dur": 1.5,
+  "text": "The type of exercise didn't"
+ },
+ {
+  "i": 117,
+  "start": 175.883,
+  "dur": 0.25,
+  "text": "matter"
+ },
+ {
+  "i": 118,
+  "start": 176.133,
+  "dur": 0.25,
+  "text": "much."
+ },
+ {
+  "i": 119,
+  "start": 176.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 120,
+  "start": 176.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 121,
+  "start": 176.883,
+  "dur": 0.217,
+  "text": "Even"
+ },
+ {
+  "i": 122,
+  "start": 177.1,
+  "dur": 0.217,
+  "text": "simple"
+ },
+ {
+  "i": 123,
+  "start": 177.317,
+  "dur": 2.7,
+  "text": "holds worked, as long as they were hard."
+ },
+ {
+  "i": 124,
+  "start": 180.017,
+  "dur": 0.266,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.12,
+   "strength": 1.21,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 125,
+  "start": 180.283,
+  "dur": 4.1,
+  "text": "Jumping was less effective, because each landing loads the tendon for only a split",
+  "audio_hit": {
+   "offset_s": -0.14,
+   "strength": 1.21,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 126,
+  "start": 184.383,
+  "dur": 1.467,
+  "text": "second. That's why hundreds"
+ },
+ {
+  "i": 127,
+  "start": 185.85,
+  "dur": 0.283,
+  "text": "of"
+ },
+ {
+  "i": 128,
+  "start": 186.133,
+  "dur": 0.45,
+  "text": "easy"
+ },
+ {
+  "i": 129,
+  "start": 186.583,
+  "dur": 0.317,
+  "text": "push"
+ },
+ {
+  "i": 130,
+  "start": 186.9,
+  "dur": 0.45,
+  "text": "-ups can"
+ },
+ {
+  "i": 131,
+  "start": 187.35,
+  "dur": 0.283,
+  "text": "grow your"
+ },
+ {
+  "i": 132,
+  "start": 187.633,
+  "dur": 0.367,
+  "text": "muscles"
+ },
+ {
+  "i": 133,
+  "start": 188.0,
+  "dur": 0.183,
+  "text": "and"
+ },
+ {
+  "i": 134,
+  "start": 188.183,
+  "dur": 0.217,
+  "text": ""
+ },
+ {
+  "i": 135,
+  "start": 188.4,
+  "dur": 0.233,
+  "text": "still"
+ },
+ {
+  "i": 136,
+  "start": 188.633,
+  "dur": 0.217,
+  "text": ""
+ },
+ {
+  "i": 137,
+  "start": 188.85,
+  "dur": 0.15,
+  "text": "leave"
+ },
+ {
+  "i": 138,
+  "start": 189.0,
+  "dur": 0.133,
+  "text": "your"
+ },
+ {
+  "i": 139,
+  "start": 189.133,
+  "dur": 0.134,
+  "text": "tendons"
+ },
+ {
+  "i": 140,
+  "start": 189.267,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 141,
+  "start": 189.4,
+  "dur": 0.183,
+  "text": ""
+ },
+ {
+  "i": 142,
+  "start": 189.583,
+  "dur": 0.3,
+  "text": "behind."
+ },
+ {
+  "i": 143,
+  "start": 189.883,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.24,
+   "strength": 1.05,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 144,
+  "start": 190.133,
+  "dur": 0.217,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.01,
+   "strength": 1.05,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 145,
+  "start": 190.35,
+  "dur": 0.233,
+  "text": ""
+ },
+ {
+  "i": 146,
+  "start": 190.583,
+  "dur": 0.134,
+  "text": "And"
+ },
+ {
+  "i": 147,
+  "start": 190.717,
+  "dur": 2.833,
+  "text": "if you're a teenager, this matters even more."
+ },
+ {
+  "i": 148,
+  "start": 193.55,
+  "dur": 0.333,
+  "text": "Studies"
+ },
+ {
+  "i": 149,
+  "start": 193.883,
+  "dur": 0.75,
+  "text": "on young athletes"
+ },
+ {
+  "i": 150,
+  "start": 194.633,
+  "dur": 1.367,
+  "text": "found their muscles often"
+ },
+ {
+  "i": 151,
+  "start": 196.0,
+  "dur": 0.5,
+  "text": "get strong"
+ },
+ {
+  "i": 152,
+  "start": 196.5,
+  "dur": 0.383,
+  "text": "faster"
+ },
+ {
+  "i": 153,
+  "start": 196.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 154,
+  "start": 197.133,
+  "dur": 0.25,
+  "text": "than"
+ },
+ {
+  "i": 155,
+  "start": 197.383,
+  "dur": 0.25,
+  "text": "their tendons"
+ },
+ {
+  "i": 156,
+  "start": 197.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 157,
+  "start": 197.883,
+  "dur": 0.25,
+  "text": "can"
+ },
+ {
+  "i": 158,
+  "start": 198.133,
+  "dur": 0.367,
+  "text": "keep up,"
+ },
+ {
+  "i": 159,
+  "start": 198.5,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 160,
+  "start": 198.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 161,
+  "start": 198.883,
+  "dur": 0.25,
+  "text": "and"
+ },
+ {
+  "i": 162,
+  "start": 199.133,
+  "dur": 0.25,
+  "text": "that"
+ },
+ {
+  "i": 163,
+  "start": 199.383,
+  "dur": 0.25,
+  "text": "gap"
+ },
+ {
+  "i": 164,
+  "start": 199.633,
+  "dur": 0.25,
+  "text": "is"
+ },
+ {
+  "i": 165,
+  "start": 199.883,
+  "dur": 0.25,
+  "text": "one"
+ },
+ {
+  "i": 166,
+  "start": 200.133,
+  "dur": 0.25,
+  "text": "likely"
+ },
+ {
+  "i": 167,
+  "start": 200.383,
+  "dur": 0.25,
+  "text": "reason"
+ },
+ {
+  "i": 168,
+  "start": 200.633,
+  "dur": 0.167,
+  "text": ""
+ },
+ {
+  "i": 169,
+  "start": 200.8,
+  "dur": 0.65,
+  "text": "teens get tendon"
+ },
+ {
+  "i": 170,
+  "start": 201.45,
+  "dur": 0.167,
+  "text": ""
+ },
+ {
+  "i": 171,
+  "start": 201.617,
+  "dur": 2.25,
+  "text": "pain when they ramp up too fast."
+ },
+ {
+  "i": 172,
+  "start": 203.867,
+  "dur": 0.316,
+  "text": "Piling"
+ },
+ {
+  "i": 173,
+  "start": 204.183,
+  "dur": 2.284,
+  "text": "on lots of jumping may be one of the riskier"
+ },
+ {
+  "i": 174,
+  "start": 206.467,
+  "dur": 0.75,
+  "text": "ways to do it."
+ },
+ {
+  "i": 175,
+  "start": 207.217,
+  "dur": 1.916,
+  "text": ""
+ },
+ {
+  "i": 176,
+  "start": 209.133,
+  "dur": 5.934,
+  "text": "Here's how to train them at home, with no weights. Push or pull against something that can't move.",
+  "audio_hit": {
+   "offset_s": -0.06,
+   "strength": 1.32,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 177,
+  "start": 215.067,
+  "dur": 0.2,
+  "text": "One,",
+  "audio_hit": {
+   "offset_s": 0.0,
+   "strength": 1.49,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 178,
+  "start": 215.267,
+  "dur": 0.216,
+  "text": ""
+ },
+ {
+  "i": 179,
+  "start": 215.483,
+  "dur": 4.367,
+  "text": "stand on a towel, grab both ends, and pull up like a curl. Two,"
+ },
+ {
+  "i": 180,
+  "start": 219.85,
+  "dur": 0.183,
+  "text": ""
+ },
+ {
+  "i": 181,
+  "start": 220.033,
+  "dur": 3.984,
+  "text": "plant your feet and push against a wall like you're trying to shove it over."
+ },
+ {
+  "i": 182,
+  "start": 224.017,
+  "dur": 0.283,
+  "text": ""
+ },
+ {
+  "i": 183,
+  "start": 224.3,
+  "dur": 2.017,
+  "text": "Three, hang from a bar and"
+ },
+ {
+  "i": 184,
+  "start": 226.317,
+  "dur": 0.133,
+  "text": "squeeze"
+ },
+ {
+  "i": 185,
+  "start": 226.45,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 186,
+  "start": 226.583,
+  "dur": 1.55,
+  "text": "it like you're trying to crush it. Push"
+ },
+ {
+  "i": 187,
+  "start": 228.133,
+  "dur": 0.217,
+  "text": ""
+ },
+ {
+  "i": 188,
+  "start": 228.35,
+  "dur": 3.283,
+  "text": "for five seconds, rest five, and do five reps."
+ },
+ {
+  "i": 189,
+  "start": 231.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 190,
+  "start": 231.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 191,
+  "start": 232.133,
+  "dur": 0.15,
+  "text": "That's"
+ },
+ {
+  "i": 192,
+  "start": 232.283,
+  "dur": 0.217,
+  "text": "one"
+ },
+ {
+  "i": 193,
+  "start": 232.5,
+  "dur": 0.133,
+  "text": "set."
+ },
+ {
+  "i": 194,
+  "start": 232.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 195,
+  "start": 232.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 196,
+  "start": 233.133,
+  "dur": 0.617,
+  "text": "The first"
+ },
+ {
+  "i": 197,
+  "start": 233.75,
+  "dur": 0.133,
+  "text": "week,"
+ },
+ {
+  "i": 198,
+  "start": 233.883,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.25,
+   "strength": 1.39,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 199,
+  "start": 234.133,
+  "dur": 0.367,
+  "text": "go",
+  "audio_hit": {
+   "offset_s": -0.0,
+   "strength": 1.39,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 200,
+  "start": 234.5,
+  "dur": 0.25,
+  "text": "at about"
+ },
+ {
+  "i": 201,
+  "start": 234.75,
+  "dur": 0.133,
+  "text": "seven"
+ },
+ {
+  "i": 202,
+  "start": 234.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 203,
+  "start": 235.133,
+  "dur": 0.25,
+  "text": "out"
+ },
+ {
+  "i": 204,
+  "start": 235.383,
+  "dur": 0.25,
+  "text": "of ten"
+ },
+ {
+  "i": 205,
+  "start": 235.633,
+  "dur": 0.25,
+  "text": "effort."
+ },
+ {
+  "i": 206,
+  "start": 235.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 207,
+  "start": 236.133,
+  "dur": 0.367,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.11,
+   "strength": 1.26,
+   "guess": "boom/impact"
+  }
+ },
+ {
+  "i": 208,
+  "start": 236.5,
+  "dur": 0.133,
+  "text": "After"
+ },
+ {
+  "i": 209,
+  "start": 236.633,
+  "dur": 0.25,
+  "text": "that,"
+ },
+ {
+  "i": 210,
+  "start": 236.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 211,
+  "start": 237.133,
+  "dur": 0.25,
+  "text": "go"
+ },
+ {
+  "i": 212,
+  "start": 237.383,
+  "dur": 0.367,
+  "text": "as"
+ },
+ {
+  "i": 213,
+  "start": 237.75,
+  "dur": 0.133,
+  "text": "hard"
+ },
+ {
+  "i": 214,
+  "start": 237.883,
+  "dur": 0.25,
+  "text": "as"
+ },
+ {
+  "i": 215,
+  "start": 238.133,
+  "dur": 0.25,
+  "text": "you can"
+ },
+ {
+  "i": 216,
+  "start": 238.383,
+  "dur": 0.75,
+  "text": "without pain."
+ },
+ {
+  "i": 217,
+  "start": 239.133,
+  "dur": 0.367,
+  "text": ""
+ },
+ {
+  "i": 218,
+  "start": 239.5,
+  "dur": 1.75,
+  "text": "Do three sets of each,"
+ },
+ {
+  "i": 219,
+  "start": 241.25,
+  "dur": 0.133,
+  "text": "three"
+ },
+ {
+  "i": 220,
+  "start": 241.383,
+  "dur": 0.25,
+  "text": "times"
+ },
+ {
+  "i": 221,
+  "start": 241.633,
+  "dur": 0.25,
+  "text": "a"
+ },
+ {
+  "i": 222,
+  "start": 241.883,
+  "dur": 0.25,
+  "text": "week,"
+ },
+ {
+  "i": 223,
+  "start": 242.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 224,
+  "start": 242.383,
+  "dur": 0.25,
+  "text": "and"
+ },
+ {
+  "i": 225,
+  "start": 242.633,
+  "dur": 0.25,
+  "text": "give it"
+ },
+ {
+  "i": 226,
+  "start": 242.883,
+  "dur": 0.25,
+  "text": "at least"
+ },
+ {
+  "i": 227,
+  "start": 243.133,
+  "dur": 0.25,
+  "text": "12"
+ },
+ {
+  "i": 228,
+  "start": 243.383,
+  "dur": 0.25,
+  "text": "weeks,"
+ },
+ {
+  "i": 229,
+  "start": 243.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 230,
+  "start": 243.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 231,
+  "start": 244.133,
+  "dur": 0.25,
+  "text": "because"
+ },
+ {
+  "i": 232,
+  "start": 244.383,
+  "dur": 0.25,
+  "text": "that's"
+ },
+ {
+  "i": 233,
+  "start": 244.633,
+  "dur": 0.25,
+  "text": "how long"
+ },
+ {
+  "i": 234,
+  "start": 244.883,
+  "dur": 0.25,
+  "text": "tendons"
+ },
+ {
+  "i": 235,
+  "start": 245.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 236,
+  "start": 245.383,
+  "dur": 0.25,
+  "text": "take."
+ },
+ {
+  "i": 237,
+  "start": 245.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 238,
+  "start": 245.883,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.09,
+   "strength": 1.1,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 239,
+  "start": 246.133,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 240,
+  "start": 246.267,
+  "dur": 2.983,
+  "text": "Every two weeks, add a second to each hold, or"
+ },
+ {
+  "i": 241,
+  "start": 249.25,
+  "dur": 0.2,
+  "text": ""
+ },
+ {
+  "i": 242,
+  "start": 249.45,
+  "dur": 4.05,
+  "text": "pull the towel with one arm at a time. And before you start, time how"
+ },
+ {
+  "i": 243,
+  "start": 253.5,
+  "dur": 4.7,
+  "text": "long you can hang from the bar. Test it again in week 12. And one food tip."
+ },
+ {
+  "i": 244,
+  "start": 258.2,
+  "dur": 5.05,
+  "text": "In a small study, gelatin with vitamin C an hour before exercise doubled"
+ },
+ {
+  "i": 245,
+  "start": 263.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 246,
+  "start": 263.383,
+  "dur": 6.017,
+  "text": "a marker of collagen building. It's early evidence, but it's cheap."
+ },
+ {
+  "i": 247,
+  "start": 269.4,
+  "dur": 2.467,
+  "text": "So the skinny guy in the anime isn't",
+  "audio_hit": {
+   "offset_s": 0.29,
+   "strength": 1.1,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 248,
+  "start": 271.867,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 249,
+  "start": 272.0,
+  "dur": 3.25,
+  "text": "a lie. A light frame, a trained nervous"
+ },
+ {
+  "i": 250,
+  "start": 275.25,
+  "dur": 0.25,
+  "text": "system,"
+ },
+ {
+  "i": 251,
+  "start": 275.5,
+  "dur": 0.75,
+  "text": ""
+ },
+ {
+  "i": 252,
+  "start": 276.25,
+  "dur": 0.75,
+  "text": "and tendons"
+ },
+ {
+  "i": 253,
+  "start": 277.0,
+  "dur": 0.133,
+  "text": "like"
+ },
+ {
+  "i": 254,
+  "start": 277.133,
+  "dur": 0.25,
+  "text": "steel"
+ },
+ {
+  "i": 255,
+  "start": 277.383,
+  "dur": 0.25,
+  "text": "cables."
+ },
+ {
+  "i": 256,
+  "start": 277.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 257,
+  "start": 277.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 258,
+  "start": 278.133,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.06,
+   "strength": 1.06,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 259,
+  "start": 278.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 260,
+  "start": 278.633,
+  "dur": 0.334,
+  "text": "Muscle"
+ },
+ {
+  "i": 261,
+  "start": 278.967,
+  "dur": 0.216,
+  "text": ""
+ },
+ {
+  "i": 262,
+  "start": 279.183,
+  "dur": 3.284,
+  "text": "is what people see. Tendons are what they feel when you shake"
+ },
+ {
+  "i": 263,
+  "start": 282.467,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 264,
+  "start": 282.6,
+  "dur": 1.621,
+  "text": "their hand."
+ }
+]
