@@ -1,0 +1,36 @@
+# Calisthenics / strength-science look: black canvas, ink illustrations, kinetic captions, data popups.
+# Only the keys that differ from default.yaml are set (a channel file deep-merges over the default).
+palette:
+  - ["#000000", "#0a0d12"]
+  - ["#000000", "#0d1117"]
+  - ["#050505", "#10151c"]
+  - ["#000000", "#0b1014"]
+text_color: "#FFFFFF"
+accent: "#2EE6D6"
+font_google: "Montserrat:wght@800"
+font_family: "Montserrat, Inter, 'Segoe UI', 'DejaVu Sans', Arial, sans-serif"
+uppercase: false
+motion_default: float
+transition_default: cut
+transition_duration: 0.18
+captions:
+  style: karaoke
+  position: lower
+  max_words: 3
+  max_chars: 24
+tail_seconds: 0.8
+image:
+  prompt_prefix: "Black-and-white manga-style ink illustration on a pure black background, crisp white linework with fine cross-hatching and dramatic rim lighting, one cyan accent color, lots of clean empty space for on-screen text, vertical 9:16 composition. "
+  negative_prompt: "text, letters, numbers, watermark, logo, signature, blurry, gray background, white background, color photo, 3d render, blood, gore"
+look:
+  grade: none
+  vignette: 0.2
+  grain: 0.03
+  letterbox: 0
+sfx:
+  gain: 0.65
+music:
+  gain: 0.1
+features:
+  images: true
+  popups: true
