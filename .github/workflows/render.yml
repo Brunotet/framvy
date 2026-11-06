@@ -50,8 +50,12 @@ jobs:
 
       - name: System deps (ffmpeg + fonts)
         run: |
-          sudo apt-get update -y
-          sudo apt-get install -y ffmpeg fonts-dejavu fonts-liberation fonts-noto-color-emoji
+          # ubuntu-latest already ships ffmpeg and most fonts; only install what is missing, and never hang on a slow mirror
+          if ! command -v ffmpeg >/dev/null || ! fc-list | grep -qi emoji; then
+            sudo timeout 300 apt-get update -y || true
+            sudo timeout 600 apt-get install -y ffmpeg fonts-dejavu fonts-liberation fonts-noto-color-emoji || true
+          fi
+          ffmpeg -version | head -1
 
       - uses: actions/setup-node@v4
         with:
