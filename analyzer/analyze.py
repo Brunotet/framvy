@@ -24,6 +24,14 @@ from pathlib import Path
 import numpy as np
 
 
+def _js(o):
+    return o.item() if hasattr(o, "item") else str(o)
+
+
+_dumps = json.dumps
+json.dumps = lambda *a, **k: _dumps(*a, **{"default": _js, **k})
+
+
 # ----------------------------------------------------------------------------- helpers
 def sh(cmd, check=True):
     return subprocess.run([str(c) for c in cmd], check=check, capture_output=True, text=True)
@@ -156,9 +164,9 @@ def transcribe(video: Path, model_size: str):
     segs, info = model.transcribe(str(video), word_timestamps=True, vad_filter=True, beam_size=1)
     segments, words = [], []
     for s in segs:
-        segments.append({"start": round(s.start, 2), "end": round(s.end, 2), "text": s.text.strip()})
+        segments.append({"start": round(float(s.start), 2), "end": round(float(s.end), 2), "text": s.text.strip()})
         for w in (s.words or []):
-            words.append({"w": w.word.strip(), "start": round(w.start, 2), "end": round(w.end, 2)})
+            words.append({"w": w.word.strip(), "start": round(float(w.start), 2), "end": round(float(w.end), 2)})
     return {"language": info.language, "segments": segments, "words": words}
 
 
@@ -226,7 +234,7 @@ def merge_speech(words: list[dict], pad=0.06, gap=0.25) -> list[list[float]]:
 
 def in_speech(t: float, iv: list[list[float]]) -> bool:
     i = bisect.bisect_right([a for a, _ in iv], t) - 1
-    return i >= 0 and iv[i][0] <= t <= iv[i][1]
+    return bool(i >= 0 and iv[i][0] <= t <= iv[i][1])
 
 
 def guess_kind(dur, cent, flat, peak_db, strength, speech):
