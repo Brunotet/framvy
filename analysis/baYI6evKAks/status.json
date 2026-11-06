@@ -1,0 +1,18 @@
+{
+  "video_id": "baYI6evKAks",
+  "cuts": {
+    "ok": true,
+    "count": 734
+  },
+  "transcript": {
+    "ok": true,
+    "language": "en",
+    "words": 1374
+  },
+  "audio": {
+    "ok": true,
+    "onsets": 716,
+    "sfx_clips": 40
+  },
+  "result": "ok"
+}

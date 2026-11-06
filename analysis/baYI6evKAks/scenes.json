@@ -1,0 +1,4716 @@
+[
+ {
+  "i": 1,
+  "start": 0.0,
+  "dur": 0.4,
+  "frame": "s001_0000.20.jpg",
+  "text": "Drop"
+ },
+ {
+  "i": 2,
+  "start": 0.4,
+  "dur": 0.25,
+  "frame": "s002_0000.53.jpg",
+  "text": "down"
+ },
+ {
+  "i": 3,
+  "start": 0.65,
+  "dur": 0.15,
+  "frame": "s003_0000.72.jpg",
+  "text": "and"
+ },
+ {
+  "i": 4,
+  "start": 0.8,
+  "dur": 0.317,
+  "frame": "s004_0000.96.jpg",
+  "text": "do as"
+ },
+ {
+  "i": 5,
+  "start": 1.117,
+  "dur": 0.233,
+  "frame": "s005_0001.23.jpg",
+  "text": "many"
+ },
+ {
+  "i": 6,
+  "start": 1.35,
+  "dur": 0.25,
+  "frame": "s006_0001.48.jpg",
+  "text": "push"
+ },
+ {
+  "i": 7,
+  "start": 1.6,
+  "dur": 0.217,
+  "frame": "s007_0001.71.jpg",
+  "text": "-ups"
+ },
+ {
+  "i": 8,
+  "start": 1.817,
+  "dur": 0.183,
+  "frame": "s008_0001.91.jpg",
+  "text": "as"
+ },
+ {
+  "i": 9,
+  "start": 2.0,
+  "dur": 0.417,
+  "frame": "s009_0002.21.jpg",
+  "text": "you can."
+ },
+ {
+  "i": 10,
+  "start": 2.417,
+  "dur": 0.316,
+  "frame": "s010_0002.57.jpg",
+  "text": ""
+ },
+ {
+  "i": 11,
+  "start": 2.733,
+  "dur": 0.234,
+  "frame": "s011_0002.85.jpg",
+  "text": "Right"
+ },
+ {
+  "i": 12,
+  "start": 2.967,
+  "dur": 0.233,
+  "frame": "s012_0003.08.jpg",
+  "text": "now,"
+ },
+ {
+  "i": 13,
+  "start": 3.2,
+  "dur": 0.233,
+  "frame": "s013_0003.32.jpg",
+  "text": ""
+ },
+ {
+  "i": 14,
+  "start": 3.433,
+  "dur": 0.134,
+  "frame": "s014_0003.50.jpg",
+  "text": ""
+ },
+ {
+  "i": 15,
+  "start": 3.567,
+  "dur": 1.416,
+  "frame": "s015_0003.82.jpg",
+  "text": "chest to the floor, body"
+ },
+ {
+  "i": 16,
+  "start": 4.983,
+  "dur": 1.5,
+  "frame": "s016_0005.23.jpg",
+  "text": "straight, no resting"
+ },
+ {
+  "i": 17,
+  "start": 6.483,
+  "dur": 0.134,
+  "frame": "s017_0006.55.jpg",
+  "text": "at"
+ },
+ {
+  "i": 18,
+  "start": 6.617,
+  "dur": 0.85,
+  "frame": "s018_0006.87.jpg",
+  "text": "the top. Got"
+ },
+ {
+  "i": 19,
+  "start": 7.467,
+  "dur": 0.166,
+  "frame": "s019_0007.55.jpg",
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.09,
+   "strength": 1.1,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 20,
+  "start": 7.633,
+  "dur": 5.117,
+  "frame": "s020_0007.88.jpg",
+  "text": "your number? Keep it, because at the end of this video, I'll tell you what it says about you. In"
+ },
+ {
+  "i": 21,
+  "start": 12.75,
+  "dur": 0.133,
+  "frame": "s021_0012.82.jpg",
+  "text": "one"
+ },
+ {
+  "i": 22,
+  "start": 12.883,
+  "dur": 0.217,
+  "frame": "s022_0012.99.jpg",
+  "text": ""
+ },
+ {
+  "i": 23,
+  "start": 13.1,
+  "dur": 0.15,
+  "frame": "s023_0013.17.jpg",
+  "text": "study,"
+ },
+ {
+  "i": 24,
+  "start": 13.25,
+  "dur": 0.383,
+  "frame": "s024_0013.44.jpg",
+  "text": ""
+ },
+ {
+  "i": 25,
+  "start": 13.633,
+  "dur": 0.367,
+  "frame": "s025_0013.82.jpg",
+  "text": "researchers",
+  "audio_hit": {
+   "offset_s": 0.06,
+   "strength": 1.25,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 26,
+  "start": 14.0,
+  "dur": 0.133,
+  "frame": "s026_0014.07.jpg",
+  "text": ""
+ },
+ {
+  "i": 27,
+  "start": 14.133,
+  "dur": 0.5,
+  "frame": "s027_0014.38.jpg",
+  "text": "followed"
+ },
+ {
+  "i": 28,
+  "start": 14.633,
+  "dur": 0.25,
+  "frame": "s028_0014.76.jpg",
+  "text": "over"
+ },
+ {
+  "i": 29,
+  "start": 14.883,
+  "dur": 1.434,
+  "frame": "s029_0015.13.jpg",
+  "text": "a thousand men for 10"
+ },
+ {
+  "i": 30,
+  "start": 16.317,
+  "dur": 0.183,
+  "frame": "s030_0016.41.jpg",
+  "text": ""
+ },
+ {
+  "i": 31,
+  "start": 16.5,
+  "dur": 0.133,
+  "frame": "s031_0016.57.jpg",
+  "text": ""
+ },
+ {
+  "i": 32,
+  "start": 16.633,
+  "dur": 1.117,
+  "frame": "s032_0016.88.jpg",
+  "text": "years. The ones"
+ },
+ {
+  "i": 33,
+  "start": 17.75,
+  "dur": 2.133,
+  "frame": "s033_0018.00.jpg",
+  "text": "who could do more than 40 push -ups had far"
+ },
+ {
+  "i": 34,
+  "start": 19.883,
+  "dur": 3.367,
+  "frame": "s034_0020.13.jpg",
+  "text": "fewer heart problems than the ones who couldn't do 10. Not"
+ },
+ {
+  "i": 35,
+  "start": 23.25,
+  "dur": 1.317,
+  "frame": "s035_0023.50.jpg",
+  "text": "a gym test, a"
+ },
+ {
+  "i": 36,
+  "start": 24.567,
+  "dur": 0.166,
+  "frame": "s036_0024.65.jpg",
+  "text": "floor"
+ },
+ {
+  "i": 37,
+  "start": 24.733,
+  "dur": 1.084,
+  "frame": "s037_0024.98.jpg",
+  "text": "test."
+ },
+ {
+  "i": 38,
+  "start": 25.817,
+  "dur": 0.233,
+  "frame": "s038_0025.93.jpg",
+  "text": ""
+ },
+ {
+  "i": 39,
+  "start": 26.05,
+  "dur": 0.133,
+  "frame": "s039_0026.12.jpg",
+  "text": "And"
+ },
+ {
+  "i": 40,
+  "start": 26.183,
+  "dur": 6.4,
+  "frame": "s040_0026.43.jpg",
+  "text": "here's what most skinny guys never hear. On the floor and on a bar, being light isn't a weakness. It's an"
+ },
+ {
+  "i": 41,
+  "start": 32.583,
+  "dur": 0.134,
+  "frame": "s041_0032.65.jpg",
+  "text": "advantage."
+ },
+ {
+  "i": 42,
+  "start": 32.717,
+  "dur": 1.283,
+  "frame": "s042_0032.97.jpg",
+  "text": "So I"
+ },
+ {
+  "i": 43,
+  "start": 34.0,
+  "dur": 0.133,
+  "frame": "s043_0034.07.jpg",
+  "text": "ranked"
+ },
+ {
+  "i": 44,
+  "start": 34.133,
+  "dur": 0.134,
+  "frame": "s044_0034.20.jpg",
+  "text": ""
+ },
+ {
+  "i": 45,
+  "start": 34.267,
+  "dur": 0.233,
+  "frame": "s045_0034.38.jpg",
+  "text": "five"
+ },
+ {
+  "i": 46,
+  "start": 34.5,
+  "dur": 0.133,
+  "frame": "s046_0034.57.jpg",
+  "text": ""
+ },
+ {
+  "i": 47,
+  "start": 34.633,
+  "dur": 0.25,
+  "frame": "s047_0034.76.jpg",
+  "text": "reasons"
+ },
+ {
+  "i": 48,
+  "start": 34.883,
+  "dur": 0.25,
+  "frame": "s048_0035.01.jpg",
+  "text": ""
+ },
+ {
+  "i": 49,
+  "start": 35.133,
+  "dur": 0.25,
+  "frame": "s049_0035.26.jpg",
+  "text": "skinny"
+ },
+ {
+  "i": 50,
+  "start": 35.383,
+  "dur": 0.25,
+  "frame": "s050_0035.51.jpg",
+  "text": "guys"
+ },
+ {
+  "i": 51,
+  "start": 35.633,
+  "dur": 0.25,
+  "frame": "s051_0035.76.jpg",
+  "text": "should"
+ },
+ {
+  "i": 52,
+  "start": 35.883,
+  "dur": 0.25,
+  "frame": "s052_0036.01.jpg",
+  "text": "quit"
+ },
+ {
+  "i": 53,
+  "start": 36.133,
+  "dur": 0.25,
+  "frame": "s053_0036.26.jpg",
+  "text": "the"
+ },
+ {
+  "i": 54,
+  "start": 36.383,
+  "dur": 0.25,
+  "frame": "s054_0036.51.jpg",
+  "text": "gym"
+ },
+ {
+  "i": 55,
+  "start": 36.633,
+  "dur": 0.25,
+  "frame": "s055_0036.76.jpg",
+  "text": "and"
+ },
+ {
+  "i": 56,
+  "start": 36.883,
+  "dur": 0.134,
+  "frame": "s056_0036.95.jpg",
+  "text": "train"
+ },
+ {
+  "i": 57,
+  "start": 37.017,
+  "dur": 0.233,
+  "frame": "s057_0037.13.jpg",
+  "text": ""
+ },
+ {
+  "i": 58,
+  "start": 37.25,
+  "dur": 0.133,
+  "frame": "s058_0037.32.jpg",
+  "text": "with"
+ },
+ {
+  "i": 59,
+  "start": 37.383,
+  "dur": 0.25,
+  "frame": "s059_0037.51.jpg",
+  "text": "their own"
+ },
+ {
+  "i": 60,
+  "start": 37.633,
+  "dur": 0.25,
+  "frame": "s060_0037.76.jpg",
+  "text": "body."
+ },
+ {
+  "i": 61,
+  "start": 37.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 62,
+  "start": 38.133,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.18,
+   "strength": 1.11,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 63,
+  "start": 38.383,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.07,
+   "strength": 1.11,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 64,
+  "start": 38.633,
+  "dur": 0.25,
+  "text": "Number"
+ },
+ {
+  "i": 65,
+  "start": 38.883,
+  "dur": 0.25,
+  "text": "one"
+ },
+ {
+  "i": 66,
+  "start": 39.133,
+  "dur": 0.167,
+  "text": ""
+ },
+ {
+  "i": 67,
+  "start": 39.3,
+  "dur": 0.133,
+  "text": "isn't"
+ },
+ {
+  "i": 68,
+  "start": 39.433,
+  "dur": 0.2,
+  "text": ""
+ },
+ {
+  "i": 69,
+  "start": 39.633,
+  "dur": 0.25,
+  "text": "about"
+ },
+ {
+  "i": 70,
+  "start": 39.883,
+  "dur": 0.25,
+  "text": "money."
+ },
+ {
+  "i": 71,
+  "start": 40.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 72,
+  "start": 40.383,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 73,
+  "start": 40.517,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 74,
+  "start": 40.65,
+  "dur": 1.4,
+  "text": "And stay to the end, because there's"
+ },
+ {
+  "i": 75,
+  "start": 42.05,
+  "dur": 6.917,
+  "text": "one thing the gym does better. And I'll show you how to fix it without one."
+ },
+ {
+  "i": 76,
+  "start": 48.967,
+  "dur": 0.233,
+  "text": ""
+ },
+ {
+  "i": 77,
+  "start": 49.2,
+  "dur": 3.267,
+  "text": "Calisthenics just means training with your own body weight.",
+  "audio_hit": {
+   "offset_s": 0.12,
+   "strength": 1.53,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 78,
+  "start": 52.467,
+  "dur": 0.3,
+  "text": "The"
+ },
+ {
+  "i": 79,
+  "start": 52.767,
+  "dur": 2.683,
+  "text": "word is Greek, built from two words. Beauty"
+ },
+ {
+  "i": 80,
+  "start": 55.45,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 81,
+  "start": 55.6,
+  "dur": 3.783,
+  "text": "and strength. Gymnasts, wrestlers, and soldiers trained"
+ },
+ {
+  "i": 82,
+  "start": 59.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 83,
+  "start": 59.633,
+  "dur": 0.25,
+  "text": "like"
+ },
+ {
+  "i": 84,
+  "start": 59.883,
+  "dur": 0.25,
+  "text": "this"
+ },
+ {
+  "i": 85,
+  "start": 60.133,
+  "dur": 0.25,
+  "text": "for thousands"
+ },
+ {
+  "i": 86,
+  "start": 60.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 87,
+  "start": 60.633,
+  "dur": 0.367,
+  "text": "of"
+ },
+ {
+  "i": 88,
+  "start": 61.0,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 89,
+  "start": 61.133,
+  "dur": 0.25,
+  "text": "years,"
+ },
+ {
+  "i": 90,
+  "start": 61.383,
+  "dur": 0.184,
+  "text": ""
+ },
+ {
+  "i": 91,
+  "start": 61.567,
+  "dur": 0.45,
+  "text": "long"
+ },
+ {
+  "i": 92,
+  "start": 62.017,
+  "dur": 0.133,
+  "text": "before"
+ },
+ {
+  "i": 93,
+  "start": 62.15,
+  "dur": 0.6,
+  "text": "anyone built"
+ },
+ {
+  "i": 94,
+  "start": 62.75,
+  "dur": 0.383,
+  "text": "a bench"
+ },
+ {
+  "i": 95,
+  "start": 63.133,
+  "dur": 0.867,
+  "text": "press."
+ },
+ {
+  "i": 96,
+  "start": 64.0,
+  "dur": 0.133,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.03,
+   "strength": 1.62,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 97,
+  "start": 64.133,
+  "dur": 0.75,
+  "text": "No machines,"
+ },
+ {
+  "i": 98,
+  "start": 64.883,
+  "dur": 0.75,
+  "text": "just you and",
+  "audio_hit": {
+   "offset_s": -0.05,
+   "strength": 1.04,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 99,
+  "start": 65.633,
+  "dur": 0.367,
+  "text": "gravity."
+ },
+ {
+  "i": 100,
+  "start": 66.0,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 101,
+  "start": 66.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 102,
+  "start": 66.383,
+  "dur": 0.3,
+  "text": ""
+ },
+ {
+  "i": 103,
+  "start": 66.683,
+  "dur": 0.45,
+  "text": "And if you watched"
+ },
+ {
+  "i": 104,
+  "start": 67.133,
+  "dur": 0.25,
+  "text": "our"
+ },
+ {
+  "i": 105,
+  "start": 67.383,
+  "dur": 0.25,
+  "text": "video"
+ },
+ {
+  "i": 106,
+  "start": 67.633,
+  "dur": 0.25,
+  "text": "on"
+ },
+ {
+  "i": 107,
+  "start": 67.883,
+  "dur": 0.25,
+  "text": "skinny"
+ },
+ {
+  "i": 108,
+  "start": 68.133,
+  "dur": 0.25,
+  "text": "guys"
+ },
+ {
+  "i": 109,
+  "start": 68.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 110,
+  "start": 68.633,
+  "dur": 0.25,
+  "text": "who are"
+ },
+ {
+  "i": 111,
+  "start": 68.883,
+  "dur": 0.25,
+  "text": "stronger"
+ },
+ {
+  "i": 112,
+  "start": 69.133,
+  "dur": 0.25,
+  "text": "than"
+ },
+ {
+  "i": 113,
+  "start": 69.383,
+  "dur": 0.25,
+  "text": "big"
+ },
+ {
+  "i": 114,
+  "start": 69.633,
+  "dur": 0.25,
+  "text": "guys,"
+ },
+ {
+  "i": 115,
+  "start": 69.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 116,
+  "start": 70.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 117,
+  "start": 70.383,
+  "dur": 0.367,
+  "text": "you've"
+ },
+ {
+  "i": 118,
+  "start": 70.75,
+  "dur": 0.133,
+  "text": "already"
+ },
+ {
+  "i": 119,
+  "start": 70.883,
+  "dur": 0.25,
+  "text": "seen"
+ },
+ {
+  "i": 120,
+  "start": 71.133,
+  "dur": 0.25,
+  "text": "the"
+ },
+ {
+  "i": 121,
+  "start": 71.383,
+  "dur": 0.25,
+  "text": "secret."
+ },
+ {
+  "i": 122,
+  "start": 71.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 123,
+  "start": 71.883,
+  "dur": 6.684,
+  "text": "The strength that matters most is how well you move your own body. That's exactly what calisthenics trains."
+ },
+ {
+  "i": 124,
+  "start": 78.567,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 125,
+  "start": 78.7,
+  "dur": 2.75,
+  "text": ""
+ },
+ {
+  "i": 126,
+  "start": 81.45,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 127,
+  "start": 81.583,
+  "dur": 3.267,
+  "text": "Number five, it's free and it never closes."
+ },
+ {
+  "i": 128,
+  "start": 84.85,
+  "dur": 3.35,
+  "text": "A floor, a sturdy table, and a door frame. That's"
+ },
+ {
+  "i": 129,
+  "start": 88.2,
+  "dur": 0.133,
+  "text": "a full"
+ },
+ {
+  "i": 130,
+  "start": 88.333,
+  "dur": 0.617,
+  "text": "gym. No"
+ },
+ {
+  "i": 131,
+  "start": 88.95,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 132,
+  "start": 89.083,
+  "dur": 0.2,
+  "text": ""
+ },
+ {
+  "i": 133,
+  "start": 89.283,
+  "dur": 2.684,
+  "text": "membership, no bus ride, no waiting"
+ },
+ {
+  "i": 134,
+  "start": 91.967,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 135,
+  "start": 92.1,
+  "dur": 0.133,
+  "text": "for"
+ },
+ {
+  "i": 136,
+  "start": 92.233,
+  "dur": 0.134,
+  "text": "a"
+ },
+ {
+  "i": 137,
+  "start": 92.367,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 138,
+  "start": 92.5,
+  "dur": 0.133,
+  "text": "bench"
+ },
+ {
+  "i": 139,
+  "start": 92.633,
+  "dur": 1.884,
+  "text": "while someone scrolls on their phone."
+ },
+ {
+  "i": 140,
+  "start": 94.517,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 141,
+  "start": 94.65,
+  "dur": 0.133,
+  "text": "And"
+ },
+ {
+  "i": 142,
+  "start": 94.783,
+  "dur": 5.1,
+  "text": "that matters more than it sounds, because the best plan is the one you actually do. Ten"
+ },
+ {
+  "i": 143,
+  "start": 99.883,
+  "dur": 0.25,
+  "text": "minutes"
+ },
+ {
+  "i": 144,
+  "start": 100.133,
+  "dur": 0.25,
+  "text": "in"
+ },
+ {
+  "i": 145,
+  "start": 100.383,
+  "dur": 0.25,
+  "text": "your room"
+ },
+ {
+  "i": 146,
+  "start": 100.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 147,
+  "start": 100.883,
+  "dur": 0.25,
+  "text": "beats"
+ },
+ {
+  "i": 148,
+  "start": 101.133,
+  "dur": 0.25,
+  "text": "the perfect"
+ },
+ {
+  "i": 149,
+  "start": 101.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 150,
+  "start": 101.633,
+  "dur": 0.25,
+  "text": "gym"
+ },
+ {
+  "i": 151,
+  "start": 101.883,
+  "dur": 0.25,
+  "text": "plan"
+ },
+ {
+  "i": 152,
+  "start": 102.133,
+  "dur": 0.25,
+  "text": "you"
+ },
+ {
+  "i": 153,
+  "start": 102.383,
+  "dur": 0.25,
+  "text": "skip"
+ },
+ {
+  "i": 154,
+  "start": 102.633,
+  "dur": 0.25,
+  "text": "three"
+ },
+ {
+  "i": 155,
+  "start": 102.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 156,
+  "start": 103.133,
+  "dur": 0.25,
+  "text": "times"
+ },
+ {
+  "i": 157,
+  "start": 103.383,
+  "dur": 0.25,
+  "text": "a week."
+ },
+ {
+  "i": 158,
+  "start": 103.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 159,
+  "start": 103.883,
+  "dur": 0.167,
+  "text": ""
+ },
+ {
+  "i": 160,
+  "start": 104.05,
+  "dur": 0.2,
+  "text": ""
+ },
+ {
+  "i": 161,
+  "start": 104.25,
+  "dur": 0.533,
+  "text": "Start with chair"
+ },
+ {
+  "i": 162,
+  "start": 104.783,
+  "dur": 0.45,
+  "text": "dips,"
+ },
+ {
+  "i": 163,
+  "start": 105.233,
+  "dur": 0.45,
+  "text": "hands"
+ },
+ {
+  "i": 164,
+  "start": 105.683,
+  "dur": 0.45,
+  "text": "on"
+ },
+ {
+  "i": 165,
+  "start": 106.133,
+  "dur": 0.45,
+  "text": "the edge of"
+ },
+ {
+  "i": 166,
+  "start": 106.583,
+  "dur": 0.45,
+  "text": "a sturdy chair,"
+ },
+ {
+  "i": 167,
+  "start": 107.033,
+  "dur": 0.45,
+  "text": ""
+ },
+ {
+  "i": 168,
+  "start": 107.483,
+  "dur": 0.45,
+  "text": "legs"
+ },
+ {
+  "i": 169,
+  "start": 107.933,
+  "dur": 0.45,
+  "text": "out in"
+ },
+ {
+  "i": 170,
+  "start": 108.383,
+  "dur": 0.45,
+  "text": "front,"
+ },
+ {
+  "i": 171,
+  "start": 108.833,
+  "dur": 0.45,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.11,
+   "strength": 1.55,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 172,
+  "start": 109.283,
+  "dur": 0.45,
+  "text": "lower until",
+  "audio_hit": {
+   "offset_s": -0.13,
+   "strength": 1.03,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 173,
+  "start": 109.733,
+  "dur": 0.45,
+  "text": "your elbows"
+ },
+ {
+  "i": 174,
+  "start": 110.183,
+  "dur": 0.45,
+  "text": "bend"
+ },
+ {
+  "i": 175,
+  "start": 110.633,
+  "dur": 0.45,
+  "text": "to"
+ },
+ {
+  "i": 176,
+  "start": 111.083,
+  "dur": 0.45,
+  "text": "about 90"
+ },
+ {
+  "i": 177,
+  "start": 111.533,
+  "dur": 0.45,
+  "text": "degrees,"
+ },
+ {
+  "i": 178,
+  "start": 111.983,
+  "dur": 0.45,
+  "text": ""
+ },
+ {
+  "i": 179,
+  "start": 112.433,
+  "dur": 0.45,
+  "text": "and"
+ },
+ {
+  "i": 180,
+  "start": 112.883,
+  "dur": 0.45,
+  "text": "press back"
+ },
+ {
+  "i": 181,
+  "start": 113.333,
+  "dur": 0.45,
+  "text": "up."
+ },
+ {
+  "i": 182,
+  "start": 113.783,
+  "dur": 3.567,
+  "text": "That's your triceps, the biggest muscle in your upper arm. So",
+  "audio_hit": {
+   "offset_s": -0.12,
+   "strength": 1.29,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 183,
+  "start": 117.35,
+  "dur": 0.3,
+  "text": ""
+ },
+ {
+  "i": 184,
+  "start": 117.65,
+  "dur": 0.6,
+  "text": "why is it only"
+ },
+ {
+  "i": 185,
+  "start": 118.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 186,
+  "start": 118.383,
+  "dur": 0.25,
+  "text": "number"
+ },
+ {
+  "i": 187,
+  "start": 118.633,
+  "dur": 1.5,
+  "text": "five? Because free"
+ },
+ {
+  "i": 188,
+  "start": 120.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 189,
+  "start": 120.383,
+  "dur": 0.367,
+  "text": "doesn't"
+ },
+ {
+  "i": 190,
+  "start": 120.75,
+  "dur": 0.75,
+  "text": "build muscle by"
+ },
+ {
+  "i": 191,
+  "start": 121.5,
+  "dur": 0.25,
+  "text": "itself,"
+ },
+ {
+  "i": 192,
+  "start": 121.75,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 193,
+  "start": 121.883,
+  "dur": 0.617,
+  "text": "effort"
+ },
+ {
+  "i": 194,
+  "start": 122.5,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 195,
+  "start": 122.633,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 196,
+  "start": 122.767,
+  "dur": 0.233,
+  "text": "does."
+ },
+ {
+  "i": 197,
+  "start": 123.0,
+  "dur": 0.133,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.21,
+   "strength": 1.07,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 198,
+  "start": 123.133,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.08,
+   "strength": 1.07,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 199,
+  "start": 123.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 200,
+  "start": 123.633,
+  "dur": 0.5,
+  "text": "And that's where"
+ },
+ {
+  "i": 201,
+  "start": 124.133,
+  "dur": 0.25,
+  "text": "the next"
+ },
+ {
+  "i": 202,
+  "start": 124.383,
+  "dur": 1.0,
+  "text": "four come in."
+ },
+ {
+  "i": 203,
+  "start": 125.383,
+  "dur": 0.167,
+  "text": ""
+ },
+ {
+  "i": 204,
+  "start": 125.55,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 205,
+  "start": 125.7,
+  "dur": 2.3,
+  "text": ""
+ },
+ {
+  "i": 206,
+  "start": 128.0,
+  "dur": 3.017,
+  "text": "Number four, push -ups build your chest"
+ },
+ {
+  "i": 207,
+  "start": 131.017,
+  "dur": 0.133,
+  "text": "as"
+ },
+ {
+  "i": 208,
+  "start": 131.15,
+  "dur": 3.117,
+  "text": "well as a bench press. That sounds like a bro claim."
+ },
+ {
+  "i": 209,
+  "start": 134.267,
+  "dur": 0.133,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.07,
+   "strength": 1.2,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 210,
+  "start": 134.4,
+  "dur": 0.217,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.06,
+   "strength": 1.2,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 211,
+  "start": 134.617,
+  "dur": 0.133,
+  "text": "It isn't."
+ },
+ {
+  "i": 212,
+  "start": 134.75,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 213,
+  "start": 134.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 214,
+  "start": 135.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 215,
+  "start": 135.383,
+  "dur": 0.25,
+  "text": "In one"
+ },
+ {
+  "i": 216,
+  "start": 135.633,
+  "dur": 0.25,
+  "text": "study,"
+ },
+ {
+  "i": 217,
+  "start": 135.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 218,
+  "start": 136.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 219,
+  "start": 136.383,
+  "dur": 0.25,
+  "text": "young"
+ },
+ {
+  "i": 220,
+  "start": 136.633,
+  "dur": 0.25,
+  "text": "men"
+ },
+ {
+  "i": 221,
+  "start": 136.883,
+  "dur": 0.25,
+  "text": "trained"
+ },
+ {
+  "i": 222,
+  "start": 137.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 223,
+  "start": 137.383,
+  "dur": 0.25,
+  "text": "with"
+ },
+ {
+  "i": 224,
+  "start": 137.633,
+  "dur": 0.25,
+  "text": "either"
+ },
+ {
+  "i": 225,
+  "start": 137.883,
+  "dur": 0.25,
+  "text": "a bench"
+ },
+ {
+  "i": 226,
+  "start": 138.133,
+  "dur": 0.25,
+  "text": "press"
+ },
+ {
+  "i": 227,
+  "start": 138.383,
+  "dur": 0.25,
+  "text": "or"
+ },
+ {
+  "i": 228,
+  "start": 138.633,
+  "dur": 0.25,
+  "text": "push"
+ },
+ {
+  "i": 229,
+  "start": 138.883,
+  "dur": 0.25,
+  "text": "-ups"
+ },
+ {
+  "i": 230,
+  "start": 139.133,
+  "dur": 0.25,
+  "text": "at"
+ },
+ {
+  "i": 231,
+  "start": 139.383,
+  "dur": 0.25,
+  "text": "a"
+ },
+ {
+  "i": 232,
+  "start": 139.633,
+  "dur": 0.25,
+  "text": "matched"
+ },
+ {
+  "i": 233,
+  "start": 139.883,
+  "dur": 0.25,
+  "text": "load,"
+ },
+ {
+  "i": 234,
+  "start": 140.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 235,
+  "start": 140.383,
+  "dur": 0.25,
+  "text": "twice"
+ },
+ {
+  "i": 236,
+  "start": 140.633,
+  "dur": 0.25,
+  "text": "a"
+ },
+ {
+  "i": 237,
+  "start": 140.883,
+  "dur": 0.25,
+  "text": "week"
+ },
+ {
+  "i": 238,
+  "start": 141.133,
+  "dur": 0.25,
+  "text": "for"
+ },
+ {
+  "i": 239,
+  "start": 141.383,
+  "dur": 0.25,
+  "text": "eight"
+ },
+ {
+  "i": 240,
+  "start": 141.633,
+  "dur": 0.25,
+  "text": "weeks."
+ },
+ {
+  "i": 241,
+  "start": 141.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 242,
+  "start": 142.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 243,
+  "start": 142.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 244,
+  "start": 142.633,
+  "dur": 0.75,
+  "text": "Both groups"
+ },
+ {
+  "i": 245,
+  "start": 143.383,
+  "dur": 0.617,
+  "text": "grew their chest"
+ },
+ {
+  "i": 246,
+  "start": 144.0,
+  "dur": 0.383,
+  "text": "and triceps"
+ },
+ {
+  "i": 247,
+  "start": 144.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 248,
+  "start": 144.633,
+  "dur": 0.25,
+  "text": "by"
+ },
+ {
+  "i": 249,
+  "start": 144.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 250,
+  "start": 145.133,
+  "dur": 0.25,
+  "text": "about the"
+ },
+ {
+  "i": 251,
+  "start": 145.383,
+  "dur": 0.25,
+  "text": "same"
+ },
+ {
+  "i": 252,
+  "start": 145.633,
+  "dur": 0.25,
+  "text": "amount,"
+ },
+ {
+  "i": 253,
+  "start": 145.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 254,
+  "start": 146.133,
+  "dur": 0.25,
+  "text": "and"
+ },
+ {
+  "i": 255,
+  "start": 146.383,
+  "dur": 0.25,
+  "text": "both"
+ },
+ {
+  "i": 256,
+  "start": 146.633,
+  "dur": 0.25,
+  "text": "got"
+ },
+ {
+  "i": 257,
+  "start": 146.883,
+  "dur": 0.25,
+  "text": "stronger."
+ },
+ {
+  "i": 258,
+  "start": 147.133,
+  "dur": 0.25,
+  "text": "In"
+ },
+ {
+  "i": 259,
+  "start": 147.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 260,
+  "start": 147.633,
+  "dur": 7.367,
+  "text": "another, experienced lifters did push -ups with an elastic band across their back, matched to a heavy bench press. Same"
+ },
+ {
+  "i": 261,
+  "start": 155.0,
+  "dur": 0.133,
+  "text": "strength"
+ },
+ {
+  "i": 262,
+  "start": 155.133,
+  "dur": 0.9,
+  "text": "gains."
+ },
+ {
+  "i": 263,
+  "start": 156.033,
+  "dur": 4.7,
+  "text": "Your chest doesn't know where the weight comes from. It only knows how hard it's working."
+ },
+ {
+  "i": 264,
+  "start": 160.733,
+  "dur": 0.134,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.02,
+   "strength": 1.18,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 265,
+  "start": 160.867,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 266,
+  "start": 161.0,
+  "dur": 0.133,
+  "text": "And"
+ },
+ {
+  "i": 267,
+  "start": 161.133,
+  "dur": 0.367,
+  "text": "when normal"
+ },
+ {
+  "i": 268,
+  "start": 161.5,
+  "dur": 0.4,
+  "text": "push -ups"
+ },
+ {
+  "i": 269,
+  "start": 161.9,
+  "dur": 0.4,
+  "text": "get easy,"
+ },
+ {
+  "i": 270,
+  "start": 162.3,
+  "dur": 0.417,
+  "text": ""
+ },
+ {
+  "i": 271,
+  "start": 162.717,
+  "dur": 0.383,
+  "text": "you don't",
+  "audio_hit": {
+   "offset_s": 0.08,
+   "strength": 1.55,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 272,
+  "start": 163.1,
+  "dur": 0.4,
+  "text": "add plates."
+ },
+ {
+  "i": 273,
+  "start": 163.5,
+  "dur": 0.4,
+  "text": ""
+ },
+ {
+  "i": 274,
+  "start": 163.9,
+  "dur": 0.4,
+  "text": "You",
+  "audio_hit": {
+   "offset_s": -0.05,
+   "strength": 1.39,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 275,
+  "start": 164.3,
+  "dur": 0.417,
+  "text": "make them harder."
+ },
+ {
+  "i": 276,
+  "start": 164.717,
+  "dur": 0.383,
+  "text": ""
+ },
+ {
+  "i": 277,
+  "start": 165.1,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 278,
+  "start": 165.25,
+  "dur": 0.25,
+  "text": "Feet"
+ },
+ {
+  "i": 279,
+  "start": 165.5,
+  "dur": 1.883,
+  "text": "up on a chair, slower on"
+ },
+ {
+  "i": 280,
+  "start": 167.383,
+  "dur": 0.25,
+  "text": "the way"
+ },
+ {
+  "i": 281,
+  "start": 167.633,
+  "dur": 0.25,
+  "text": "down."
+ },
+ {
+  "i": 282,
+  "start": 167.883,
+  "dur": 0.367,
+  "text": ""
+ },
+ {
+  "i": 283,
+  "start": 168.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 284,
+  "start": 168.383,
+  "dur": 0.25,
+  "text": "Then"
+ },
+ {
+  "i": 285,
+  "start": 168.633,
+  "dur": 0.25,
+  "text": "archer"
+ },
+ {
+  "i": 286,
+  "start": 168.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 287,
+  "start": 169.133,
+  "dur": 0.25,
+  "text": "push"
+ },
+ {
+  "i": 288,
+  "start": 169.383,
+  "dur": 0.25,
+  "text": "-ups"
+ },
+ {
+  "i": 289,
+  "start": 169.633,
+  "dur": 0.25,
+  "text": "with"
+ },
+ {
+  "i": 290,
+  "start": 169.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 291,
+  "start": 170.133,
+  "dur": 0.367,
+  "text": "one"
+ },
+ {
+  "i": 292,
+  "start": 170.5,
+  "dur": 0.133,
+  "text": "arm"
+ },
+ {
+  "i": 293,
+  "start": 170.633,
+  "dur": 0.25,
+  "text": "doing"
+ },
+ {
+  "i": 294,
+  "start": 170.883,
+  "dur": 0.25,
+  "text": "most"
+ },
+ {
+  "i": 295,
+  "start": 171.133,
+  "dur": 0.25,
+  "text": "of"
+ },
+ {
+  "i": 296,
+  "start": 171.383,
+  "dur": 0.25,
+  "text": "the work."
+ },
+ {
+  "i": 297,
+  "start": 171.633,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.2,
+   "strength": 1.41,
+   "guess": "boom/impact"
+  }
+ },
+ {
+  "i": 298,
+  "start": 171.883,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.05,
+   "strength": 1.41,
+   "guess": "boom/impact"
+  }
+ },
+ {
+  "i": 299,
+  "start": 172.133,
+  "dur": 3.434,
+  "text": "So why only number four? Because for most skinny guys,"
+ },
+ {
+  "i": 300,
+  "start": 175.567,
+  "dur": 0.133,
+  "text": "the chest"
+ },
+ {
+  "i": 301,
+  "start": 175.7,
+  "dur": 3.0,
+  "text": "isn't the real problem. The next one is."
+ },
+ {
+  "i": 302,
+  "start": 178.7,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 303,
+  "start": 178.85,
+  "dur": 2.15,
+  "text": ""
+ },
+ {
+  "i": 304,
+  "start": 181.0,
+  "dur": 0.817,
+  "text": ""
+ },
+ {
+  "i": 305,
+  "start": 181.817,
+  "dur": 10.433,
+  "text": "Number three, it builds the shape, not just the size. Look at the old Greek statues. Wide back, capped shoulders, flat stomach, nothing oversized."
+ },
+ {
+  "i": 306,
+  "start": 192.25,
+  "dur": 6.383,
+  "text": "That's what calisthenics guys tend to look like, and there's a reason. On a bar, you can't skip anything. A pull"
+ },
+ {
+  "i": 307,
+  "start": 198.633,
+  "dur": 0.25,
+  "text": "-up needs"
+ },
+ {
+  "i": 308,
+  "start": 198.883,
+  "dur": 0.5,
+  "text": "your back,"
+ },
+ {
+  "i": 309,
+  "start": 199.383,
+  "dur": 1.25,
+  "text": "your arms,",
+  "audio_hit": {
+   "offset_s": 0.28,
+   "strength": 1.51,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 310,
+  "start": 200.633,
+  "dur": 0.75,
+  "text": "and your grip."
+ },
+ {
+  "i": 311,
+  "start": 201.383,
+  "dur": 0.134,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.16,
+   "strength": 1.1,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 312,
+  "start": 201.517,
+  "dur": 0.366,
+  "text": "A dip",
+  "audio_hit": {
+   "offset_s": 0.02,
+   "strength": 1.1,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 313,
+  "start": 201.883,
+  "dur": 0.25,
+  "text": "needs"
+ },
+ {
+  "i": 314,
+  "start": 202.133,
+  "dur": 0.25,
+  "text": "your"
+ },
+ {
+  "i": 315,
+  "start": 202.383,
+  "dur": 0.25,
+  "text": "chest,"
+ },
+ {
+  "i": 316,
+  "start": 202.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 317,
+  "start": 202.883,
+  "dur": 0.367,
+  "text": "shoulders,"
+ },
+ {
+  "i": 318,
+  "start": 203.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 319,
+  "start": 203.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 320,
+  "start": 203.633,
+  "dur": 0.25,
+  "text": "and triceps."
+ },
+ {
+  "i": 321,
+  "start": 203.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 322,
+  "start": 204.133,
+  "dur": 0.25,
+  "text": "Holding"
+ },
+ {
+  "i": 323,
+  "start": 204.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 324,
+  "start": 204.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 325,
+  "start": 204.883,
+  "dur": 0.367,
+  "text": "your body"
+ },
+ {
+  "i": 326,
+  "start": 205.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 327,
+  "start": 205.383,
+  "dur": 0.25,
+  "text": "straight"
+ },
+ {
+  "i": 328,
+  "start": 205.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 329,
+  "start": 205.883,
+  "dur": 0.25,
+  "text": "needs"
+ },
+ {
+  "i": 330,
+  "start": 206.133,
+  "dur": 0.367,
+  "text": "your"
+ },
+ {
+  "i": 331,
+  "start": 206.5,
+  "dur": 0.133,
+  "text": "core"
+ },
+ {
+  "i": 332,
+  "start": 206.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 333,
+  "start": 206.883,
+  "dur": 0.25,
+  "text": "on"
+ },
+ {
+  "i": 334,
+  "start": 207.133,
+  "dur": 0.25,
+  "text": "every"
+ },
+ {
+  "i": 335,
+  "start": 207.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 336,
+  "start": 207.633,
+  "dur": 0.25,
+  "text": "single"
+ },
+ {
+  "i": 337,
+  "start": 207.883,
+  "dur": 0.25,
+  "text": "rep."
+ },
+ {
+  "i": 338,
+  "start": 208.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 339,
+  "start": 208.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 340,
+  "start": 208.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 341,
+  "start": 208.883,
+  "dur": 3.217,
+  "text": "In a gym, you can curl and bench forever and"
+ },
+ {
+  "i": 342,
+  "start": 212.1,
+  "dur": 0.133,
+  "text": "never"
+ },
+ {
+  "i": 343,
+  "start": 212.233,
+  "dur": 1.2,
+  "text": "train your back."
+ },
+ {
+  "i": 344,
+  "start": 213.433,
+  "dur": 0.85,
+  "text": "Your body weight",
+  "audio_hit": {
+   "offset_s": -0.14,
+   "strength": 1.24,
+   "guess": "boom/impact"
+  }
+ },
+ {
+  "i": 345,
+  "start": 214.283,
+  "dur": 0.184,
+  "text": "won't"
+ },
+ {
+  "i": 346,
+  "start": 214.467,
+  "dur": 4.85,
+  "text": "let you cheat like that. And your back is exactly what makes a skinny guy look wider."
+ },
+ {
+  "i": 347,
+  "start": 219.317,
+  "dur": 0.283,
+  "text": "Start"
+ },
+ {
+  "i": 348,
+  "start": 219.6,
+  "dur": 0.45,
+  "text": "with table"
+ },
+ {
+  "i": 349,
+  "start": 220.05,
+  "dur": 0.45,
+  "text": "rows."
+ },
+ {
+  "i": 350,
+  "start": 220.5,
+  "dur": 0.467,
+  "text": ""
+ },
+ {
+  "i": 351,
+  "start": 220.967,
+  "dur": 0.433,
+  "text": "Lie under"
+ },
+ {
+  "i": 352,
+  "start": 221.4,
+  "dur": 0.45,
+  "text": "a sturdy table,"
+ },
+ {
+  "i": 353,
+  "start": 221.85,
+  "dur": 0.45,
+  "text": ""
+ },
+ {
+  "i": 354,
+  "start": 222.3,
+  "dur": 0.45,
+  "text": "grab"
+ },
+ {
+  "i": 355,
+  "start": 222.75,
+  "dur": 0.467,
+  "text": "the edge,"
+ },
+ {
+  "i": 356,
+  "start": 223.217,
+  "dur": 0.433,
+  "text": ""
+ },
+ {
+  "i": 357,
+  "start": 223.65,
+  "dur": 0.45,
+  "text": "and pull your"
+ },
+ {
+  "i": 358,
+  "start": 224.1,
+  "dur": 0.45,
+  "text": "chest up"
+ },
+ {
+  "i": 359,
+  "start": 224.55,
+  "dur": 0.45,
+  "text": "to it."
+ },
+ {
+  "i": 360,
+  "start": 225.0,
+  "dur": 0.167,
+  "text": ""
+ },
+ {
+  "i": 361,
+  "start": 225.167,
+  "dur": 0.316,
+  "text": "Then pull"
+ },
+ {
+  "i": 362,
+  "start": 225.483,
+  "dur": 0.4,
+  "text": "-ups."
+ },
+ {
+  "i": 363,
+  "start": 225.883,
+  "dur": 0.4,
+  "text": ""
+ },
+ {
+  "i": 364,
+  "start": 226.283,
+  "dur": 2.734,
+  "text": "So why is it only number three? Because shape"
+ },
+ {
+  "i": 365,
+  "start": 229.017,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 366,
+  "start": 229.15,
+  "dur": 4.45,
+  "text": "comes from strength. And to build it, you need number two."
+ },
+ {
+  "i": 367,
+  "start": 233.6,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 368,
+  "start": 233.75,
+  "dur": 2.7,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.26,
+   "strength": 1.33,
+   "guess": "boom/impact"
+  }
+ },
+ {
+  "i": 369,
+  "start": 236.45,
+  "dur": 0.167,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.0,
+   "strength": 1.56,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 370,
+  "start": 236.617,
+  "dur": 0.216,
+  "text": "Number"
+ },
+ {
+  "i": 371,
+  "start": 236.833,
+  "dur": 0.984,
+  "text": "two,"
+ },
+ {
+  "i": 372,
+  "start": 237.817,
+  "dur": 0.133,
+  "text": "you don't"
+ },
+ {
+  "i": 373,
+  "start": 237.95,
+  "dur": 3.067,
+  "text": "need heavy weights to grow. This is the biggest gym"
+ },
+ {
+  "i": 374,
+  "start": 241.017,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 375,
+  "start": 241.167,
+  "dur": 1.083,
+  "text": "myth there is."
+ },
+ {
+  "i": 376,
+  "start": 242.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 377,
+  "start": 242.383,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 378,
+  "start": 242.517,
+  "dur": 7.016,
+  "text": "One review pulled together 21 studies comparing light and heavy weights with every set pushed close to failure."
+ },
+ {
+  "i": 379,
+  "start": 249.533,
+  "dur": 0.35,
+  "text": "Heavy weights"
+ },
+ {
+  "i": 380,
+  "start": 249.883,
+  "dur": 0.25,
+  "text": "won"
+ },
+ {
+  "i": 381,
+  "start": 250.133,
+  "dur": 0.367,
+  "text": "for"
+ },
+ {
+  "i": 382,
+  "start": 250.5,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 383,
+  "start": 250.633,
+  "dur": 0.25,
+  "text": "max"
+ },
+ {
+  "i": 384,
+  "start": 250.883,
+  "dur": 0.25,
+  "text": "strength."
+ },
+ {
+  "i": 385,
+  "start": 251.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 386,
+  "start": 251.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 387,
+  "start": 251.633,
+  "dur": 0.25,
+  "text": "But"
+ },
+ {
+  "i": 388,
+  "start": 251.883,
+  "dur": 0.25,
+  "text": "for"
+ },
+ {
+  "i": 389,
+  "start": 252.133,
+  "dur": 0.134,
+  "text": "muscle"
+ },
+ {
+  "i": 390,
+  "start": 252.267,
+  "dur": 0.166,
+  "text": ""
+ },
+ {
+  "i": 391,
+  "start": 252.433,
+  "dur": 0.2,
+  "text": "size,"
+ },
+ {
+  "i": 392,
+  "start": 252.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 393,
+  "start": 252.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 394,
+  "start": 253.133,
+  "dur": 0.25,
+  "text": "it was"
+ },
+ {
+  "i": 395,
+  "start": 253.383,
+  "dur": 0.25,
+  "text": "a tie."
+ },
+ {
+  "i": 396,
+  "start": 253.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 397,
+  "start": 253.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 398,
+  "start": 254.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 399,
+  "start": 254.383,
+  "dur": 5.084,
+  "text": "That's great news for you, because your body weight is a light load you can make harder anytime."
+ },
+ {
+  "i": 400,
+  "start": 259.467,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 401,
+  "start": 259.6,
+  "dur": 0.183,
+  "text": "Take"
+ },
+ {
+  "i": 402,
+  "start": 259.783,
+  "dur": 1.067,
+  "text": "three seconds on"
+ },
+ {
+  "i": 403,
+  "start": 260.85,
+  "dur": 1.0,
+  "text": "the way down."
+ },
+ {
+  "i": 404,
+  "start": 261.85,
+  "dur": 1.467,
+  "text": "Pause at the bottom."
+ },
+ {
+  "i": 405,
+  "start": 263.317,
+  "dur": 0.533,
+  "text": "Do one more",
+  "audio_hit": {
+   "offset_s": -0.04,
+   "strength": 1.33,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 406,
+  "start": 263.85,
+  "dur": 1.0,
+  "text": "rep than last week."
+ },
+ {
+  "i": 407,
+  "start": 264.85,
+  "dur": 0.133,
+  "text": "The"
+ },
+ {
+  "i": 408,
+  "start": 264.983,
+  "dur": 4.684,
+  "text": "rule is simple. Your last few reps should feel hard. If you could do 10 more,"
+ },
+ {
+  "i": 409,
+  "start": 269.667,
+  "dur": 0.183,
+  "text": ""
+ },
+ {
+  "i": 410,
+  "start": 269.85,
+  "dur": 4.483,
+  "text": "the set didn't count. It's number two because it's true for everyone. Number"
+ },
+ {
+  "i": 411,
+  "start": 274.333,
+  "dur": 2.417,
+  "text": "one is only true for you. And quick"
+ },
+ {
+  "i": 412,
+  "start": 276.75,
+  "dur": 0.133,
+  "text": "tip,"
+ },
+ {
+  "i": 413,
+  "start": 276.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 414,
+  "start": 277.133,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.08,
+   "strength": 1.0,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 415,
+  "start": 277.383,
+  "dur": 0.367,
+  "text": "we post"
+ },
+ {
+  "i": 416,
+  "start": 277.75,
+  "dur": 0.133,
+  "text": "a"
+ },
+ {
+  "i": 417,
+  "start": 277.883,
+  "dur": 0.25,
+  "text": "new"
+ },
+ {
+  "i": 418,
+  "start": 278.133,
+  "dur": 0.25,
+  "text": "video"
+ },
+ {
+  "i": 419,
+  "start": 278.383,
+  "dur": 0.25,
+  "text": "like"
+ },
+ {
+  "i": 420,
+  "start": 278.633,
+  "dur": 0.25,
+  "text": "this"
+ },
+ {
+  "i": 421,
+  "start": 278.883,
+  "dur": 0.25,
+  "text": "every"
+ },
+ {
+  "i": 422,
+  "start": 279.133,
+  "dur": 0.25,
+  "text": "day."
+ },
+ {
+  "i": 423,
+  "start": 279.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 424,
+  "start": 279.633,
+  "dur": 0.25,
+  "text": "So"
+ },
+ {
+  "i": 425,
+  "start": 279.883,
+  "dur": 0.25,
+  "text": "if you"
+ },
+ {
+  "i": 426,
+  "start": 280.133,
+  "dur": 0.184,
+  "text": "subscribe,"
+ },
+ {
+  "i": 427,
+  "start": 280.317,
+  "dur": 0.183,
+  "text": ""
+ },
+ {
+  "i": 428,
+  "start": 280.5,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 429,
+  "start": 280.75,
+  "dur": 0.133,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.2,
+   "strength": 1.16,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 430,
+  "start": 280.883,
+  "dur": 0.25,
+  "text": "tomorrow's",
+  "audio_hit": {
+   "offset_s": 0.07,
+   "strength": 1.16,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 431,
+  "start": 281.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 432,
+  "start": 281.383,
+  "dur": 0.25,
+  "text": "plan"
+ },
+ {
+  "i": 433,
+  "start": 281.633,
+  "dur": 0.367,
+  "text": "finds"
+ },
+ {
+  "i": 434,
+  "start": 282.0,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 435,
+  "start": 282.133,
+  "dur": 0.367,
+  "text": "you."
+ },
+ {
+  "i": 436,
+  "start": 282.5,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 437,
+  "start": 282.633,
+  "dur": 0.184,
+  "text": ""
+ },
+ {
+  "i": 438,
+  "start": 282.817,
+  "dur": 4.733,
+  "text": "And number one, being"
+ },
+ {
+  "i": 439,
+  "start": 287.55,
+  "dur": 0.133,
+  "text": "skinny"
+ },
+ {
+  "i": 440,
+  "start": 287.683,
+  "dur": 1.584,
+  "text": "is your advantage."
+ },
+ {
+  "i": 441,
+  "start": 289.267,
+  "dur": 0.216,
+  "text": "In"
+ },
+ {
+  "i": 442,
+  "start": 289.483,
+  "dur": 5.134,
+  "text": "a gym, the bar weighs what it weighs. A 60 kilo guy and a 90 kilo guy load the"
+ },
+ {
+  "i": 443,
+  "start": 294.617,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 444,
+  "start": 294.75,
+  "dur": 0.15,
+  "text": "same"
+ },
+ {
+  "i": 445,
+  "start": 294.9,
+  "dur": 0.667,
+  "text": "plates. But"
+ },
+ {
+  "i": 446,
+  "start": 295.567,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 447,
+  "start": 295.717,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 448,
+  "start": 295.85,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 449,
+  "start": 295.983,
+  "dur": 0.134,
+  "text": "on"
+ },
+ {
+  "i": 450,
+  "start": 296.117,
+  "dur": 0.333,
+  "text": "a pull"
+ },
+ {
+  "i": 451,
+  "start": 296.45,
+  "dur": 0.2,
+  "text": "-up"
+ },
+ {
+  "i": 452,
+  "start": 296.65,
+  "dur": 0.3,
+  "text": "bar,"
+ },
+ {
+  "i": 453,
+  "start": 296.95,
+  "dur": 0.4,
+  "text": "you"
+ },
+ {
+  "i": 454,
+  "start": 297.35,
+  "dur": 0.6,
+  "text": "are the weight."
+ },
+ {
+  "i": 455,
+  "start": 297.95,
+  "dur": 0.5,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.3,
+   "strength": 1.91,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 456,
+  "start": 298.45,
+  "dur": 0.3,
+  "text": ""
+ },
+ {
+  "i": 457,
+  "start": 298.75,
+  "dur": 0.2,
+  "text": "Every"
+ },
+ {
+  "i": 458,
+  "start": 298.95,
+  "dur": 0.5,
+  "text": "pull -up,"
+ },
+ {
+  "i": 459,
+  "start": 299.45,
+  "dur": 0.5,
+  "text": "the 90"
+ },
+ {
+  "i": 460,
+  "start": 299.95,
+  "dur": 0.133,
+  "text": "kilo"
+ },
+ {
+  "i": 461,
+  "start": 300.083,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 462,
+  "start": 300.217,
+  "dur": 0.233,
+  "text": "guy"
+ },
+ {
+  "i": 463,
+  "start": 300.45,
+  "dur": 0.4,
+  "text": "lifts"
+ },
+ {
+  "i": 464,
+  "start": 300.85,
+  "dur": 0.6,
+  "text": "90 kilos."
+ },
+ {
+  "i": 465,
+  "start": 301.45,
+  "dur": 0.5,
+  "text": ""
+ },
+ {
+  "i": 466,
+  "start": 301.95,
+  "dur": 0.3,
+  "text": "You",
+  "audio_hit": {
+   "offset_s": -0.1,
+   "strength": 1.08,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 467,
+  "start": 302.25,
+  "dur": 0.2,
+  "text": "lift"
+ },
+ {
+  "i": 468,
+  "start": 302.45,
+  "dur": 0.5,
+  "text": "60."
+ },
+ {
+  "i": 469,
+  "start": 302.95,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 470,
+  "start": 303.2,
+  "dur": 0.2,
+  "text": ""
+ },
+ {
+  "i": 471,
+  "start": 303.4,
+  "dur": 2.85,
+  "text": "That's a third less on every single rep."
+ },
+ {
+  "i": 472,
+  "start": 306.25,
+  "dur": 0.417,
+  "text": "That's",
+  "audio_hit": {
+   "offset_s": -0.14,
+   "strength": 1.36,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 473,
+  "start": 306.667,
+  "dur": 0.133,
+  "text": "why"
+ },
+ {
+  "i": 474,
+  "start": 306.8,
+  "dur": 0.133,
+  "text": "gymnasts"
+ },
+ {
+  "i": 475,
+  "start": 306.933,
+  "dur": 4.4,
+  "text": "and climbers are rarely huge and why they're frighteningly strong for their size."
+ },
+ {
+  "i": 476,
+  "start": 311.333,
+  "dur": 0.217,
+  "text": ""
+ },
+ {
+  "i": 477,
+  "start": 311.55,
+  "dur": 5.517,
+  "text": "It's strength for your weight. And calisthenics is the training that measures exactly that.",
+  "audio_hit": {
+   "offset_s": 0.22,
+   "strength": 1.02,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 478,
+  "start": 317.067,
+  "dur": 1.983,
+  "text": "It's why light guys often get their first pull"
+ },
+ {
+  "i": 479,
+  "start": 319.05,
+  "dur": 0.45,
+  "text": "-up,"
+ },
+ {
+  "i": 480,
+  "start": 319.5,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 481,
+  "start": 319.633,
+  "dur": 0.25,
+  "text": "their first"
+ },
+ {
+  "i": 482,
+  "start": 319.883,
+  "dur": 0.367,
+  "text": "handstand,"
+ },
+ {
+  "i": 483,
+  "start": 320.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 484,
+  "start": 320.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 485,
+  "start": 320.633,
+  "dur": 0.25,
+  "text": "and"
+ },
+ {
+  "i": 486,
+  "start": 320.883,
+  "dur": 0.25,
+  "text": "their"
+ },
+ {
+  "i": 487,
+  "start": 321.133,
+  "dur": 0.25,
+  "text": "first"
+ },
+ {
+  "i": 488,
+  "start": 321.383,
+  "dur": 0.25,
+  "text": "muscle"
+ },
+ {
+  "i": 489,
+  "start": 321.633,
+  "dur": 0.25,
+  "text": "-up"
+ },
+ {
+  "i": 490,
+  "start": 321.883,
+  "dur": 0.25,
+  "text": "sooner."
+ },
+ {
+  "i": 491,
+  "start": 322.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 492,
+  "start": 322.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 493,
+  "start": 322.633,
+  "dur": 0.284,
+  "text": "And"
+ },
+ {
+  "i": 494,
+  "start": 322.917,
+  "dur": 6.583,
+  "text": "here's the best part. Every bit of muscle you add makes you heavier, so the training gets harder on its own as you grow."
+ },
+ {
+  "i": 495,
+  "start": 329.5,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 496,
+  "start": 329.65,
+  "dur": 2.7,
+  "text": "The gym makes you chase bigger numbers."
+ },
+ {
+  "i": 497,
+  "start": 332.35,
+  "dur": 0.167,
+  "text": "Calisthenics",
+  "audio_hit": {
+   "offset_s": -0.05,
+   "strength": 1.31,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 498,
+  "start": 332.517,
+  "dur": 1.333,
+  "text": "makes you strong in the"
+ },
+ {
+  "i": 499,
+  "start": 333.85,
+  "dur": 0.133,
+  "text": "body"
+ },
+ {
+  "i": 500,
+  "start": 333.983,
+  "dur": 1.834,
+  "text": "you actually live in."
+ },
+ {
+  "i": 501,
+  "start": 335.817,
+  "dur": 1.366,
+  "text": ""
+ },
+ {
+  "i": 502,
+  "start": 337.183,
+  "dur": 0.2,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.0,
+   "strength": 1.83,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 503,
+  "start": 337.383,
+  "dur": 5.617,
+  "text": "Now, the one thing the gym does better, I promised I'd be honest, legs."
+ },
+ {
+  "i": 504,
+  "start": 343.0,
+  "dur": 0.133,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.25,
+   "strength": 1.59,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 505,
+  "start": 343.133,
+  "dur": 0.534,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.12,
+   "strength": 1.59,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 506,
+  "start": 343.667,
+  "dur": 0.566,
+  "text": "Your legs"
+ },
+ {
+  "i": 507,
+  "start": 344.233,
+  "dur": 0.3,
+  "text": "carry"
+ },
+ {
+  "i": 508,
+  "start": 344.533,
+  "dur": 0.3,
+  "text": "your whole"
+ },
+ {
+  "i": 509,
+  "start": 344.833,
+  "dur": 0.3,
+  "text": ""
+ },
+ {
+  "i": 510,
+  "start": 345.133,
+  "dur": 0.3,
+  "text": "body"
+ },
+ {
+  "i": 511,
+  "start": 345.433,
+  "dur": 0.3,
+  "text": "all"
+ },
+ {
+  "i": 512,
+  "start": 345.733,
+  "dur": 0.3,
+  "text": "day,"
+ },
+ {
+  "i": 513,
+  "start": 346.033,
+  "dur": 0.3,
+  "text": ""
+ },
+ {
+  "i": 514,
+  "start": 346.333,
+  "dur": 0.134,
+  "text": "so"
+ },
+ {
+  "i": 515,
+  "start": 346.467,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 516,
+  "start": 346.6,
+  "dur": 0.133,
+  "text": "normal"
+ },
+ {
+  "i": 517,
+  "start": 346.733,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 518,
+  "start": 346.867,
+  "dur": 0.2,
+  "text": "squats"
+ },
+ {
+  "i": 519,
+  "start": 347.067,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 520,
+  "start": 347.2,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 521,
+  "start": 347.333,
+  "dur": 0.134,
+  "text": "get"
+ },
+ {
+  "i": 522,
+  "start": 347.467,
+  "dur": 0.133,
+  "text": "easy"
+ },
+ {
+  "i": 523,
+  "start": 347.6,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 524,
+  "start": 347.733,
+  "dur": 0.134,
+  "text": "fast."
+ },
+ {
+  "i": 525,
+  "start": 347.867,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 526,
+  "start": 348.0,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 527,
+  "start": 348.133,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 528,
+  "start": 348.267,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 529,
+  "start": 348.4,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 530,
+  "start": 348.533,
+  "dur": 0.134,
+  "text": "And"
+ },
+ {
+  "i": 531,
+  "start": 348.667,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 532,
+  "start": 348.8,
+  "dur": 0.133,
+  "text": "for"
+ },
+ {
+  "i": 533,
+  "start": 348.933,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 534,
+  "start": 349.067,
+  "dur": 0.133,
+  "text": "pure"
+ },
+ {
+  "i": 535,
+  "start": 349.2,
+  "dur": 0.133,
+  "text": "max"
+ },
+ {
+  "i": 536,
+  "start": 349.333,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 537,
+  "start": 349.467,
+  "dur": 0.133,
+  "text": "strength,"
+ },
+ {
+  "i": 538,
+  "start": 349.6,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 539,
+  "start": 349.733,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 540,
+  "start": 349.867,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 541,
+  "start": 350.0,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 542,
+  "start": 350.133,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 543,
+  "start": 350.267,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 544,
+  "start": 350.4,
+  "dur": 0.133,
+  "text": "heavy"
+ },
+ {
+  "i": 545,
+  "start": 350.533,
+  "dur": 0.3,
+  "text": "weights"
+ },
+ {
+  "i": 546,
+  "start": 350.833,
+  "dur": 0.3,
+  "text": "win."
+ },
+ {
+  "i": 547,
+  "start": 351.133,
+  "dur": 0.3,
+  "text": ""
+ },
+ {
+  "i": 548,
+  "start": 351.433,
+  "dur": 0.217,
+  "text": ""
+ },
+ {
+  "i": 549,
+  "start": 351.65,
+  "dur": 0.233,
+  "text": "That same"
+ },
+ {
+  "i": 550,
+  "start": 351.883,
+  "dur": 0.25,
+  "text": "review"
+ },
+ {
+  "i": 551,
+  "start": 352.133,
+  "dur": 0.25,
+  "text": "found"
+ },
+ {
+  "i": 552,
+  "start": 352.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 553,
+  "start": 352.633,
+  "dur": 0.25,
+  "text": "it."
+ },
+ {
+  "i": 554,
+  "start": 352.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 555,
+  "start": 353.133,
+  "dur": 6.0,
+  "text": "So here's the fix. Make one leg do the work of two. Split squats with your back foot up on a chair."
+ },
+ {
+  "i": 556,
+  "start": 359.133,
+  "dur": 0.2,
+  "text": "",
+  "audio_hit": {
+   "offset_s": -0.14,
+   "strength": 1.05,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 557,
+  "start": 359.333,
+  "dur": 0.134,
+  "text": "Then"
+ },
+ {
+  "i": 558,
+  "start": 359.467,
+  "dur": 0.35,
+  "text": "step"
+ },
+ {
+  "i": 559,
+  "start": 359.817,
+  "dur": 0.45,
+  "text": "ups onto"
+ },
+ {
+  "i": 560,
+  "start": 360.267,
+  "dur": 0.45,
+  "text": "a sturdy"
+ },
+ {
+  "i": 561,
+  "start": 360.717,
+  "dur": 0.45,
+  "text": "chair."
+ },
+ {
+  "i": 562,
+  "start": 361.167,
+  "dur": 0.283,
+  "text": ""
+ },
+ {
+  "i": 563,
+  "start": 361.45,
+  "dur": 0.167,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.21,
+   "strength": 1.16,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 564,
+  "start": 361.617,
+  "dur": 3.233,
+  "text": "Then work toward the pistol squat, one leg, all the way",
+  "audio_hit": {
+   "offset_s": 0.04,
+   "strength": 1.16,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 565,
+  "start": 364.85,
+  "dur": 0.15,
+  "text": "down."
+ },
+ {
+  "i": 566,
+  "start": 365.0,
+  "dur": 4.433,
+  "text": "Add a backpack full of books and slow every rep down."
+ },
+ {
+  "i": 567,
+  "start": 369.433,
+  "dur": 2.0,
+  "text": "And there's one more thing no workout can fix.",
+  "audio_hit": {
+   "offset_s": -0.02,
+   "strength": 1.58,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 568,
+  "start": 371.433,
+  "dur": 5.617,
+  "text": "An empty plate. If you're skinny, no training makes you bigger without enough food."
+ },
+ {
+  "i": 569,
+  "start": 377.05,
+  "dur": 4.567,
+  "text": "Eat a little more than you burn, get protein at every meal, and sleep."
+ },
+ {
+  "i": 570,
+  "start": 381.617,
+  "dur": 3.266,
+  "text": "So here's"
+ },
+ {
+  "i": 571,
+  "start": 384.883,
+  "dur": 0.25,
+  "text": "the plan."
+ },
+ {
+  "i": 572,
+  "start": 385.133,
+  "dur": 0.25,
+  "text": "Three"
+ },
+ {
+  "i": 573,
+  "start": 385.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 574,
+  "start": 385.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 575,
+  "start": 385.883,
+  "dur": 0.25,
+  "text": "times"
+ },
+ {
+  "i": 576,
+  "start": 386.133,
+  "dur": 0.25,
+  "text": "a"
+ },
+ {
+  "i": 577,
+  "start": 386.383,
+  "dur": 0.25,
+  "text": "week,"
+ },
+ {
+  "i": 578,
+  "start": 386.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 579,
+  "start": 386.883,
+  "dur": 0.25,
+  "text": "full"
+ },
+ {
+  "i": 580,
+  "start": 387.133,
+  "dur": 0.25,
+  "text": "body."
+ },
+ {
+  "i": 581,
+  "start": 387.383,
+  "dur": 2.367,
+  "text": "Push ups, the hardest version you can"
+ },
+ {
+  "i": 582,
+  "start": 389.75,
+  "dur": 0.133,
+  "text": "do"
+ },
+ {
+  "i": 583,
+  "start": 389.883,
+  "dur": 0.25,
+  "text": "for"
+ },
+ {
+  "i": 584,
+  "start": 390.133,
+  "dur": 2.367,
+  "text": "8 to 15 reps. Pull ups or"
+ },
+ {
+  "i": 585,
+  "start": 392.5,
+  "dur": 5.75,
+  "text": "table rows. Chair dips, split squats, and knee raises or a plank to finish."
+ },
+ {
+  "i": 586,
+  "start": 398.25,
+  "dur": 0.133,
+  "text": "Three"
+ },
+ {
+  "i": 587,
+  "start": 398.383,
+  "dur": 5.5,
+  "text": "sets of each and stop one or two reps before you can't do another. Every week, add a rep or"
+ },
+ {
+  "i": 588,
+  "start": 403.883,
+  "dur": 0.917,
+  "text": "move to a harder"
+ },
+ {
+  "i": 589,
+  "start": 404.8,
+  "dur": 0.333,
+  "text": "version."
+ },
+ {
+  "i": 590,
+  "start": 405.133,
+  "dur": 0.75,
+  "text": "Now,"
+ },
+ {
+  "i": 591,
+  "start": 405.883,
+  "dur": 0.367,
+  "text": ""
+ },
+ {
+  "i": 592,
+  "start": 406.25,
+  "dur": 0.133,
+  "text": "your"
+ },
+ {
+  "i": 593,
+  "start": 406.383,
+  "dur": 0.25,
+  "text": "push"
+ },
+ {
+  "i": 594,
+  "start": 406.633,
+  "dur": 4.434,
+  "text": "up test from the start. Here's how to read it on our own simple scale. Under"
+ },
+ {
+  "i": 595,
+  "start": 411.067,
+  "dur": 5.566,
+  "text": "10, you've found exactly why you should start. And this plan will move you fastest. 10 to 25"
+ },
+ {
+  "i": 596,
+  "start": 416.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 597,
+  "start": 416.883,
+  "dur": 0.25,
+  "text": "is"
+ },
+ {
+  "i": 598,
+  "start": 417.133,
+  "dur": 0.25,
+  "text": "a"
+ },
+ {
+  "i": 599,
+  "start": 417.383,
+  "dur": 0.25,
+  "text": "normal"
+ },
+ {
+  "i": 600,
+  "start": 417.633,
+  "dur": 0.25,
+  "text": "start."
+ },
+ {
+  "i": 601,
+  "start": 417.883,
+  "dur": 0.367,
+  "text": ""
+ },
+ {
+  "i": 602,
+  "start": 418.25,
+  "dur": 0.133,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.24,
+   "strength": 1.2,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 603,
+  "start": 418.383,
+  "dur": 0.367,
+  "text": "25",
+  "audio_hit": {
+   "offset_s": 0.11,
+   "strength": 1.2,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 604,
+  "start": 418.75,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 605,
+  "start": 418.883,
+  "dur": 0.134,
+  "text": "to"
+ },
+ {
+  "i": 606,
+  "start": 419.017,
+  "dur": 0.233,
+  "text": "40"
+ },
+ {
+  "i": 607,
+  "start": 419.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 608,
+  "start": 419.383,
+  "dur": 0.25,
+  "text": "is"
+ },
+ {
+  "i": 609,
+  "start": 419.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 610,
+  "start": 419.883,
+  "dur": 0.25,
+  "text": "strong."
+ },
+ {
+  "i": 611,
+  "start": 420.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 612,
+  "start": 420.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 613,
+  "start": 420.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 614,
+  "start": 420.883,
+  "dur": 0.25,
+  "text": "Over"
+ },
+ {
+  "i": 615,
+  "start": 421.133,
+  "dur": 0.134,
+  "text": "40,"
+ },
+ {
+  "i": 616,
+  "start": 421.267,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 617,
+  "start": 421.4,
+  "dur": 0.233,
+  "text": ""
+ },
+ {
+  "i": 618,
+  "start": 421.633,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.24,
+   "strength": 1.05,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 619,
+  "start": 421.883,
+  "dur": 0.25,
+  "text": "you're",
+  "audio_hit": {
+   "offset_s": -0.01,
+   "strength": 1.05,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 620,
+  "start": 422.133,
+  "dur": 0.25,
+  "text": "in the"
+ },
+ {
+  "i": 621,
+  "start": 422.383,
+  "dur": 0.25,
+  "text": "group"
+ },
+ {
+  "i": 622,
+  "start": 422.633,
+  "dur": 0.25,
+  "text": "that study"
+ },
+ {
+  "i": 623,
+  "start": 422.883,
+  "dur": 0.25,
+  "text": "linked"
+ },
+ {
+  "i": 624,
+  "start": 423.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 625,
+  "start": 423.383,
+  "dur": 0.25,
+  "text": "to"
+ },
+ {
+  "i": 626,
+  "start": 423.633,
+  "dur": 0.25,
+  "text": "the fewest"
+ },
+ {
+  "i": 627,
+  "start": 423.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 628,
+  "start": 424.133,
+  "dur": 0.25,
+  "text": "heart"
+ },
+ {
+  "i": 629,
+  "start": 424.383,
+  "dur": 0.25,
+  "text": "problems."
+ },
+ {
+  "i": 630,
+  "start": 424.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 631,
+  "start": 424.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 632,
+  "start": 425.133,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 633,
+  "start": 425.267,
+  "dur": 0.55,
+  "text": "Write your number"
+ },
+ {
+  "i": 634,
+  "start": 425.817,
+  "dur": 0.483,
+  "text": "down and"
+ },
+ {
+  "i": 635,
+  "start": 426.3,
+  "dur": 1.117,
+  "text": "test again in 8"
+ },
+ {
+  "i": 636,
+  "start": 427.417,
+  "dur": 0.166,
+  "text": ""
+ },
+ {
+  "i": 637,
+  "start": 427.583,
+  "dur": 0.634,
+  "text": "weeks."
+ },
+ {
+  "i": 638,
+  "start": 428.217,
+  "dur": 12.6,
+  "text": "And before you go, we run a free telegram channel where we post a workout plan and tips every single day. There's a whole community of like -minded people in there, so it's really easy to keep your fitness journey going. It's completely"
+ },
+ {
+  "i": 639,
+  "start": 440.817,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 640,
+  "start": 440.967,
+  "dur": 2.666,
+  "text": "free and the link is in the description. In"
+ },
+ {
+  "i": 641,
+  "start": 443.633,
+  "dur": 0.217,
+  "text": "this"
+ },
+ {
+  "i": 642,
+  "start": 443.85,
+  "dur": 0.133,
+  "text": "winter,"
+ },
+ {
+  "i": 643,
+  "start": 443.983,
+  "dur": 0.267,
+  "text": ""
+ },
+ {
+  "i": 644,
+  "start": 444.25,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 645,
+  "start": 444.383,
+  "dur": 0.25,
+  "text": "we're running"
+ },
+ {
+  "i": 646,
+  "start": 444.633,
+  "dur": 0.25,
+  "text": "a"
+ },
+ {
+  "i": 647,
+  "start": 444.883,
+  "dur": 0.25,
+  "text": "free"
+ },
+ {
+  "i": 648,
+  "start": 445.133,
+  "dur": 0.25,
+  "text": "winter"
+ },
+ {
+  "i": 649,
+  "start": 445.383,
+  "dur": 0.25,
+  "text": "arc"
+ },
+ {
+  "i": 650,
+  "start": 445.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 651,
+  "start": 445.883,
+  "dur": 0.25,
+  "text": "challenge"
+ },
+ {
+  "i": 652,
+  "start": 446.133,
+  "dur": 0.25,
+  "text": "in"
+ },
+ {
+  "i": 653,
+  "start": 446.383,
+  "dur": 0.25,
+  "text": "there."
+ },
+ {
+  "i": 654,
+  "start": 446.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 655,
+  "start": 446.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 656,
+  "start": 447.133,
+  "dur": 0.25,
+  "text": "Follow"
+ },
+ {
+  "i": 657,
+  "start": 447.383,
+  "dur": 0.25,
+  "text": "the plan,"
+ },
+ {
+  "i": 658,
+  "start": 447.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 659,
+  "start": 447.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 660,
+  "start": 448.133,
+  "dur": 0.25,
+  "text": "post"
+ },
+ {
+  "i": 661,
+  "start": 448.383,
+  "dur": 0.25,
+  "text": "your weekly"
+ },
+ {
+  "i": 662,
+  "start": 448.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 663,
+  "start": 448.883,
+  "dur": 0.25,
+  "text": "check"
+ },
+ {
+  "i": 664,
+  "start": 449.133,
+  "dur": 0.25,
+  "text": "-ins"
+ },
+ {
+  "i": 665,
+  "start": 449.383,
+  "dur": 0.25,
+  "text": "and"
+ },
+ {
+  "i": 666,
+  "start": 449.633,
+  "dur": 0.25,
+  "text": "your"
+ },
+ {
+  "i": 667,
+  "start": 449.883,
+  "dur": 0.25,
+  "text": "test numbers,"
+ },
+ {
+  "i": 668,
+  "start": 450.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 669,
+  "start": 450.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 670,
+  "start": 450.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 671,
+  "start": 450.883,
+  "dur": 0.25,
+  "text": "and"
+ },
+ {
+  "i": 672,
+  "start": 451.133,
+  "dur": 0.25,
+  "text": "at the end,"
+ },
+ {
+  "i": 673,
+  "start": 451.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 674,
+  "start": 451.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 675,
+  "start": 451.883,
+  "dur": 0.25,
+  "text": "whoever"
+ },
+ {
+  "i": 676,
+  "start": 452.133,
+  "dur": 0.25,
+  "text": "improved"
+ },
+ {
+  "i": 677,
+  "start": 452.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 678,
+  "start": 452.633,
+  "dur": 0.25,
+  "text": "the most"
+ },
+ {
+  "i": 679,
+  "start": 452.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 680,
+  "start": 453.133,
+  "dur": 0.25,
+  "text": "wins"
+ },
+ {
+  "i": 681,
+  "start": 453.383,
+  "dur": 0.25,
+  "text": "a"
+ },
+ {
+  "i": 682,
+  "start": 453.633,
+  "dur": 0.134,
+  "text": "big"
+ },
+ {
+  "i": 683,
+  "start": 453.767,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 684,
+  "start": 453.9,
+  "dur": 0.233,
+  "text": "pack"
+ },
+ {
+  "i": 685,
+  "start": 454.133,
+  "dur": 0.25,
+  "text": "of"
+ },
+ {
+  "i": 686,
+  "start": 454.383,
+  "dur": 0.25,
+  "text": "Gymshark"
+ },
+ {
+  "i": 687,
+  "start": 454.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 688,
+  "start": 454.883,
+  "dur": 0.25,
+  "text": "gear,"
+ },
+ {
+  "i": 689,
+  "start": 455.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 690,
+  "start": 455.383,
+  "dur": 0.25,
+  "text": "bought"
+ },
+ {
+  "i": 691,
+  "start": 455.633,
+  "dur": 0.25,
+  "text": "by us."
+ },
+ {
+  "i": 692,
+  "start": 455.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 693,
+  "start": 456.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 694,
+  "start": 456.383,
+  "dur": 0.25,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.11,
+   "strength": 1.03,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 695,
+  "start": 456.633,
+  "dur": 0.25,
+  "text": "It's free",
+  "audio_hit": {
+   "offset_s": -0.14,
+   "strength": 1.03,
+   "guess": "other transient"
+  }
+ },
+ {
+  "i": 696,
+  "start": 456.883,
+  "dur": 0.25,
+  "text": "to"
+ },
+ {
+  "i": 697,
+  "start": 457.133,
+  "dur": 0.25,
+  "text": "enter"
+ },
+ {
+  "i": 698,
+  "start": 457.383,
+  "dur": 0.25,
+  "text": "and"
+ },
+ {
+  "i": 699,
+  "start": 457.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 700,
+  "start": 457.883,
+  "dur": 0.25,
+  "text": "all"
+ },
+ {
+  "i": 701,
+  "start": 458.133,
+  "dur": 0.25,
+  "text": "the details"
+ },
+ {
+  "i": 702,
+  "start": 458.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 703,
+  "start": 458.633,
+  "dur": 0.25,
+  "text": "are"
+ },
+ {
+  "i": 704,
+  "start": 458.883,
+  "dur": 0.25,
+  "text": "in the"
+ },
+ {
+  "i": 705,
+  "start": 459.133,
+  "dur": 0.25,
+  "text": "telegram"
+ },
+ {
+  "i": 706,
+  "start": 459.383,
+  "dur": 0.25,
+  "text": "channel."
+ },
+ {
+  "i": 707,
+  "start": 459.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 708,
+  "start": 459.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 709,
+  "start": 460.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 710,
+  "start": 460.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 711,
+  "start": 460.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 712,
+  "start": 460.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 713,
+  "start": 461.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 714,
+  "start": 461.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 715,
+  "start": 461.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 716,
+  "start": 461.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 717,
+  "start": 462.133,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 718,
+  "start": 462.383,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 719,
+  "start": 462.633,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 720,
+  "start": 462.883,
+  "dur": 0.25,
+  "text": ""
+ },
+ {
+  "i": 721,
+  "start": 463.133,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 722,
+  "start": 463.283,
+  "dur": 0.134,
+  "text": ""
+ },
+ {
+  "i": 723,
+  "start": 463.417,
+  "dur": 3.75,
+  "text": "A gym can close, get crowded, or get too expensive."
+ },
+ {
+  "i": 724,
+  "start": 467.167,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 725,
+  "start": 467.3,
+  "dur": 0.15,
+  "text": ""
+ },
+ {
+  "i": 726,
+  "start": 467.45,
+  "dur": 5.7,
+  "text": "Your body never does. Every rep, you're lifting the one weight you'll carry for the rest of your life. So"
+ },
+ {
+  "i": 727,
+  "start": 473.15,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 728,
+  "start": 473.283,
+  "dur": 0.15,
+  "text": "make"
+ },
+ {
+  "i": 729,
+  "start": 473.433,
+  "dur": 0.867,
+  "text": "it strong."
+ },
+ {
+  "i": 730,
+  "start": 474.3,
+  "dur": 6.517,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.2,
+   "strength": 1.41,
+   "guess": "boom/impact"
+  }
+ },
+ {
+  "i": 731,
+  "start": 480.817,
+  "dur": 0.133,
+  "text": ""
+ },
+ {
+  "i": 732,
+  "start": 480.95,
+  "dur": 0.2,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.23,
+   "strength": 1.63,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 733,
+  "start": 481.15,
+  "dur": 0.333,
+  "text": "",
+  "audio_hit": {
+   "offset_s": 0.03,
+   "strength": 1.63,
+   "guess": "whoosh/swipe (noise sweep)"
+  }
+ },
+ {
+  "i": 734,
+  "start": 481.483,
+  "dur": 0.138,
+  "text": ""
+ }
+]
