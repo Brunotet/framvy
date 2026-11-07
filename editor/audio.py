@@ -41,10 +41,24 @@ def mix_audio(out: Path, duration: float, voice, music, voice_gain: float, music
         play, fade = cue["play"], cue["fade"]
         # level every effect to the same perceived loudness (loud ones down, quiet ones up) before cue gain
         lm = loudness(Path(cue["path"]), cue["trim"], play)
-        cue["gain"] = float(cue["gain"]) * 10 ** (norm_gain_db(lm) / 20)
+        g_lin = 10 ** (norm_gain_db(lm) / 20)
+        # second pass: measure the effect as it will really sound (after gain + limiter) and trim the residual
+        try:
+            tmp = out.parent / f"_lvl_{n}.wav"
+            run(["ffmpeg", "-y", "-loglevel", "error", "-i", cue["path"], "-filter_complex",
+                 f"[0:a]{norm},atrim=start={cue['trim']:.3f}:duration={play:.3f},asetpts=PTS-STARTPTS,"
+                 f"volume={g_lin},alimiter=limit=0.7:attack=1:release=40:level=disabled[o]", "-map", "[o]", str(tmp)])
+            m2 = loudness(tmp, 0.0, play)
+            tmp.unlink(missing_ok=True)
+            if m2:
+                resid = max(-8.0, min(8.0, -21.0 - m2["rms_db"]))
+                g_lin *= 10 ** (resid / 20)
+        except Exception:
+            pass
+        cue["gain"] = float(cue["gain"]) * g_lin
         chains.append(f"[{idx}:a]{norm},atrim=start={cue['trim']:.3f}:duration={play:.3f},asetpts=PTS-STARTPTS,"
                       f"afade=t=out:st={max(0.0, play - fade):.3f}:d={fade:.3f},"
-                      f"adelay={ms}|{ms},volume={cue['gain']}[fx{n}]")
+                      f"adelay={ms}|{ms},volume={cue['gain']},alimiter=limit=0.7:attack=1:release=40:level=disabled[fx{n}]")
         labels.append(f"fx{n}")
         idx += 1
 

@@ -54,6 +54,11 @@ def loudness(path: Path, start: float, dur: float) -> dict:
                               "-i", str(path), "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
                              capture_output=True, check=True).stdout
         x = np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
+        # perceptual (K-like) weighting: ignore sub-bass rumble, count the 2-5 kHz the ear is most sensitive to
+        rawk = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{max(0.0, start):.3f}", "-t", f"{max(0.05, dur):.3f}",
+                               "-i", str(path), "-ac", "1", "-ar", "16000", "-af", "highpass=f=80,highshelf=f=2000:g=4",
+                               "-f", "s16le", "-"], capture_output=True, check=True).stdout
+        xk = np.frombuffer(rawk, dtype=np.int16).astype(np.float32) / 32768.0
     except Exception:
         return {}
     if x.size < 800:
@@ -66,14 +71,18 @@ def loudness(path: Path, start: float, dur: float) -> dict:
     p = (x[: n * win].reshape(n, win) ** 2).mean(axis=1) if len(x) >= win else np.array([float((x ** 2).mean())])
     top = float(p.max())
     act = p[p >= top * 10 ** (-1.8)]
-    rms = float(np.sqrt(act.mean()))
+    pk = (xk[: n * win].reshape(n, win) ** 2).mean(axis=1) if len(xk) >= win else np.array([float((xk ** 2).mean())])
+    topk = float(pk.max())
+    actk = pk[pk >= topk * 10 ** (-1.8)] if topk > 0 else pk
+    rms = float(np.sqrt(actk.mean())) if actk.size else float(np.sqrt(act.mean()))
     return {"rms_db": 20 * np.log10(max(rms, 1e-6)), "peak_db": 20 * np.log10(peak)}
 
 
-def norm_gain_db(m: dict, target_db: float = -21.0, peak_ceiling_db: float = -2.0,
-                 lo: float = -20.0, hi: float = 24.0) -> float:
+def norm_gain_db(m: dict, target_db: float = -21.0, peak_ceiling_db: float = 6.0,
+                 lo: float = -24.0, hi: float = 30.0) -> float:
     """dB to add so every effect lands at the same perceived level: loud ones are pulled down,
-    quiet ones pushed up, never past the peak ceiling (so boosting can't clip)."""
+    quiet ones pushed up. Spiky quiet sounds may exceed full scale by up to `peak_ceiling_db` before the
+    per-effect limiter in the mixer (alimiter) squashes the peaks, so they still reach the target level."""
     if not m:
         return 0.0
     g = target_db - m["rms_db"]
