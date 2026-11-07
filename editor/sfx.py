@@ -25,6 +25,10 @@ SYNONYMS = {
     "drop": ["drop", "downer", "downlifter", "fall", "bass"],
     "glitch": ["glitch", "digital", "error", "static", "stutter"],
 }
+BLOCK_TAGS = {"glitch", "static", "radio", "tv", "distortion", "distorted", "noise", "error", "buzz", "screech"}
+BLOCK_IDS = {"freesound:534695"}
+
+
 def _tokens(s: str) -> set[str]:
     return set(re.findall(r"[a-z0-9]+", (s or "").lower()))
 
@@ -101,6 +105,8 @@ class SfxLibrary:
         scored = []
         for e in self.index:
             tags = set(e.get("tags", []))
+            if tags & BLOCK_TAGS or e.get("id") in BLOCK_IDS or (e.get("duration") or 0) > 12:
+                continue                         # harsh / radio-like / glitchy sounds are never used
             name_t = _tokens(e.get("name", "")) | _tokens(e.get("category", "")) | _tokens(e.get("pack", ""))
             hit_raw = len(raw & (tags | name_t))
             score = 3 * len(toks & tags) + 2 * len(toks & name_t) + 4 * hit_raw
