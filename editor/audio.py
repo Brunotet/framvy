@@ -2,6 +2,7 @@
 from __future__ import annotations
 from pathlib import Path
 from .util import run
+from .sfxmeta import loudness, norm_gain_db
 
 
 def mix_audio(out: Path, duration: float, voice, music, voice_gain: float, music_gain: float, sfx: list[dict]):
@@ -38,6 +39,9 @@ def mix_audio(out: Path, duration: float, voice, music, voice_gain: float, music
         inputs += ["-i", cue["path"]]
         ms = max(0, int(round(cue["delay"] * 1000)))
         play, fade = cue["play"], cue["fade"]
+        # level every effect to the same perceived loudness (loud ones down, quiet ones up) before cue gain
+        lm = loudness(Path(cue["path"]), cue["trim"], play)
+        cue["gain"] = float(cue["gain"]) * 10 ** (norm_gain_db(lm) / 20)
         chains.append(f"[{idx}:a]{norm},atrim=start={cue['trim']:.3f}:duration={play:.3f},asetpts=PTS-STARTPTS,"
                       f"afade=t=out:st={max(0.0, play - fade):.3f}:d={fade:.3f},"
                       f"adelay={ms}|{ms},volume={cue['gain']}[fx{n}]")
