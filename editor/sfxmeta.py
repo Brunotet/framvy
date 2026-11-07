@@ -42,3 +42,40 @@ def cached(path: Path, cache_dir: Path) -> dict:
     m = analyze(path)
     f.write_text(json.dumps(m))
     return m
+
+
+def loudness(path: Path, start: float, dur: float) -> dict:
+    """Perceived level of the part of the file that will actually play.
+    rms_db = power average of the 50 ms frames within 18 dB of the loudest one (ignores tails/silence),
+    peak_db = absolute sample peak. Returns {} if it cannot be measured."""
+    import numpy as np
+    try:
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{max(0.0, start):.3f}", "-t", f"{max(0.05, dur):.3f}",
+                              "-i", str(path), "-ac", "1", "-ar", "16000", "-f", "s16le", "-"],
+                             capture_output=True, check=True).stdout
+        x = np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
+    except Exception:
+        return {}
+    if x.size < 800:
+        return {}
+    peak = float(np.abs(x).max())
+    if peak < 1e-5:
+        return {}
+    win = 800
+    n = max(1, len(x) // win)
+    p = (x[: n * win].reshape(n, win) ** 2).mean(axis=1) if len(x) >= win else np.array([float((x ** 2).mean())])
+    top = float(p.max())
+    act = p[p >= top * 10 ** (-1.8)]
+    rms = float(np.sqrt(act.mean()))
+    return {"rms_db": 20 * np.log10(max(rms, 1e-6)), "peak_db": 20 * np.log10(peak)}
+
+
+def norm_gain_db(m: dict, target_db: float = -21.0, peak_ceiling_db: float = -2.0,
+                 lo: float = -20.0, hi: float = 24.0) -> float:
+    """dB to add so every effect lands at the same perceived level: loud ones are pulled down,
+    quiet ones pushed up, never past the peak ceiling (so boosting can't clip)."""
+    if not m:
+        return 0.0
+    g = target_db - m["rms_db"]
+    g = min(g, peak_ceiling_db - m["peak_db"])
+    return max(lo, min(hi, g))
