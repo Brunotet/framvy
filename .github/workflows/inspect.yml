@@ -1,0 +1,73 @@
+name: inspect-video
+
+# Look at a finished render: frames at fixed times, one frame per shot, contact sheets, and an audio report
+# (how many different sound effects, where they land). Commits the results to analysis/<name>/ and analysis/<name>-frames/.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Direct mp4 URL (for example the R2 public link of a render)"
+        required: true
+      name:
+        description: "Folder name under analysis/"
+        required: true
+        default: "render"
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Deps
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          pip install numpy
+
+      - name: Download
+        env:
+          URL: ${{ inputs.url }}
+          NAME: ${{ inputs.name }}
+        run: |
+          mkdir -p work
+          curl -fsSL "$URL" -o "work/$NAME.mp4"
+          ffprobe -v error -show_entries stream=codec_type,width,height,r_frame_rate,duration -of default=nw=1 "work/$NAME.mp4"
+
+      - name: Frames at fixed times
+        env:
+          NAME: ${{ inputs.name }}
+        run: |
+          mkdir -p "analysis/$NAME-frames"
+          for t in 0.3 1 2 3 5 8 12 18 25 35 45 60 75; do
+            ffmpeg -y -loglevel error -ss $t -i "work/$NAME.mp4" -frames:v 1 -vf scale=360:-2 -q:v 4 "analysis/$NAME-frames/t_$t.jpg" || true
+          done
+          ls analysis/$NAME-frames
+
+      - name: Analyze (no transcript)
+        env:
+          NAME: ${{ inputs.name }}
+        run: python analyzer/analyze.py --video "work/$NAME.mp4" --out analysis --work workdir --skip-transcribe --max-shots 40 --max-sheets 2 --cut-threshold 0.2
+
+      - name: Commit results
+        if: always()
+        env:
+          NAME: ${{ inputs.name }}
+        run: |
+          git config user.name "framvy-analyzer"
+          git config user.email "actions@users.noreply.github.com"
+          git add analysis
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "inspect: $NAME"
+          for i in 1 2 3 4 5 6; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((RANDOM % 9 + 3))
+          done
+          echo "push failed after retries" && exit 1
