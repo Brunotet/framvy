@@ -175,7 +175,7 @@ def build(timeline: dict, project: Path) -> Path:
                 ff = mapdata.flag_file(idx)
                 if ff:
                     rel = _copy_asset(ff.resolve().as_uri(), assets, seen)
-                    nm = html.escape(cs[idx]["n"])
+                    nm = html.escape({"United States of America": "USA", "United Kingdom": "UK", "United Arab Emirates": "UAE"}.get(cs[idx]["n"], cs[idx]["n"]))
                     content.append(f'<div class="flagbadge" id="{sid}-flag"><img src="{rel}"><span>{nm}</span></div>')
                     L.append(f'tl.fromTo("#{sid}-flag",{{autoAlpha:0,scale:.4,y:30}},{{autoAlpha:1,scale:1,y:0,duration:.4,ease:"back.out(2.2)"}},{_f(st + fly * 0.6)});')
             for q, nm_ in enumerate(vis.get("icons") or []):

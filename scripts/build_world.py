@@ -51,7 +51,14 @@ def main():
         if a2 in ("-99", ""):
             a2 = ""
         # bbox of the largest polygon only, so far-away islands (France, USA, Russia) do not stretch the camera
-        best = max(polys, key=lambda pl: len(pl[0]))
+        def deg_area(pl):
+            r = pl[0]
+            a = 0.0
+            for (x1, y1), (x2, y2) in zip(r, r[1:] + r[:1]):
+                a += x1 * y2 - x2 * y1
+            mid = sum(la for _, la in r) / max(len(r), 1)
+            return abs(a) / 2 * math.cos(math.radians(mid))
+        best = max(polys, key=deg_area)
         bx = [proj(lo, la)[0] for lo, la in best[0]]
         by = [proj(lo, la)[1] for lo, la in best[0]]
         out.append({"n": name, "long": p.get("NAME_LONG") or name, "admin": p.get("ADMIN") or name, "a2": a2.lower(),
