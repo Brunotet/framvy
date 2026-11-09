@@ -79,6 +79,7 @@ class Scene(_Base):
     sfx: list[SfxCue] = Field(default_factory=list)
     transition: Optional[str] = None            # cut fade whip zoom flash
     character: Optional[Union[bool, str, dict]] = None  # True | "pose" | {"pose","side","action"}
+    map: Optional[dict] = None                  # code-drawn map scene: {"place": "Japan", "flag": true, "icons": ["factory"]}
 
 
 class Job(_Base):

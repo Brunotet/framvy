@@ -13,6 +13,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlparse
 
 from .config import ROOT
+from . import mapdata
 
 SHADERS = {"domain-warp", "ridged-burn", "whip-pan", "sdf-iris", "ripple-waves", "gravitational-lens",
            "cinematic-zoom", "chromatic-split", "swirl-vortex", "thermal-distortion",
@@ -127,6 +128,12 @@ def build(timeline: dict, project: Path) -> Path:
     text_c, accent = theme.get("text_color") or "#fff", theme.get("accent") or "#FFD400"
 
     scene_html, popup_html, cap_html, L = [], [], [], []
+    map_defs, map_last = "", None
+    if any(sc["visual"]["type"] == "map" for sc in scenes) and mapdata.world():
+        cs = mapdata.world()["countries"]
+        map_defs = '<svg width="0" height="0" style="position:absolute"><defs>' + "".join(
+            f'<path id="c{k}" d="{c["d"]}"/>' for k, c in enumerate(cs)) + '</defs></svg>'
+    aspect = W / H
     for i, sc in enumerate(scenes):
         sid = f"s{i + 1}"
         st, en = sc["start"], sc["end"]
@@ -147,6 +154,38 @@ def build(timeline: dict, project: Path) -> Path:
                 content.append(f'<div class="vis"><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:{vis.get("fit", "cover")}"></div>'
                                + ('<div class="shade"></div>' if look.get("shade", True) else ''))
             _motion_js(f"#{sid}-img", vis.get("motion") or "zoom_in", st, dur, H, L)
+        elif vis["type"] == "map" and map_defs:
+            cs = mapdata.world()["countries"]
+            idx = vis["idx"]
+            tgt = mapdata.view_for(idx, aspect)
+            start_v = map_last or mapdata.wide_view(aspect)
+            drift = [tgt[0] + tgt[2] * 0.03, tgt[1] + tgt[3] * 0.03, tgt[2] * 0.94, tgt[3] * 0.94]
+            vb = lambda v: " ".join(str(round(x, 1)) for x in v)
+            uses = "".join(f'<use href="#c{k}" class="land"/>' for k in range(len(cs)) if k != idx)
+            content.append(f'<div class="vis"><svg class="mapsvg" id="{sid}-map" viewBox="{vb(start_v)}" preserveAspectRatio="xMidYMid slice">'
+                           f'<rect x="-4000" y="-4000" width="10000" height="10000" fill="#a9cde4"/>{uses}'
+                           f'<use href="#c{idx}" class="hot" id="{sid}-hot"/></svg></div>')
+            fly = min(1.15, max(0.5, dur * 0.55))
+            L.append(f'tl.fromTo("#{sid}-map",{{attr:{{viewBox:"{vb(start_v)}"}}}},{{attr:{{viewBox:"{vb(tgt)}"}},duration:{_f(fly)},ease:"power3.inOut"}},{_f(st)});')
+            if dur - fly > 0.2:
+                L.append(f'tl.to("#{sid}-map",{{attr:{{viewBox:"{vb(drift)}"}},duration:{_f(dur - fly)},ease:"none"}},{_f(st + fly)});')
+            L.append(f'tl.fromTo("#{sid}-hot",{{fill:"#8fc77a"}},{{fill:"#e5383b",duration:0.5,ease:"power2.out"}},{_f(st + fly * 0.5)});')
+            map_last = drift if dur - fly > 0.2 else tgt
+            if vis.get("flag"):
+                ff = mapdata.flag_file(idx)
+                if ff:
+                    rel = _copy_asset(ff.resolve().as_uri(), assets, seen)
+                    nm = html.escape(cs[idx]["n"])
+                    content.append(f'<div class="flagbadge" id="{sid}-flag"><img src="{rel}"><span>{nm}</span></div>')
+                    L.append(f'tl.fromTo("#{sid}-flag",{{autoAlpha:0,scale:.4,y:30}},{{autoAlpha:1,scale:1,y:0,duration:.4,ease:"back.out(2.2)"}},{_f(st + fly * 0.6)});')
+            for q, nm_ in enumerate(vis.get("icons") or []):
+                svg = mapdata.icon_svg(nm_)
+                if not svg:
+                    continue
+                side = "l" if q % 2 == 0 else "r"
+                content.append(f'<div class="icobadge {side}" id="{sid}-ico{q}">{svg}</div>')
+                L.append(f'tl.fromTo("#{sid}-ico{q}",{{autoAlpha:0,scale:.2,rotation:-12}},{{autoAlpha:1,scale:1,rotation:0,duration:.45,ease:"back.out(2.4)"}},{_f(st + fly * 0.7 + q * 0.35)});')
+                L.append(f'tl.to("#{sid}-ico{q}",{{y:-14,duration:1.4,ease:"sine.inOut",yoyo:true,repeat:{max(0, int(dur / 1.4) - 1)}}},{_f(st + fly * 0.7 + q * 0.35 + 0.45)});')
         elif vis["type"] == "text":
             words = (vis.get("text") or "").split()
             n = len(" ".join(words))
@@ -156,6 +195,8 @@ def build(timeline: dict, project: Path) -> Path:
             L.append(f'tl.from("#{sid}-txt .w",{{y:60,autoAlpha:0,scale:.75,duration:.45,ease:"back.out(1.7)",stagger:.07}},{_f(st + .08)});')
             L.append(f'tl.fromTo("#{sid}-txt",{{yPercent:1.5}},{{yPercent:-1.5,duration:{_f(dur)},ease:"sine.inOut"}},{_f(st)});')
             L.append(f'tl.fromTo("#{sid}-bg",{{scale:1.05}},{{scale:1.18,duration:{_f(dur)},ease:"none"}},{_f(st)});')
+        if vis["type"] != "map":
+            map_last = None
         ch = sc.get("character")
         if ch:
             rel = _copy_asset(ch["src"], assets, seen)
@@ -278,6 +319,13 @@ html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#000;font-family:
 .scene-content{{position:absolute;inset:0}}
 .vis{{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}}
 .vimg{{width:100%;height:100%}}
+.mapsvg{{width:100%;height:100%;display:block}}
+.land{{fill:#bfe3a0;stroke:#ffffff;stroke-width:1.4;vector-effect:non-scaling-stroke;stroke-linejoin:round}}
+.hot{{fill:#8fc77a;stroke:#ffffff;stroke-width:2.6;vector-effect:non-scaling-stroke;stroke-linejoin:round}}
+.flagbadge{{position:absolute;left:0;right:0;top:21%;margin:auto;width:max-content;display:flex;align-items:center;gap:.5em;padding:.25em .7em .25em .3em;background:#fff;border:4px solid #111;border-radius:999px;box-shadow:0 8px 0 #111;font-weight:900;font-size:{round(H * 0.03)}px;color:#111;text-transform:{uc};visibility:hidden;z-index:30}}
+.flagbadge img{{height:1.7em;width:auto;border-radius:.25em;border:2px solid #111;display:block}}
+.icobadge{{position:absolute;top:46%;width:{round(H * 0.095)}px;height:{round(H * 0.095)}px;padding:{round(H * 0.018)}px;background:#fff;border:4px solid #111;border-radius:50%;box-shadow:0 8px 0 #111;color:#111;visibility:hidden;z-index:30}}
+.icobadge.l{{left:8%}} .icobadge.r{{right:8%}}
 .shade{{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.18),rgba(0,0,0,0) 35%,rgba(0,0,0,.35))}}
 .ktext{{width:84%;text-align:center;font-weight:900;line-height:1.08;text-transform:{uc};text-shadow:0 6px 24px rgba(0,0,0,.55)}}
 .w{{display:inline-block}}
@@ -300,6 +348,7 @@ html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#000;font-family:
 .bar{{left:0;right:0;background:#000;z-index:60}}
 </style></head>
 <body>
+{map_defs}
 <div id="main" data-composition-id="main" data-width="{W}" data-height="{H}" data-start="0" data-duration="{_f(total)}">
 {"".join(scene_html)}
 {hdr_html}

@@ -105,6 +105,15 @@ def compile_job(job: Job, profile: dict, workdir: Path, ctx: Ctx):
                 vis = {"type": "image", "src": img.resolve().as_uri(), "fit": v.fit}
         elif v.type == "none":
             vis = {"type": "none"}
+        mp = None
+        if s.map and s.map.get("place") and feats.get("maps", True):
+            from . import mapdata
+            mi = mapdata.find(str(s.map["place"]))
+            if mi is not None:
+                mp = {"type": "map", "idx": mi, "place": str(s.map["place"]), "flag": bool(s.map.get("flag", True)),
+                      "icons": [str(x) for x in (s.map.get("icons") or [])][:2]}
+        if mp:
+            vis = mp
         motion = v.motion or (mot_default if mot_default != "auto" else MOTIONS[i % len(MOTIONS)])
         if vis["type"] == "image":
             vis["motion"] = motion
@@ -112,6 +121,8 @@ def compile_job(job: Job, profile: dict, workdir: Path, ctx: Ctx):
             vis["motion"] = "none"
 
         trans = (s.transition or trans_default) if i > 0 else "cut"
+        if vis["type"] == "map" and tl_scenes and tl_scenes[-1]["visual"]["type"] == "map":
+            trans = "cut"   # the camera keeps flying from the previous country
         popups = []
         if popups_on:
             for p in s.popups:
