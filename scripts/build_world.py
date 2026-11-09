@@ -30,6 +30,7 @@ def ring_d(ring):
 
 
 def main():
+    os.makedirs("data", exist_ok=True)
     gj = json.loads(get(NE))
     out = []
     for f in gj["features"]:
