@@ -1,0 +1,22 @@
+name: build-world
+# Downloads Natural Earth country shapes, flags and icons and commits them under data/ (used by code-drawn map scenes).
+on:
+  workflow_dispatch:
+  push:
+    paths: ['scripts/build_world.py']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: python scripts/build_world.py
+      - run: |
+          git config user.name "builder"; git config user.email "builder@users.noreply.github.com"
+          git add data
+          git commit -m "world map data" || echo nothing
+          git pull --rebase -q || true
+          git push || true
