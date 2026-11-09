@@ -132,7 +132,7 @@ def build(timeline: dict, project: Path) -> Path:
     if any(sc["visual"]["type"] == "map" for sc in scenes) and mapdata.world():
         cs = mapdata.world()["countries"]
         map_defs = '<svg width="0" height="0" style="position:absolute"><defs>' + "".join(
-            f'<path id="c{k}" d="{c["d"]}"/>' for k, c in enumerate(cs)) + '</defs></svg>'
+            f'<path id="mc{k}" d="{c["d"]}"/>' for k, c in enumerate(cs)) + '</defs></svg>'
     aspect = W / H
     for i, sc in enumerate(scenes):
         sid = f"s{i + 1}"
@@ -161,10 +161,10 @@ def build(timeline: dict, project: Path) -> Path:
             start_v = map_last or mapdata.wide_view(aspect)
             drift = [tgt[0] + tgt[2] * 0.03, tgt[1] + tgt[3] * 0.03, tgt[2] * 0.94, tgt[3] * 0.94]
             vb = lambda v: " ".join(str(round(x, 1)) for x in v)
-            uses = "".join(f'<use href="#c{k}" class="land"/>' for k in range(len(cs)) if k != idx)
+            uses = "".join(f'<use href="#mc{k}" class="land"/>' for k in range(len(cs)) if k != idx)
             content.append(f'<div class="vis"><svg class="mapsvg" id="{sid}-map" viewBox="{vb(start_v)}" preserveAspectRatio="xMidYMid slice">'
                            f'<rect x="-4000" y="-4000" width="10000" height="10000" fill="#a9cde4"/>{uses}'
-                           f'<use href="#c{idx}" class="hot" id="{sid}-hot"/></svg></div>')
+                           f'<use href="#mc{idx}" class="hot" id="{sid}-hot"/></svg></div>')
             fly = min(1.15, max(0.5, dur * 0.55))
             L.append(f'tl.fromTo("#{sid}-map",{{attr:{{viewBox:"{vb(start_v)}"}}}},{{attr:{{viewBox:"{vb(tgt)}"}},duration:{_f(fly)},ease:"power3.inOut"}},{_f(st)});')
             if dur - fly > 0.2:
