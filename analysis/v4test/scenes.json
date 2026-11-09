@@ -1,0 +1,31 @@
+[
+ {
+  "i": 1,
+  "start": 0.0,
+  "dur": 25.8,
+  "frame": "s001_0000.25.jpg"
+ },
+ {
+  "i": 2,
+  "start": 25.8,
+  "dur": 49.4,
+  "frame": "s002_0026.05.jpg"
+ },
+ {
+  "i": 3,
+  "start": 75.2,
+  "dur": 6.567,
+  "frame": "s003_0075.45.jpg"
+ },
+ {
+  "i": 4,
+  "start": 81.767,
+  "dur": 8.7,
+  "frame": "s004_0082.02.jpg",
+  "audio_hit": {
+   "offset_s": -0.15,
+   "strength": 2.55,
+   "guess": "click/pop"
+  }
+ }
+]

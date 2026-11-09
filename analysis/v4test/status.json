@@ -1,0 +1,13 @@
+{
+  "video_id": "v4test",
+  "cuts": {
+    "ok": true,
+    "count": 4
+  },
+  "audio": {
+    "ok": true,
+    "onsets": 124,
+    "sfx_clips": 40
+  },
+  "result": "ok"
+}
