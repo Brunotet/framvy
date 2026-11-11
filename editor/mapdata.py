@@ -65,12 +65,54 @@ def flag_file(idx: int) -> Path | None:
     return p if a2 and p.exists() else None
 
 
+ICON_ALIAS = {"gear": "settings", "door": "door-open", "magnifying-glass": "search", "ball": "circle", "bed": "bed", "sunrise": "sunrise",
+              "line": "minus", "money": "banknote", "cash": "banknote", "dollar": "circle-dollar-sign", "worker": "hard-hat", "workers": "users",
+              "law": "gavel", "court": "gavel", "doctor": "stethoscope", "medicine": "pill", "food": "utensils", "drink": "cup-soda",
+              "car": "car", "money-bag": "wallet", "advert": "megaphone", "ad": "megaphone", "tv": "tv", "news": "newspaper"}
+
+
+def _fetch_icon(name: str) -> str | None:
+    """Fallback: ask the Iconify API (lucide set) for an icon that is not in data/icons, and cache it."""
+    import json as _j, urllib.parse as _u, urllib.request as _r
+    def get(url):
+        return _r.urlopen(_r.Request(url, headers={"User-Agent": "framvy"}), timeout=15).read().decode("utf-8")
+    cands = [name]
+    try:
+        q = name.replace("-", " ")
+        res = _j.loads(get("https://api.iconify.design/search?prefix=lucide&limit=3&query=" + _u.quote(q)))
+        cands += [i.split(":", 1)[1] for i in res.get("icons", []) if ":" in i]
+    except Exception:
+        pass
+    for c in cands:
+        try:
+            svg = get(f"https://api.iconify.design/lucide/{c}.svg")
+            if svg.lstrip().startswith("<svg"):
+                try:
+                    (DATA / "icons").mkdir(parents=True, exist_ok=True)
+                    (DATA / "icons" / f"{name}.svg").write_text(svg, encoding="utf-8")
+                except Exception:
+                    pass
+                return svg
+        except Exception:
+            continue
+    return None
+
+
 def icon_svg(name: str) -> str | None:
     name = re.sub(r"[^a-z0-9-]", "", (name or "").lower())
-    p = DATA / "icons" / f"{name}.svg"
-    if not p.exists():
+    if not name:
         return None
-    s = p.read_text(encoding="utf-8")
+    p = DATA / "icons" / f"{name}.svg"
+    if not p.exists() and name in ICON_ALIAS:
+        p = DATA / "icons" / f"{ICON_ALIAS[name]}.svg"
+    if p.exists():
+        s = p.read_text(encoding="utf-8")
+    else:
+        s = _fetch_icon(name)
+        if not s:
+            return None
     s = re.sub(r"<!--.*?-->", "", s, flags=re.S)
     s = re.sub(r'\s(width|height)="[^"]*"', "", s, count=2)
+    if "stroke=" not in s.split(">", 1)[0] and "currentColor" not in s:
+        pass
     return s.replace("<svg", '<svg width="100%" height="100%"', 1).replace('stroke-width="2"', 'stroke-width="2.2"')
