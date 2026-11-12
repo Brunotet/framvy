@@ -79,6 +79,7 @@ class Scene(_Base):
     sfx: list[SfxCue] = Field(default_factory=list)
     transition: Optional[str] = None            # cut fade whip zoom flash
     character: Optional[Union[bool, str, dict]] = None  # True | "pose" | {"pose","side","action"}
+    focus: Optional[dict] = None                # slow punch-in when a keyword is spoken: {"word": "diamond", "x": 50, "y": 55, "amount": 0.16}
     map: Optional[dict] = None                  # code-drawn map scene: {"place": "Japan", "flag": true, "icons": ["factory"]}
 
 

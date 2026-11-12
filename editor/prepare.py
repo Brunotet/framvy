@@ -56,6 +56,15 @@ def prepare(job: Job, profile: dict, workdir: Path, ctx: Ctx) -> None:
                             at = w["start"]
                             break
                 item.at = at if at is not None else s.start + item.offset
+        if isinstance(s.focus, dict) and s.focus.get("word") and s.focus.get("at") is None:
+            ftok = _n(str(s.focus["word"]))
+            fat = None
+            for w in sw:
+                if ftok and (_n(w["w"]) == ftok or ftok in _n(w["w"])):
+                    fat = w["start"]
+                    break
+            if fat is not None:
+                s.focus["at"] = fat
 
     # 3) images (credit-safe) ---------------------------------------------------
     feats = profile.get("features") or {}

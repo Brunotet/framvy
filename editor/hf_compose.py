@@ -149,11 +149,17 @@ def build(timeline: dict, project: Path) -> Path:
         if vis["type"] == "image":
             rel = _copy_asset(vis["src"], assets, seen)
             if framed:
-                content.append(f'<div class="frame"><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:cover"></div>')
+                fz = vis.get("focus")
+                fzs = f' style="transform-origin:{fz["x"]:.0f}% {fz["y"]:.0f}%"' if fz else ""
+                content.append(f'<div class="frame"><div class="fz" id="{sid}-fz"{fzs}><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:cover"></div></div>')
             else:
                 content.append(f'<div class="vis"><img class="vimg" id="{sid}-img" src="{rel}" style="object-fit:{vis.get("fit", "cover")}"></div>'
                                + ('<div class="shade"></div>' if look.get("shade", True) else ''))
             _motion_js(f"#{sid}-img", vis.get("motion") or "zoom_in", st, dur, H, L)
+            fz = vis.get("focus")
+            if fz and framed:
+                t0 = max(st, fz["at"] - 0.12)
+                L.append(f'tl.fromTo("#{sid}-fz",{{scale:1}},{{scale:{1 + fz["amount"]:.3f},duration:{_f(min(0.9, max(0.4, st + dur - t0 - 0.05)))},ease:"power2.out"}},{_f(t0)});')
         elif vis["type"] == "map" and map_defs:
             cs = mapdata.world()["countries"]
             idx = vis["idx"]
@@ -340,6 +346,7 @@ html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#000;font-family:
  -webkit-text-stroke:{round(cap_size * 0.11)}px #000;paint-order:stroke fill;text-shadow:0 5px 18px rgba(0,0,0,.6)}}
 .frame{{position:absolute;left:{(100 - float(layout.get("frame_w", 96))) / 2}%;width:{layout.get("frame_w", 96)}%;top:{layout.get("frame_top", 33)}%;aspect-ratio:16/9;overflow:hidden;border-radius:28px;border:4px solid #111;box-shadow:0 10px 0 #111;background:#fff}}
 .frame .vimg{{width:100%;height:100%;display:block}}
+.fz{{width:100%;height:100%}}
 .hdr{{position:absolute;left:6%;right:6%;top:{layout.get("header_top", 9)}%;text-align:center;font-weight:900;line-height:1.14;font-size:{round(H * float(header.get("size_pct", 0.034)))}px;color:#111;z-index:44}}
 .cap.word .cw{{background:{accent};color:#111;-webkit-text-stroke:0;paint-order:normal;padding:.02em .26em .06em;border-radius:.22em;text-shadow:none;box-shadow:0 .07em 0 #111;border:3px solid #111}}
 .vig,.grain,.bar{{position:absolute;pointer-events:none;z-index:50}}

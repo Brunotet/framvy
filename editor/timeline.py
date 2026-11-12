@@ -117,6 +117,9 @@ def compile_job(job: Job, profile: dict, workdir: Path, ctx: Ctx):
         motion = v.motion or (mot_default if mot_default != "auto" else MOTIONS[i % len(MOTIONS)])
         if vis["type"] == "image":
             vis["motion"] = motion
+            if isinstance(s.focus, dict) and s.focus.get("at") is not None:
+                vis["focus"] = {"at": float(s.focus["at"]), "x": float(s.focus.get("x", 50)), "y": float(s.focus.get("y", 55)),
+                                "amount": float(s.focus.get("amount", 0.16))}
         elif vis["type"] == "text":
             vis["motion"] = "none"
 
