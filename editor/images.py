@@ -74,17 +74,47 @@ def _extract(resp: requests.Response) -> list[bytes]:
     return imgs
 
 
+class ImageEndpointDown(RuntimeError):
+    """The image endpoint timed out, refused the connection or answered 5xx on every attempt.
+    Waiting for more chunks would just burn the same time again, so the render stops here and tells n8n."""
+
+
+def _is_endpoint_failure(ex: Exception) -> bool:
+    if isinstance(ex, (requests.exceptions.Timeout, requests.exceptions.ConnectionError,
+                       requests.exceptions.TooManyRedirects)):
+        return True
+    resp = getattr(ex, "response", None)
+    return resp is not None and resp.status_code >= 500
+
+
+def _deadline_hook(deadline: float, seconds: int):
+    # Modal answers "303 see other" about every 150 s and requests silently follows it with a fresh read timeout,
+    # so `timeout=` alone never ends a request that is stuck in Modal's queue (that is how one call hung for 30 min).
+    # This enforces a total limit per attempt, checked each time Modal answers (so up to ~150 s late).
+    def hook(response, *args, **kwargs):
+        if time.monotonic() > deadline:
+            raise requests.exceptions.Timeout(f"no result from the image endpoint after ~{seconds}s")
+        return response
+    return hook
+
+
 def _post(url: str, body: dict, cfg: dict) -> list[bytes]:
     last = None
-    for attempt in range(int(cfg.get("retries", 2)) + 1):
+    endpoint_failure = False
+    seconds = int(cfg.get("timeout", 400))
+    for attempt in range(int(cfg.get("retries", 1)) + 1):
         try:
-            r = requests.post(url, json=body, timeout=int(cfg.get("timeout", 900)))
+            r = requests.post(url, json=body, timeout=(15, 170),
+                              hooks={"response": _deadline_hook(time.monotonic() + seconds, seconds)})
             r.raise_for_status()
             return _extract(r)
         except Exception as ex:  # noqa
             last = ex
+            endpoint_failure = _is_endpoint_failure(ex)
             print(f"[image] attempt {attempt + 1} failed: {str(ex)[:200]}", flush=True)
             time.sleep(5 * (attempt + 1))
+    if endpoint_failure and cfg.get("abort_if_down", True):
+        raise ImageEndpointDown(f"the image endpoint is down or too slow ({str(last)[:200]})")
     raise RuntimeError(str(last))
 
 
@@ -162,6 +192,8 @@ def generate_images(items, cfg: dict, workdir: Path, ctx: Ctx, size: Optional[tu
                     for (key, _, path, _c), b in zip(chunk, imgs):
                         if _save(b, path):
                             result[key] = path
+                except ImageEndpointDown:
+                    raise
                 except Exception as ex:  # noqa
                     ctx.warn(f"batch image call failed ({str(ex)[:300]}); falling back to single calls for this chunk")
     rest = [t for t in todo if t[0] not in result]
@@ -173,6 +205,8 @@ def generate_images(items, cfg: dict, workdir: Path, ctx: Ctx, size: Optional[tu
             if _save(b, path):
                 return key, path
             ctx.warn("image endpoint returned data PIL could not read")
+        except ImageEndpointDown:
+            raise
         except Exception as ex:  # noqa
             ctx.warn(f"image generation failed for a scene ({str(ex)[:300]}); it will use a text visual")
         return key, None
