@@ -41,7 +41,7 @@ permissions:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 60     # was 300: a stuck step used to hold the job for 5 hours
     steps:
       - uses: actions/checkout@v4
 
@@ -92,6 +92,7 @@ jobs:
           else echo "need payload_b64, job_json or job_url" && exit 1; fi
 
       - name: Render
+        timeout-minutes: 45
         env:
           CALLBACK_URL: ${{ inputs.callback_url }}
           RENDER_ID: ${{ inputs.render_id }}
