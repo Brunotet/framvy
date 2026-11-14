@@ -56,8 +56,9 @@ image:                   # your Qwen Image 2.1 Modal app (qwen_image_2_1_app.py)
   size_keys: [width, height]
   max_parallel: 1        # 1 = sequential on ONE warm container (cheapest)
   extra_body: {}
-  timeout: 900
-  retries: 2
+  timeout: 400           # total seconds to wait per request (a normal 4-image batch incl. cold start takes ~160 s)
+  retries: 1
+  abort_if_down: true    # endpoint down/too slow -> stop the render now and tell n8n, instead of waiting for hours
 look:
   grade: punchy          # warm | cool | punchy | none
   vignette: 0.35
