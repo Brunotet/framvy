@@ -25,11 +25,11 @@
       },
       {
         "client": "ios",
-        "error": "ERROR: [youtube] fDr58RsxmVo: Sign in to confirm you\u2019re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
+        "error": "ERROR: [youtube] fDr58RsxmVo: Sign in to confirm you\u2019re not a bot. This helps protect our community. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies\n"
       }
     ]
   },
   "fallback_transcript": false,
-  "fallback_transcript_error": "\nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=fDr58RsxmVo! This is most likely caused by:\n\nYouTube is blocking requests from your IP. This usually is due to one of the following reasons:\n- You have done too many requests and your IP has been blocked by YouTube\n- You ",
+  "fallback_transcript_error": "\nCould not retrieve a transcript for the video https://www.youtube.com/watch?v=fDr58RsxmVo! This is most likely caused by:\n\nRequest to YouTube failed: 403 Client Error: Forbidden for url: https://www.youtube.com/youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8\n\nIf you are sure that the",
   "result": "download_failed"
 }
