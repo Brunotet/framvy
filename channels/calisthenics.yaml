@@ -20,5 +20,12 @@ tail_seconds: 0.8
 image:
   send_size: false
   extra_body: {width: 1664, height: 928}
-  prompt_prefix: "Black-and-white manga-style ink illustration on a pure black background, crisp white linework with fine cross-hatching and dramatic rim lighting, one cyan accent color, wide cinematic 16:9 composition with the subject centered and clean empty space around it. Recurring character KAI: a lean athletic young man with swept-back hair, bare torso, cyan shorts and cyan wrist wraps, drawn in white ink line art. "
+  prompt_prefix: "Black-and-white manga-style ink illustration, crisp white linework with fine cross-hatching and dramatic rim lighting on a black background, one cyan accent color, wide cinematic 16:9 composition. Exaggerated, highly expressive faces and big dynamic poses like a shonen manga panel; any setting is drawn with only a few sparse white lines so the characters stand out. "
+  cast:
+    Kai: "a lean athletic young man with swept-back hair, bare torso, cyan shorts and cyan wrist wraps"
+    Dan: "a big heavyset friendly man with a round face and short beard, grey tank top and black shorts"
+    Finn: "a very thin tall young man with round glasses, an oversized white t-shirt and baggy shorts"
+    Coach: "an older muscular bald man with a thick grey beard, a whistle on a cord and a cyan track jacket"
+    Maya: "a strong athletic woman with a high ponytail, a sports top and leggings with a cyan stripe"
+    Sam: "a tired office worker in a rumpled shirt and loosened tie with messy hair"
   negative_prompt: "text, letters, numbers, watermark, logo, signature, blurry, gray background, white background, color photo, 3d render, blood, gore"
