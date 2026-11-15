@@ -1,0 +1,82 @@
+name: study-any-video
+
+# Download a reference video from Facebook / Instagram / TikTok / X / any site yt-dlp supports
+# (YouTube has its own workflow, study.yml, with the bot-check workarounds),
+# then run analyzer/analyze.py on it: transcript, shot cuts, frames, contact sheets, audio report.
+# Output: analysis/<id>/ (summary.md first). For personal style study only. Do not re-upload the source video.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Video URL (Facebook, Instagram, TikTok, X ...)"
+        required: true
+      cut_threshold:
+        description: "Scene-cut sensitivity (lower = more cuts)"
+        required: false
+        default: "0.25"
+      max_shots:
+        description: "Max per-shot screenshots to save"
+        required: false
+        default: "80"
+      whisper_model:
+        description: "tiny | base | small | medium"
+        required: false
+        default: "small"
+
+permissions:
+  contents: write
+
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      URL: ${{ inputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Dependencies
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg jq
+          pip install -U "yt-dlp[default]" faster-whisper numpy
+          pip install "av>=14,<16"
+
+      - name: Download
+        id: dl
+        run: |
+          ID=$(python3 -c "import os,re; print(re.sub(r'\W+', '_', os.environ['URL'])[-16:])")
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+          mkdir -p "workdir/$ID"
+          yt-dlp --no-playlist --no-warnings -f "bv*[height<=720]+ba/b[height<=720]/b" \
+            --merge-output-format mp4 --write-info-json -o "workdir/$ID/video.%(ext)s" "$URL"
+          ls -la "workdir/$ID"
+          test -s "workdir/$ID/video.mp4"
+
+      - name: Analyze
+        env:
+          ID: ${{ steps.dl.outputs.id }}
+          CUT: ${{ inputs.cut_threshold }}
+          SHOTS: ${{ inputs.max_shots }}
+          WMODEL: ${{ inputs.whisper_model }}
+        run: |
+          python analyzer/analyze.py --url "$URL" --video "workdir/$ID/video.mp4" \
+            --cut-threshold "$CUT" --max-shots "$SHOTS" --whisper-model "$WMODEL"
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "framvy-analyzer"
+          git config user.email "actions@users.noreply.github.com"
+          git add analysis
+          if git diff --cached --quiet; then echo "nothing to commit"; exit 0; fi
+          git commit -m "study: $URL"
+          for i in 1 2 3 4 5 6; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((RANDOM % 9 + 3))
+          done
+          echo "push failed after retries" && exit 1
