@@ -6,7 +6,7 @@ Sound-effect resolver. Order (a render never breaks on a missing sound, and noth
   4. otherwise the cue is skipped: silence, never a generated beep
 """
 from __future__ import annotations
-import hashlib, json, os, random, re
+import hashlib, json, os, random, re, shutil
 from pathlib import Path
 from typing import Optional
 import requests
@@ -132,6 +132,39 @@ class SfxLibrary:
                 return self._entry_result(e, f)
         return None
 
+    def _add_to_library(self, item: dict, f: Path, query: str, meta: dict) -> None:
+        """Every sound found on Freesound is kept in sfx_library/ (file + index entry), so the next render
+        finds it locally without an API call. The render workflow commits these new files back to the repo."""
+        try:
+            sid = f"freesound:{item['id']}"
+            if any(e.get("id") == sid for e in self.index):
+                return
+            files_dir = self.local_dir / "files"
+            files_dir.mkdir(parents=True, exist_ok=True)
+            dest = files_dir / f"freesound_{item['id']}.mp3"
+            if not dest.exists():
+                shutil.copyfile(f, dest)
+            tags: list[str] = []
+            for t in list(item.get("tags") or []) + sorted(_tokens(query)):   # the query words make it findable next time
+                t = str(t).lower().strip()
+                if t and t not in tags:
+                    tags.append(t)
+            dur = float(item.get("duration") or meta.get("duration") or 0)
+            entry = {"id": sid, "file": dest.name, "name": item.get("name", ""), "tags": tags[:14],
+                     "category": "", "pack": "freesound", "vendor": "", "duration": round(dur, 3),
+                     "onset": meta.get("onset", 0.0), "peak": meta.get("peak", 0.0),
+                     "active_end": meta.get("active_end", round(dur, 3)),
+                     "source": "freesound", "license": "CC0"}
+            p = self.local_dir / "index.json"
+            data = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+            if not any(e.get("id") == sid for e in data):
+                data.append(entry)
+                p.write_text(json.dumps(data, indent=1), encoding="utf-8")
+            self.index.append({**entry, "_where": "local"})
+            self.ctx.warn(f"saved new sound '{item.get('name', '')}' (freesound:{item['id']}) to the sfx library")
+        except Exception as ex:
+            self.ctx.warn(f"could not save freesound:{item.get('id')} to the sfx library: {ex}")
+
     def _from_freesound(self, query: str) -> Optional[dict]:
         if not self.fs_key:
             return None
@@ -141,8 +174,10 @@ class SfxLibrary:
             for item in results:
                 f = download_preview(item, self.cache / "freesound")
                 if f:
+                    meta = _meta_cached(f, self.cache / "meta")
+                    self._add_to_library(item, f, query, meta)
                     return {"path": f, "id": f"freesound:{item['id']}", "source": "freesound",
-                            "license": "CC0", "meta": _meta_cached(f, self.cache / "meta"), "name": item.get("name", "")}
+                            "license": "CC0", "meta": meta, "name": item.get("name", "")}
         except Exception as ex:
             self.ctx.warn(f"freesound fallback failed for '{query}': {ex}")
         return None
