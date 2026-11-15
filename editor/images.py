@@ -118,6 +118,18 @@ def _post(url: str, body: dict, cfg: dict) -> list[bytes]:
     raise RuntimeError(str(last))
 
 
+def _expand_cast(prompt: str, cast) -> str:
+    """The director writes only cast NAMES (Kai, Dan, ...). The first time a name appears, its full look from
+    image.cast is added right after it, so every picture of that character looks the same."""
+    if not cast or not isinstance(cast, dict):
+        return prompt
+    for name, look in cast.items():
+        m = re.search(r"\b" + re.escape(str(name)) + r"\b", prompt, re.IGNORECASE)
+        if m:
+            prompt = prompt[:m.end()] + f" ({look})" + prompt[m.end():]
+    return prompt
+
+
 def _save(b: bytes, path: Path) -> bool:
     try:
         from PIL import Image
@@ -161,7 +173,7 @@ def generate_images(items, cfg: dict, workdir: Path, ctx: Ctx, size: Optional[tu
         if key in seen_keys:
             continue
         seen_keys.add(key)
-        final = f"{pre}{prompt}{suf}".strip()
+        final = f"{pre}{_expand_cast(prompt, cfg.get('cast'))}{suf}".strip()
         h = hashlib.sha1(f"{final}|{steps}|{req_size}|{cfg.get('negative_prompt', '')}|{','.join(chars)}".encode()).hexdigest()[:16]
         path = out_dir / f"{h}.jpg"
         if path.exists():
