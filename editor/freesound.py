@@ -49,7 +49,7 @@ def download_preview(item: dict, dest: Path) -> Optional[Path]:
     url = (item.get("previews") or {}).get("preview-hq-mp3")
     if not url:
         return None
-    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.mkdir(parents=True, exist_ok=True)      # was dest.parent: the folder itself was never created -> 'No such file or directory'
     out = dest / f"freesound_{item['id']}.mp3"
     if out.exists():
         return out
