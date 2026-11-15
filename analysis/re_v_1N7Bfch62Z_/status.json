@@ -1,0 +1,18 @@
+{
+  "video_id": "re_v_1N7Bfch62Z_",
+  "cuts": {
+    "ok": true,
+    "count": 20
+  },
+  "transcript": {
+    "ok": true,
+    "language": "en",
+    "words": 469
+  },
+  "audio": {
+    "ok": true,
+    "onsets": 179,
+    "sfx_clips": 1
+  },
+  "result": "ok"
+}

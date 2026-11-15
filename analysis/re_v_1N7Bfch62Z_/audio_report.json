@@ -1,0 +1,33 @@
+{
+ "levels": {
+  "speech_rms_db": -22.2,
+  "gap_rms_db": -32.8,
+  "gap_flatness": 0.584,
+  "music_or_ambience_bed_likely": true,
+  "bed_below_voice_db": 10.7
+ },
+ "pace": {
+  "words": 469,
+  "words_per_min": 239,
+  "pauses_over_0.35s": 2,
+  "median_pause_s": 0.0
+ },
+ "onset_threshold": 3043.14,
+ "onsets_total": 179,
+ "cuts_with_audio_hit": 0,
+ "cuts_total": 19,
+ "hit_offsets_median_s": null,
+ "sfx_candidates": [
+  {
+   "t": 117.98,
+   "strength": 1.29,
+   "peak_db": -25.8,
+   "decay_s": 0.27,
+   "centroid_hz": 3542,
+   "flatness": 0.618,
+   "during_speech": false,
+   "guess": "whoosh/swipe (noise sweep)",
+   "clip": "01_t0117.98_whoosh-swipe-noise-sweep.mp3"
+  }
+ ]
+}
