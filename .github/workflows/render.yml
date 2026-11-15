@@ -41,7 +41,7 @@ permissions:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 60     # was 300: a stuck step used to hold the job for 5 hours
+    timeout-minutes: 75     # was 300: a stuck step used to hold the job for 5 hours
     steps:
       - uses: actions/checkout@v4
 
@@ -92,7 +92,7 @@ jobs:
           else echo "need payload_b64, job_json or job_url" && exit 1; fi
 
       - name: Render
-        timeout-minutes: 45
+        timeout-minutes: 60
         env:
           CALLBACK_URL: ${{ inputs.callback_url }}
           RENDER_ID: ${{ inputs.render_id }}
@@ -102,10 +102,23 @@ jobs:
           QWEN_IMAGE_URL: ${{ secrets.QWEN_IMAGE_URL }}      # optional: defaults to your Qwen Image 2.1 endpoint
           QWEN_BATCH_URL: ${{ secrets.QWEN_BATCH_URL }}      # optional: defaults to the batch URL in channels/default.yaml
           FREESOUND_API_KEY: ${{ secrets.FREESOUND_API_KEY }}
+          FREESOUND_API_KEY_2: ${{ secrets.FREESOUND_API_KEY_2 }}   # fallback when the main key is rate-limited
         run: |
           python -m editor.cli --job job.json --callback-url "$CALLBACK_URL" --render-id "$RENDER_ID" \
             --channel "$CHANNEL" --skip-upload "$SKIP_UPLOAD"
 
+      - name: Save new sounds to the library
+        if: always()
+        run: |
+          git config user.name "sfx-library"; git config user.email "sfx-library@users.noreply.github.com"
+          git add sfx_library
+          if git diff --cached --quiet; then
+            echo "no new sounds to save"
+          else
+            git commit -m "sfx library: add sounds found on Freesound"
+            git pull --rebase -q || git rebase --abort || true
+            git push || true
+          fi
       - name: Preview contact sheet (test renders only)
         if: always() && inputs.skip_upload == 'true'
         run: |
