@@ -51,11 +51,26 @@ jobs:
           cache: pip
 
       - name: ffmpeg (static build, no apt mirror needed)
+        continue-on-error: true      # the action scrapes a web page for the version and broke once ("Failed to read version from readme"); the next step covers it
         uses: FedericoCarboni/setup-ffmpeg@v3
         with:
           ffmpeg-version: release
           github-token: ${{ github.token }}
 
+      - name: ffmpeg fallback (runs only if ffmpeg is still missing)
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            echo "setup-ffmpeg did not provide ffmpeg; installing a static build from BtbN (GitHub releases)"
+            if curl -fsSL --retry 3 -o /tmp/ffmpeg.tar.xz https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz \
+               && mkdir -p /tmp/ffmpeg && tar -xf /tmp/ffmpeg.tar.xz -C /tmp/ffmpeg --strip-components=1 \
+               && sudo cp /tmp/ffmpeg/bin/ffmpeg /tmp/ffmpeg/bin/ffprobe /usr/local/bin/; then
+              echo "installed BtbN build"
+            else
+              echo "BtbN download failed; falling back to apt"
+              sudo apt-get update -q && sudo apt-get install -y --no-install-recommends ffmpeg
+            fi
+          fi
+          ffmpeg -version | head -1
       - name: Fonts (only if missing, never blocks)
         run: |
           if ! fc-list | grep -qi emoji; then
