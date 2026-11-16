@@ -15250,5 +15250,32 @@
   "active_end": 1.19,
   "source": "freesound",
   "license": "CC0"
+ },
+ {
+  "id": "freesound:155660",
+  "file": "freesound_155660.mp3",
+  "name": "cig_extinguish.wav",
+  "tags": [
+   "idapalooza",
+   "tn",
+   "tennessee",
+   "burn",
+   "cig",
+   "cigarette",
+   "crackle",
+   "extinguish",
+   "fire",
+   "hiss",
+   "sizzle"
+  ],
+  "category": "",
+  "pack": "freesound",
+  "vendor": "",
+  "duration": 1.063,
+  "onset": 0.02,
+  "peak": 0.08,
+  "active_end": 0.95,
+  "source": "freesound",
+  "license": "CC0"
  }
 ]
