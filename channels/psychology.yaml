@@ -7,8 +7,8 @@ uppercase: true
 palette:
   - ["#ffffff", "#ffffff"]
 motion_default: auto
-transition_default: whip
-transition_duration: 0.2
+transition_default: fade
+transition_duration: 0.4
 layout: {frame: true, frame_w: 96, frame_top: 33, header_top: 9, cap_top: 66}
 header: {size_pct: 0.036}
 captions: {style: word, position: lower, max_words: 1, max_chars: 22, size_pct: 0.04}
