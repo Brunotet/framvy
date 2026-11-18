@@ -348,7 +348,7 @@ html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#000;font-family:
 .frame .vimg{{width:100%;height:100%;display:block}}
 .fz{{width:100%;height:100%}}
 .hdr{{position:absolute;left:6%;right:6%;top:{layout.get("header_top", 9)}%;text-align:center;font-weight:900;line-height:1.14;font-size:{round(H * float(header.get("size_pct", 0.034)))}px;color:#111;z-index:44}}
-.cap.word .cw{{background:{accent};color:#111;-webkit-text-stroke:0;paint-order:normal;padding:.02em .26em .06em;border-radius:.22em;text-shadow:none;box-shadow:0 .07em 0 #111;border:3px solid #111}}
+.cap.word .cw{{background:none;color:#111;-webkit-text-stroke:0;paint-order:normal;padding:0 .14em;text-shadow:none;box-shadow:none;border:none}}
 .vig,.grain,.bar{{position:absolute;pointer-events:none;z-index:50}}
 .vig{{inset:0}}
 .grain{{inset:0;mix-blend-mode:overlay;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1.2px),radial-gradient(rgba(0,0,0,.18) 1px,transparent 1.2px);background-size:3px 3px,5px 5px}}
