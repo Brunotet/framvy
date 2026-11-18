@@ -26,7 +26,7 @@ def mix_audio(out: Path, duration: float, voice, music, voice_gain: float, music
         idx += 1
         if voice_label:  # duck music while the voice speaks
             chains.append("[vo]asplit=2[vo_a][vo_b]")
-            chains.append("[mus][vo_b]sidechaincompress=threshold=0.03:ratio=10:attack=15:release=450[musd]")
+            chains.append("[mus][vo_b]sidechaincompress=threshold=0.05:ratio=3:attack=20:release=500[musd]")
             labels.append("musd")
             voice_label = "vo_a"
         else:
