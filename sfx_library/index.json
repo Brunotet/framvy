@@ -15277,5 +15277,25 @@
   "active_end": 0.95,
   "source": "freesound",
   "license": "CC0"
+ },
+ {
+  "id": "freesound:194365",
+  "file": "freesound_194365.mp3",
+  "name": "Door knocking (Angry).wav",
+  "tags": [
+   "door",
+   "knocking",
+   "waw",
+   "knock"
+  ],
+  "category": "",
+  "pack": "freesound",
+  "vendor": "",
+  "duration": 2.116,
+  "onset": 0.12,
+  "peak": 0.96,
+  "active_end": 1.12,
+  "source": "freesound",
+  "license": "CC0"
  }
 ]
