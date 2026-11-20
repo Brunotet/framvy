@@ -125,6 +125,72 @@ def assign_timing(segments: list, words: list, debug: bool = False) -> list:
     return result
 
 
+def _whisper_times(audio_path: Path) -> Optional[list]:
+    """Word times measured from the finished audio itself (faster-whisper on CPU). None when unavailable."""
+    try:
+        from faster_whisper import WhisperModel
+    except Exception as ex:  # noqa
+        print(f"[timing] faster-whisper unavailable ({ex}); using the TTS timestamps", flush=True)
+        return None
+    try:
+        model = WhisperModel("base.en", device="cpu", compute_type="int8")
+        segments, _ = model.transcribe(str(audio_path), language="en", word_timestamps=True, beam_size=1,
+                                       vad_filter=False, condition_on_previous_text=False)
+        heard = [{"word": w.word.strip(), "start": float(w.start), "end": float(w.end)}
+                 for seg in segments for w in (seg.words or [])]
+        return heard or None
+    except Exception as ex:  # noqa
+        print(f"[timing] audio measurement failed ({ex}); using the TTS timestamps", flush=True)
+        return None
+
+
+def retime_words(tts_words: list, heard: list):
+    """Compare the TTS word times with the times measured in the real audio. Returns (words_to_use, note).
+    Captions keep the TTS word text; only start/end change, and only when the two clearly disagree
+    (median gap over 0.10 s or any gap over 0.35 s). Words that cannot be matched are interpolated."""
+    a = [_norm_tok(w["word"]) for w in tts_words]
+    b = [_norm_tok(w["word"]) for w in heard]
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    st = [None] * len(a)
+    en = [None] * len(a)
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag == "equal":
+            for k in range(i2 - i1):
+                st[i1 + k] = heard[j1 + k]["start"]
+                en[i1 + k] = heard[j1 + k]["end"]
+    idx = [i for i in range(len(a)) if st[i] is not None]
+    if len(idx) < 0.7 * len(a):
+        return tts_words, f"timing check skipped: only {len(idx)} of {len(a)} words matched the audio"
+    signed = sorted(st[i] - float(tts_words[i]["start"]) for i in idx)
+    gaps = sorted(abs(g) for g in signed)
+    median, worst, mid = gaps[len(gaps) // 2], gaps[-1], signed[len(signed) // 2]
+    note = f"timing check: voice timestamps vs real audio, median {mid:+.2f}s, worst {worst:.2f}s over {len(idx)} words"
+    if median <= 0.10 and worst <= 0.35:
+        return tts_words, note + " (in sync, kept)"
+    for i in range(len(a)):
+        if st[i] is not None:
+            continue
+        prev = max((j for j in idx if j < i), default=None)
+        nxt = min((j for j in idx if j > i), default=None)
+        if prev is not None and nxt is not None:
+            f = (i - prev) / (nxt - prev)
+            st[i] = st[prev] + (st[nxt] - st[prev]) * f
+            en[i] = en[prev] + (en[nxt] - en[prev]) * f
+        elif prev is not None:
+            st[i] = float(tts_words[i]["start"]) + (st[prev] - float(tts_words[prev]["start"]))
+            en[i] = float(tts_words[i]["end"]) + (st[prev] - float(tts_words[prev]["start"]))
+        else:
+            st[i] = float(tts_words[i]["start"]) + (st[nxt] - float(tts_words[nxt]["start"]))
+            en[i] = float(tts_words[i]["end"]) + (st[nxt] - float(tts_words[nxt]["start"]))
+    fixed, last_start = [], 0.0
+    for i, w in enumerate(tts_words):
+        s = max(st[i], last_start)
+        e = max(en[i], s + 0.03)
+        fixed.append({**w, "start": s, "end": e})
+        last_start = s
+    return fixed, note + " -> corrected from the audio"
+
+
 def narrate(script: str, beats: list[dict], vo, out_dir: Path) -> dict:
     """ONE TTS call for the whole script (natural prosody, cheapest), then time every beat against it."""
     tts = get_tts_safe(
@@ -133,6 +199,14 @@ def narrate(script: str, beats: list[dict], vo, out_dir: Path) -> dict:
         pause_after_ms=vo.pause_after_ms, strict_short_sentences=vo.strict_short_sentences)
     if not tts["words"]:
         raise ValueError("Chatterbox returned no word timestamps")
-    timed = assign_timing(beats, tts["words"], debug=os.environ.get("DEBUG_TIMING") == "1")
-    words = [{"w": w["word"], "start": float(w["start"]), "end": float(w["end"])} for w in tts["words"]]
-    return {"audio_path": tts["audio_path"], "words": words, "beats": timed}
+    tts_words, timing_note = tts["words"], None
+    try:
+        heard = _whisper_times(tts["audio_path"])
+        if heard:
+            tts_words, timing_note = retime_words(tts_words, heard)
+            print(f"[timing] {timing_note}", flush=True)
+    except Exception as ex:  # noqa
+        print(f"[timing] re-timing skipped: {ex}", flush=True)
+    timed = assign_timing(beats, tts_words, debug=os.environ.get("DEBUG_TIMING") == "1")
+    words = [{"w": w["word"], "start": float(w["start"]), "end": float(w["end"])} for w in tts_words]
+    return {"audio_path": tts["audio_path"], "words": words, "beats": timed, "timing_note": timing_note}
