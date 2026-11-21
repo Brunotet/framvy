@@ -30,6 +30,8 @@ def prepare(job: Job, profile: dict, workdir: Path, ctx: Ctx) -> None:
         print("[prep] narrating script with Chatterbox", flush=True)
         res = narrate(vo.script, [{"text": s.text} for s in scenes], vo, assets)
         vo.path = str(res["audio_path"])
+        if res.get("timing_note"):
+            ctx.warn(res["timing_note"])
         vo.words = [Word(**w) for w in res["words"]]
         for i, (s, b) in enumerate(zip(scenes, res["beats"])):
             s.start = 0.0 if i == 0 else float(b["start"])
