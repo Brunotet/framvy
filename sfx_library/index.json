@@ -15297,5 +15297,24 @@
   "active_end": 1.12,
   "source": "freesound",
   "license": "CC0"
+ },
+ {
+  "id": "freesound:362622",
+  "file": "freesound_362622.mp3",
+  "name": "Stamp",
+  "tags": [
+   "office",
+   "paper",
+   "stamp"
+  ],
+  "category": "",
+  "pack": "freesound",
+  "vendor": "",
+  "duration": 0.642,
+  "onset": 0.04,
+  "peak": 0.09,
+  "active_end": 0.51,
+  "source": "freesound",
+  "license": "CC0"
  }
 ]
