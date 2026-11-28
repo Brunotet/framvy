@@ -1,7 +1,7 @@
 """
 python -m editor.cli --job job.json [--out out] [--dry-run]
   --job       path or URL of the job JSON         --job-json  inline JSON string
-  --dry-run   compile + mix audio, skip frame render and upload (fast validation)
+  --dry-run   compile the timeline (incl. the audio plan), skip render and upload (fast validation)
   n8n dispatch extras: --callback-url (the Wait node's resume URL)  --render-id  --channel  --skip-upload true|false
   The job may carry presigned_put_url + public_video_url: the video is PUT there and public_video_url is returned.
 """
@@ -11,7 +11,6 @@ from pathlib import Path
 
 import requests
 
-from .audio import mix_audio
 from .config import load_profile
 from .prepare import prepare
 from .publish import callback, put_presigned, upload_video
@@ -75,12 +74,19 @@ def main(argv=None) -> int:
         result.update(width=timeline["width"], height=timeline["height"], fps=timeline["fps"])
         (out_dir / "timeline.json").write_text(json.dumps(timeline, indent=2), encoding="utf-8")
 
-        print(f"[2/4] mixing audio ({len(sfx_plan)} sfx)", flush=True)
-        audio = mix_audio(work / "mix.wav", timeline["duration"], aud["voice"], aud["music"],
-                          aud["voice_gain"], aud["music_gain"], sfx_plan)
+        # HyperFrames plays ALL audio itself (voice, music bed with ducking, sfx, master limiter): see timeline["audio"]
+        # and editor/hf_compose.py. The ffmpeg mixer (editor/audio.py) is only the legacy fallback for the
+        # built-in stage renderer and for timelines without any audio block.
+        au = timeline.get("audio") or {}
+        print(f"[2/4] audio plan: voice={'yes' if au.get('voice') else 'no'} music={'yes' if au.get('music') else 'no'} "
+              f"sfx={len(au.get('sfx') or [])}", flush=True)
+
+        def legacy_audio() -> Path:
+            from .audio import mix_audio   # deprecated path
+            return mix_audio(work / "mix.wav", timeline["duration"], aud["voice"], aud["music"],
+                             aud["voice_gain"], aud["music_gain"], sfx_plan)
 
         if args.dry_run:
-            shutil.copy(audio, out_dir / "mix.wav")
             result.update(status="dry-run-ok", duration=timeline["duration"])
         else:
             from .render import mux, render_frames, render_hyperframes
@@ -103,7 +109,10 @@ def main(argv=None) -> int:
             result["engine"] = used
             fname = (job.output.get("filename") or f"{job.job_id}.mp4")
             final = out_dir / fname
-            mux(silent, audio, final, timeline["duration"])
+            if used == "hyperframes" and timeline.get("audio"):
+                shutil.copy(silent, final)            # the HyperFrames render already carries the finished mix
+            else:
+                mux(silent, legacy_audio(), final, timeline["duration"])
             result.update(status="ok", video_path=str(final), duration=timeline["duration"])
             if raw.get("presigned_put_url") and not skip_upload:
                 print("[4/4] uploading to R2 (presigned URL)", flush=True)

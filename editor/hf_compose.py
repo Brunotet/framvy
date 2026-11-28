@@ -192,7 +192,7 @@ def _audio_markup(timeline: dict, assets: Path, seen: dict) -> tuple[str, str]:
 
     for k, sx in enumerate(au.get("sfx") or []):
         vol = SFX_VOL.get(sx["name"], SFX_VOL_DEFAULT)
-        if any(a <= sx["start"] < b for a, b in speech) and sx["kind"] != "transition":
+        if sx["kind"] != "transition" and any(a < sx["start"] + float(sx["dur"]) and sx["start"] < b for a, b in speech):
             vol *= SFX_UNDER_SPEECH
         lane = ""
         if sx.get("cut"):
