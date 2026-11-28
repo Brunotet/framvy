@@ -15,6 +15,32 @@ from urllib.parse import unquote, urlparse
 from .config import ROOT
 from . import mapdata
 
+# ======================================================================================================
+# AUDIO TUNING BLOCK: every volume of the sound track lives here. HyperFrames plays and mixes all audio
+# (<audio> tags + data-volume + data-automation lanes + a master bus); nothing is premixed with ffmpeg.
+# Linear volumes: 1.0 = unity, 0.5 = -6 dB, 0.25 = -12 dB, 0.1 = -20 dB.
+# ======================================================================================================
+VOICE_VOL = 1.0                  # voice-over (times the job's voiceover.gain)
+MUSIC_OPEN_BELOW_VOICE_DB = -9   # music level in the pauses, relative to the voice's mean level (auto-leveled)
+MUSIC_DUCK_DB = 9                # extra dip while the voice speaks -> ducked music sits about -18 dB under the voice
+MUSIC_VOL_FALLBACK = 0.25        # data-volume of the bed when levels cannot be measured (no ffmpeg)
+MUSIC_VOL_MIN, MUSIC_VOL_MAX = 0.08, 0.60
+MUSIC_VOL_NO_VOICE = 0.45        # bed volume when the video has no voice-over at all
+DUCK_ATTACK, DUCK_RELEASE = 0.25, 0.70   # seconds: music goes down just BEFORE a phrase, comes back after it
+DUCK_MERGE_GAP = 1.0             # speech separated by less than this keeps the music ducked (no pumping)
+MUSIC_FADE_IN, MUSIC_FADE_OUT, MUSIC_LOOP_FADE = 0.6, 1.0, 0.15
+SFX_VOL = {                      # per-sound level (all clips are pre-leveled to about -16 dB mean in assets/sfx)
+    "whoosh": 0.22, "impact": 0.30, "pop": 0.30, "click": 0.28, "ding": 0.28, "heartbeat": 0.30, "paper": 0.25,
+    "coins": 0.25, "cash_register": 0.28, "shutter": 0.30, "crowd": 0.22, "riser": 0.20, "buzzer": 0.22, "cheer": 0.22,
+}
+SFX_VOL_DEFAULT = 0.25
+SFX_UNDER_SPEECH = 0.75          # extra factor for a sound that starts while the voice is speaking
+SFX_CUT_FADE = 0.08              # fade-out (s) for a sound that is cut short by its scene
+MASTER_TRUEPEAK_DB = -1.5        # delivery ceiling (dBTP) of the master bus; lookahead/release below
+MASTER_LOOKAHEAD_MS, MASTER_RELEASE_MS = 3, 80
+# track indexes of the audio clips (the picture uses track 0)
+TRACK_VOICE, TRACK_MUSIC, TRACK_SFX = 10, 11, 20
+
 SHADERS = {"domain-warp", "ridged-burn", "whip-pan", "sdf-iris", "ripple-waves", "gravitational-lens",
            "cinematic-zoom", "chromatic-split", "swirl-vortex", "thermal-distortion",
            "flash-through-white", "cross-warp-morph", "light-leak", "glitch"}
@@ -72,6 +98,114 @@ def _motion_js(sel: str, motion: str, st: float, dur: float, H: int, L: list):
             dx, dy = math.sin(k * 2.1) * amp, math.cos(k * 1.7 + 0.8) * amp * 0.8
             L.append(f'tl.to("{sel}",{{x:{dx:.1f},y:{dy:.1f},duration:0.04,ease:"none"}},{_f(st + k * 0.04)});')
         L.append(f'tl.to("{sel}",{{x:0,y:0,duration:0.12,ease:"power2.out"}},{_f(st + 23 * 0.04)});')
+
+# ---------------------------------------------------------------------------------- audio (HyperFrames mixes it)
+def _attr(obj) -> str:
+    return html.escape(json.dumps(obj, separators=(",", ":")), quote=True)
+
+
+def _music_curve(speech: list, total: float, ducking: bool) -> list:
+    """Global piecewise-linear gain of the music bed [(t, v)], v in 0..1 (1 = bed open, MUSIC_DUCK = voice speaking)."""
+    duck = 10 ** (-MUSIC_DUCK_DB / 20)
+    pts = [(0.0, 0.0), (min(MUSIC_FADE_IN, total / 4), 1.0)]
+    if ducking:
+        merged: list = []
+        for a, b in sorted(speech):
+            if merged and a - merged[-1][1] < DUCK_MERGE_GAP:
+                merged[-1][1] = max(merged[-1][1], b)
+            else:
+                merged.append([a, b])
+        for a, b in merged:
+            if a >= total:
+                break
+            a0 = max(pts[-1][0] + 0.01, a - DUCK_ATTACK)
+            pts += [(a0, 1.0 if pts[-1][1] >= 0.999 else pts[-1][1]), (max(a0 + 0.01, a), duck)]
+            b = min(b, total)
+            pts += [(b, duck), (min(total, b + DUCK_RELEASE), 1.0)]
+    fo = max(0.0, total - MUSIC_FADE_OUT)
+    pts = [(t, v) for t, v in pts if t < fo]
+    pts += [(fo, _curve_at(pts, fo)), (total, 0.0)]
+    return pts
+
+
+def _curve_at(pts: list, t: float) -> float:
+    if t <= pts[0][0]:
+        return pts[0][1]
+    for (t0, v0), (t1, v1) in zip(pts, pts[1:]):
+        if t0 <= t <= t1:
+            return v0 if t1 == t0 else v0 + (v1 - v0) * (t - t0) / (t1 - t0)
+    return pts[-1][1]
+
+
+def _lane(pts: list, a: float, b: float, fade_in: bool = False, fade_out: bool = False) -> dict:
+    """data-automation volume lane for a clip covering global time a..b (t is clip-relative)."""
+    inner = [(t, v) for t, v in pts if a < t < b]
+    seq = [(a, _curve_at(pts, a))] + inner + [(b, _curve_at(pts, b))]
+    if fade_in:
+        seq[0] = (a, 0.0)
+        seq.insert(1, (a + MUSIC_LOOP_FADE, _curve_at(pts, a + MUSIC_LOOP_FADE)))
+    if fade_out:
+        seq[-1] = (b, 0.0)
+        seq.insert(len(seq) - 1, (b - MUSIC_LOOP_FADE, _curve_at(pts, b - MUSIC_LOOP_FADE)))
+    return {"version": 1, "lanes": [{"target": "volume",
+                                      "points": [{"t": round(t - a, 3), "v": round(v, 3)} for t, v in seq]}]}
+
+
+def _audio_markup(timeline: dict, assets: Path, seen: dict) -> tuple[str, str]:
+    """Returns (<audio> tags, extra attributes for the root = master bus). ("", "") when the timeline has no audio:
+    old timelines without an "audio" key still render (silent video; the CLI then muxes the legacy mix)."""
+    au = timeline.get("audio")
+    if not au:
+        return "", ""
+    total = float(timeline["duration"])
+    speech = [tuple(x) for x in (au.get("speech") or [])]
+    out: list[str] = []
+
+    voice = au.get("voice")
+    if voice:
+        vd = min(float(voice.get("dur") or total), total) or total
+        out.append(f'<audio id="voiceover" src="{_copy_asset(voice["src"], assets, seen)}" data-start="0" '
+                   f'data-duration="{_f(vd)}" data-track-index="{TRACK_VOICE}" '
+                   f'data-volume="{_f(VOICE_VOL * float(voice.get("gain", 1.0)))}"></audio>')
+
+    music = au.get("music")
+    if music:
+        if au.get("music_gain") is not None:
+            base = float(au["music_gain"])                       # explicit job gain wins
+        elif voice and au.get("voice_db") is not None and au.get("music_db") is not None:
+            target = float(au["voice_db"]) + MUSIC_OPEN_BELOW_VOICE_DB
+            base = 10 ** ((target - float(au["music_db"])) / 20)
+            base = min(MUSIC_VOL_MAX, max(MUSIC_VOL_MIN, base))
+        else:
+            base = MUSIC_VOL_FALLBACK if voice else MUSIC_VOL_NO_VOICE
+        pts = _music_curve(speech, total, bool(voice))
+        src = _copy_asset(music["src"], assets, seen)
+        md = float(music.get("dur") or 0) or total
+        n = max(1, math.ceil(total / md - 1e-6))                  # a short track is repeated back to back
+        for k in range(n):
+            a = k * md
+            b = min(total, a + md)
+            lane = _lane(pts, a, b, fade_in=k > 0, fade_out=k < n - 1)
+            out.append(f'<audio id="music{"" if k == 0 else f"-{k + 1}"}" src="{src}" data-start="{_f(a)}" '
+                       f'data-duration="{_f(b - a)}" data-track-index="{TRACK_MUSIC}" data-volume="{_f(base)}" '
+                       f'data-automation="{_attr(lane)}"></audio>')
+
+    for k, sx in enumerate(au.get("sfx") or []):
+        vol = SFX_VOL.get(sx["name"], SFX_VOL_DEFAULT)
+        if any(a <= sx["start"] < b for a, b in speech) and sx["kind"] != "transition":
+            vol *= SFX_UNDER_SPEECH
+        lane = ""
+        if sx.get("cut"):
+            d = float(sx["dur"])
+            fd = min(SFX_CUT_FADE, d / 2)
+            lane = f' data-automation="{_attr({"version": 1, "lanes": [{"target": "volume", "points": [{"t": 0, "v": 1}, {"t": round(d - fd, 3), "v": 1}, {"t": round(d, 3), "v": 0}]}]})}"'
+        out.append(f'<audio id="sfx{k + 1}-{sx["name"]}" src="{_copy_asset(sx["src"], assets, seen)}" data-start="{_f(sx["start"])}" '
+                   f'data-duration="{_f(sx["dur"])}" data-track-index="{TRACK_SFX + k}" data-volume="{_f(vol)}"{lane}></audio>')
+
+    master = {"version": 1, "nodes": [{"type": "truepeak", "id": "m1", "label": "Delivery ceiling",
+                                       "params": {"ceiling": MASTER_TRUEPEAK_DB, "lookahead": MASTER_LOOKAHEAD_MS,
+                                                  "release": MASTER_RELEASE_MS}}]}
+    return "\n".join(out), f' data-fx-chain="{_attr(master)}"'
 
 
 def build(timeline: dict, project: Path) -> Path:
@@ -307,6 +441,7 @@ def build(timeline: dict, project: Path) -> Path:
         shader_js = (f'window.HyperShader.init({{bgColor:"#000",scenes:{json.dumps(scene_ids)},timeline:tl,'
                      f'transitions:[{",".join(trs)}]}});')
     grade = GRADES.get(look.get("grade", "none"), "none")
+    audio_html, master_attr = _audio_markup(timeline, assets, seen)
 
     doc = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
@@ -356,12 +491,13 @@ html,body{{width:{W}px;height:{H}px;overflow:hidden;background:#000;font-family:
 </style></head>
 <body>
 {map_defs}
-<div id="main" data-composition-id="main" data-width="{W}" data-height="{H}" data-start="0" data-duration="{_f(total)}">
+<div id="main" data-composition-id="main" data-width="{W}" data-height="{H}" data-start="0" data-duration="{_f(total)}"{master_attr}>
 {"".join(scene_html)}
 {hdr_html}
 {"".join(popup_html)}
 {"".join(cap_html)}
 {ov_html}
+{audio_html}
 </div>
 <script>
 window.__timelines = window.__timelines || {{}};

@@ -1,0 +1,89 @@
+{
+ "_note": "All files are CC0 1.0 (public domain) Freesound clips, trimmed/level-matched with ffmpeg. Previously stored in sfx_library/.",
+ "files": {
+  "whoosh.mp3": {
+   "freesound_id": 683096,
+   "title": "Woosh",
+   "url": "https://freesound.org/s/683096/",
+   "license": "CC0 1.0"
+  },
+  "impact.mp3": {
+   "freesound_id": 81148,
+   "title": "SUB OCEANO D.wav",
+   "url": "https://freesound.org/s/81148/",
+   "license": "CC0 1.0"
+  },
+  "pop.mp3": {
+   "freesound_id": 401542,
+   "title": "Pop Sound",
+   "url": "https://freesound.org/s/401542/",
+   "license": "CC0 1.0"
+  },
+  "click.mp3": {
+   "freesound_id": 253168,
+   "title": "SFX UI Button Click",
+   "url": "https://freesound.org/s/253168/",
+   "license": "CC0 1.0"
+  },
+  "ding.mp3": {
+   "freesound_id": 611113,
+   "title": "bell ding 1.wav",
+   "url": "https://freesound.org/s/611113/",
+   "license": "CC0 1.0"
+  },
+  "heartbeat.mp3": {
+   "freesound_id": 22416,
+   "title": "Four Heartbeats HQ_BeatSmith.wav",
+   "url": "https://freesound.org/s/22416/",
+   "license": "CC0 1.0"
+  },
+  "paper.mp3": {
+   "freesound_id": 353125,
+   "title": "Paper Rustle",
+   "url": "https://freesound.org/s/353125/",
+   "license": "CC0 1.0"
+  },
+  "coins.mp3": {
+   "freesound_id": 338260,
+   "title": "Money Bag",
+   "url": "https://freesound.org/s/338260/",
+   "license": "CC0 1.0"
+  },
+  "cash_register.mp3": {
+   "freesound_id": 728224,
+   "title": "cash register chching",
+   "url": "https://freesound.org/s/728224/",
+   "license": "CC0 1.0"
+  },
+  "shutter.mp3": {
+   "freesound_id": 170229,
+   "title": "Camera Shutter",
+   "url": "https://freesound.org/s/170229/",
+   "license": "CC0 1.0"
+  },
+  "crowd.mp3": {
+   "freesound_id": 324898,
+   "title": "Crowd shock.wav",
+   "url": "https://freesound.org/s/324898/",
+   "license": "CC0 1.0"
+  },
+  "riser.mp3": {
+   "freesound_id": 685256,
+   "title": "Riser sound effect short.wav",
+   "url": "https://freesound.org/s/685256/",
+   "license": "CC0 1.0"
+  },
+  "buzzer.mp3": {
+   "freesound_id": 700641,
+   "title": "Incorrect Buzzer",
+   "url": "https://freesound.org/s/700641/",
+   "license": "CC0 1.0"
+  },
+  "cheer.mp3": {
+   "freesound_id": 333404,
+   "title": "Cheer 2.wav",
+   "url": "https://freesound.org/s/333404/",
+   "license": "CC0 1.0"
+  }
+ }
+}
