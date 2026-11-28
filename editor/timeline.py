@@ -1,13 +1,16 @@
 """
 Compile (job + channel profile) into:
   - timeline.json  : what the browser stage renders (visuals, popups, captions, look)
-  - sfx plan       : [(path, at, gain)] for the audio mixer
+  - timeline["audio"]: voice / music / speech segments / placed sound effects. HyperFrames plays ALL audio
+                     itself (hf_compose.py emits the <audio> tags).
+  - sfx plan       : [{path, delay, ...}] ONLY for the legacy ffmpeg mixer (editor/audio.py), used when the old
+                     built-in stage renderer is the fallback
 Channels choose their own ingredients: images are OPTIONAL per channel and per scene.
 A scene that asks for an image but can't have one (channel has images off, download
 failed) quietly becomes a kinetic-text scene, so nothing ever breaks.
 """
 from __future__ import annotations
-import json
+import json, re, subprocess
 from pathlib import Path
 from typing import Optional
 
@@ -15,7 +18,7 @@ from .assets import fetch, valid_image
 from .captions import build_chunks, words_from_scenes
 from .config import ROOT, resolve_format
 from .schema import Job
-from .sfx import SfxLibrary
+from . import sfxbank
 from .util import Ctx, probe_duration
 
 MOTIONS = ["zoom_in", "pan_left", "zoom_out", "pan_right", "push", "float"]
@@ -131,18 +134,26 @@ def compile_job(job: Job, profile: dict, workdir: Path, ctx: Ctx):
             for p in s.popups:
                 p_at = p.at if p.at is not None else s.start + p.offset
                 popups.append({**p.model_dump(), "at": p_at, "color": p.color or profile.get("accent", "#FFD400")})
-                if sfx_on and auto:
-                    sfx_cues.append({"query": "pop", "at": p_at, "gain": sfx_gain * 0.8, "until": s.end,
-                                     "dur": 0.6, "align": "onset"})
+        # sound design: a soft whoosh on every non-cut scene change + AT MOST ONE content sound per scene
+        # (the planner's first usable cue, else a pop for the first pop-up)
         if sfx_on and auto and i > 0 and trans != "cut":
-            sfx_cues.append({"query": sfx_cfg.get("transition_query", "whoosh"),
-                             "at": max(0, s.start - 0.06), "gain": sfx_gain, "until": s.end,
-                             "dur": trans_dur + 0.45, "align": "onset"})
+            sfx_cues.append({"kind": "transition", "query": sfx_cfg.get("transition_query", "whoosh"),
+                             "at": s.start, "scene": i, "until": s.end, "align": "peak", "gain": sfx_gain})
         if sfx_on:
+            picked = None
             for c in s.sfx:
-                c_at = c.at if c.at is not None else s.start + c.offset
-                sfx_cues.append({"query": c.query, "id": c.id, "at": c_at, "gain": c.gain, "until": s.end,
-                                 "dur": c.dur, "align": c.align})
+                nm = sfxbank.resolve(c.id) or sfxbank.resolve(c.query)
+                if nm:
+                    c_at = c.at if c.at is not None else s.start + c.offset
+                    picked = {"kind": "content", "name": nm, "query": c.query or c.id, "at": c_at, "scene": i,
+                              "until": s.end, "align": c.align, "gain": c.gain}
+                    break
+                ctx.warn(f"scene {sid}: no sound in the sfx vocabulary for '{c.query or c.id}': skipped")
+            if not picked and auto and popups:
+                picked = {"kind": "content", "name": "pop", "query": "pop", "at": popups[0]["at"], "scene": i,
+                          "until": s.end, "align": "onset", "gain": sfx_gain}
+            if picked:
+                sfx_cues.append(picked)
 
         tl_scenes.append({
             "id": sid, "start": s.start, "end": s.end, "text": s.text,
@@ -161,44 +172,41 @@ def compile_job(job: Job, profile: dict, workdir: Path, ctx: Ctx):
             words = words_from_scenes([{"text": s["text"], "start": s["start"], "end": s["end"]} for s in tl_scenes])
         chunks = build_chunks(words, int(cap_cfg.get("max_words", 3)), int(cap_cfg.get("max_chars", 22)))
 
-    # ---- sfx resolve + sync (anchor the sound's real start/peak/end on the cue, cut to the slot) ----------
-    plan = []
-    if sfx_on and sfx_cues:
-        lib = SfxLibrary(ctx, workdir / "sfx_cache")
-        for cue in sorted(sfx_cues, key=lambda c: c["at"]):
-            want = cue.get("dur")
-            r = lib.resolve(query=cue.get("query"), sfx_id=cue.get("id"), want_len=want)
-            if not r:
-                continue
-            m = r.get("meta") or {}
-            onset, peak = float(m.get("onset", 0.0)), float(m.get("peak", 0.0))
-            a_end = float(m.get("active_end") or m.get("duration") or 0.0)
-            if a_end <= onset:
-                a_end = float(m.get("duration") or onset + 1.0)
-            align = cue.get("align", "onset")
-            anchor = {"peak": peak, "end": a_end}.get(align, onset)
-            at = float(cue["at"])
-            fs = onset                                  # never play the leading silence
-            delay = at - (anchor - fs)                  # video time when the file starts, so `anchor` lands on `at`
-            if delay < 0:                               # would have to start before 0:00 -> skip into the file
-                fs, delay = fs - delay, 0.0
-            limit_abs = float(cue.get("until") or timeline_end(scenes, total))
-            if align == "end":
-                limit_abs = min(limit_abs, at + 0.35)
-            if want:
-                limit_abs = min(limit_abs, at + float(want) if align != "end" else limit_abs)
-            avail = limit_abs - delay
-            natural = max(0.0, a_end - fs + 0.05)
-            play = min(natural, avail)
-            if play < 0.05:
-                ctx.warn(f"sfx '{cue.get('query') or cue.get('id')}' at {at:.2f}s dropped: its scene ends before it can play")
-                continue
-            fade = 0.03 if play >= natural - 1e-3 else min(0.14, play * 0.5)
-            plan.append({"path": str(r["path"]), "delay": delay, "trim": fs, "play": play,
-                         "fade": fade, "gain": float(cue["gain"])})
-            ctx.credits.append({"at": round(at, 3), "id": r["id"], "name": r.get("name", ""), "source": r["source"],
-                                "license": r["license"], "align": align, "played": round(play, 3),
-                                "cut": play < natural - 1e-3})
+    # ---- sound effects: vocabulary lookup + placement (no network; files live in assets/sfx) -------------
+    words = [w.model_dump() for w in job.voiceover.words] if (job.voiceover and job.voiceover.words) else []
+    plan, placed = [], []
+    whoosh_end = {}                                   # scene index -> when its transition whoosh stops being audible
+    for cue in sorted(sfx_cues, key=lambda c: (c["kind"] != "transition", c["at"])):   # whooshes first
+        name = sfxbank.resolve(cue["query"]) if cue["kind"] == "transition" else cue["name"]
+        m = sfxbank.info(name) if name else None
+        if not m:
+            continue
+        at = float(cue["at"])
+        if cue["kind"] == "content":
+            at = max(at, whoosh_end.get(cue["scene"], 0.0))          # never stack on the transition whoosh
+            for _ in range(2):                                        # never land inside a spoken word
+                for w in words:
+                    if w["start"] - 0.02 <= at < w["end"] - 0.05:
+                        at = w["end"] + 0.03
+        align = m["align"] if name in ("whoosh", "riser") else cue.get("align", "onset")
+        anchor = {"peak": m["peak"], "end": m["active_end"]}.get(align, m["onset"])
+        start = max(0.0, at - anchor)
+        limit = float(cue["until"] or total) if cue["kind"] == "content" else total
+        play = min(m["dur"], limit - start, total - start)
+        if play < min(0.2, m["dur"]):
+            ctx.warn(f"sfx '{name}' at {at:.2f}s dropped: not enough room before its scene/video ends")
+            continue
+        cut = play < m["dur"] - 1e-3
+        if cue["kind"] == "transition":
+            whoosh_end[cue["scene"]] = start + m["active_end"]
+        placed.append({"name": name, "src": m["path"].resolve().as_uri(), "start": round(start, 3), "dur": round(play, 3),
+                       "cut": cut, "scene": cue["scene"], "kind": cue["kind"]})
+        plan.append({"path": str(m["path"]), "delay": start, "trim": 0.0, "play": play,
+                     "fade": min(0.14, play * 0.5) if cut else 0.03, "gain": float(cue["gain"])})
+        ctx.credits.append({"at": round(at, 3), "id": f"assets/sfx/{name}.mp3", "name": name, "source": m["source"],
+                            "license": m["license"], "align": align, "played": round(play, 3), "cut": cut})
+
+    audio_tl = _audio_timeline(voice_path, music_path, music_cfg, job, words, total, placed, ctx)
 
     theme = {k: profile.get(k) for k in ("text_color", "accent", "font_family", "font_file", "font_google", "uppercase")}
     if theme.get("font_file"):
@@ -210,10 +218,75 @@ def compile_job(job: Job, profile: dict, workdir: Path, ctx: Ctx):
         "layout": profile.get("layout") or {}, "header": profile.get("header") or {},
         "scenes": tl_scenes,
         "captions": {**cap_cfg, "chunks": chunks},
+        "audio": audio_tl,
     }
     return timeline, plan, {"voice": voice_path, "music": music_path,
                             "voice_gain": job.voiceover.gain if job.voiceover else 1.0,
                             "music_gain": float(music_cfg.get("gain", 0.14))}
+
+
+def _mean_db(path: Path, seconds: float = 90.0) -> Optional[float]:
+    """Mean level in dBFS via ffmpeg volumedetect (None if ffmpeg is unavailable)."""
+    try:
+        r = subprocess.run(["ffmpeg", "-hide_banner", "-t", f"{seconds:.0f}", "-i", str(path), "-af", "volumedetect",
+                            "-f", "null", "-"], capture_output=True, text=True, timeout=120)
+        m = re.search(r"mean_volume:\s*(-?[\d.]+) dB", r.stderr)
+        return float(m.group(1)) if m else None
+    except Exception:
+        return None
+
+
+def _speech_segments(voice_path, words: list, total: float) -> list:
+    """[(start, end)] where someone is talking: from word timestamps, else ffmpeg silencedetect, else the whole video."""
+    segs: list = []
+    if words:
+        for w in sorted(words, key=lambda w: w["start"]):
+            if segs and w["start"] - segs[-1][1] < 0.45:          # short gaps inside a sentence stay one segment
+                segs[-1][1] = max(segs[-1][1], w["end"])
+            else:
+                segs.append([float(w["start"]), float(w["end"])])
+        return segs
+    if voice_path:
+        try:
+            r = subprocess.run(["ffmpeg", "-hide_banner", "-i", str(voice_path), "-af", "silencedetect=noise=-38dB:d=0.45",
+                                "-f", "null", "-"], capture_output=True, text=True, timeout=120)
+            t, sil = 0.0, []
+            for line in r.stderr.splitlines():
+                a = re.search(r"silence_start: (-?[\d.]+)", line)
+                b = re.search(r"silence_end: ([\d.]+)", line)
+                if a:
+                    sil.append([max(0.0, float(a.group(1))), None])
+                if b and sil and sil[-1][1] is None:
+                    sil[-1][1] = float(b.group(1))
+            end = probe_duration(Path(voice_path))
+            for a0, b0 in sil:
+                if a0 > t:
+                    segs.append([t, a0])
+                t = b0 if b0 is not None else end
+            if t < end:
+                segs.append([t, end])
+            return [x for x in segs if x[1] - x[0] > 0.05]
+        except Exception:
+            pass
+    return [[0.0, total]] if voice_path else []
+
+
+def _audio_timeline(voice_path, music_path, music_cfg: dict, job, words: list, total: float, placed: list, ctx: Ctx):
+    """Everything HyperFrames needs to play the sound track itself. Volumes are applied in hf_compose.py."""
+    if not (voice_path or music_path or placed):
+        return None
+    out = {"voice": None, "music": None, "speech": _speech_segments(voice_path, words, total), "sfx": placed,
+           "voice_db": None, "music_db": None, "music_gain": None}
+    if voice_path:
+        out["voice"] = {"src": Path(voice_path).resolve().as_uri(), "gain": float(job.voiceover.gain if job.voiceover else 1.0),
+                        "dur": probe_duration(Path(voice_path))}
+        out["voice_db"] = _mean_db(Path(voice_path))
+    if music_path:
+        out["music"] = {"src": Path(music_path).resolve().as_uri(), "dur": probe_duration(Path(music_path))}
+        out["music_db"] = _mean_db(Path(music_path))
+        if job.music and job.music.gain is not None:          # an explicit gain on the job wins over the automatic level
+            out["music_gain"] = float(job.music.gain)
+    return out
 
 
 def timeline_end(scenes, total: float) -> float:

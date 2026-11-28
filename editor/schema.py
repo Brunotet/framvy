@@ -1,7 +1,7 @@
 """Job spec: the JSON n8n sends to this repo. Lenient on purpose (extra keys allowed)."""
 from __future__ import annotations
 from typing import Any, Optional, Union
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class _Base(BaseModel):
@@ -48,8 +48,8 @@ class Popup(_Base):
 
 
 class SfxCue(_Base):
-    query: Optional[str] = None    # "whoosh", "heavy impact", ...
-    id: Optional[str] = None       # exact library id (wins over query)
+    query: Optional[str] = None    # free text mapped to the fixed vocabulary in editor/sfxbank.py ("whoosh", "heavy impact", ...)
+    id: Optional[str] = None       # a vocabulary name ("ding"); unknown ids are ignored
     at: Optional[float] = None     # absolute seconds; OR word/offset like popups
     word: Optional[str] = None
     offset: float = 0.0
@@ -81,6 +81,16 @@ class Scene(_Base):
     character: Optional[Union[bool, str, dict]] = None  # True | "pose" | {"pose","side","action"}
     focus: Optional[dict] = None                # slow punch-in when a keyword is spoken: {"word": "diamond", "x": 50, "y": 55, "amount": 0.16}
     map: Optional[dict] = None                  # code-drawn map scene: {"place": "Japan", "flag": true, "icons": ["factory"]}
+
+    @field_validator("sfx", mode="before")
+    @classmethod
+    def _lenient_sfx(cls, v):
+        """Planner output may be a bare string ("whoosh"), a list of strings, or null: all become SfxCue objects."""
+        if v is None:
+            return []
+        if isinstance(v, (str, dict)):
+            v = [v]
+        return [{"query": x} if isinstance(x, str) else x for x in v]
 
 
 class Job(_Base):

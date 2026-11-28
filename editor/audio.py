@@ -1,4 +1,8 @@
-"""Mix voiceover + music (ducked under the voice) + sfx into one stereo track."""
+"""DEPRECATED: ffmpeg premix of voiceover + music + sfx into one stereo track.
+
+HyperFrames now plays and mixes all audio inside the composition (editor/hf_compose.py: <audio> tags, ducking
+lanes, master true-peak limiter). This module is kept ONLY as the fallback for the built-in stage renderer
+(--engine stage / HyperFrames failure) and for timelines without an audio block. Do not extend it."""
 from __future__ import annotations
 from pathlib import Path
 from .util import run
